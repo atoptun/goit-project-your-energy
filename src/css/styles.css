@@ -6,3 +6,15 @@
 /* Layout */
 @import url('./header.css');
 @import url('./footer.css');
+
+/* Sections */
+@import url('./hero.css');
+@import url('./quote.css');
+@import url('./favorites.css');
+
+/* Exercises */
+@import url('./exercises/exercises-section.css');
+@import url('./exercises/filters.css');
+@import url('./exercises/category-list.css');
+@import url('./exercises/exercises-list.css');
+@import url('./exercises/exercise-modal.css');
