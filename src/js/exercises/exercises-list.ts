@@ -4,7 +4,7 @@ interface IExercise {
 }
 
 interface RenderOptions {
-  onAction?: string;
+  onAction?: (action: string) => void;
 }
 
 export function renderExercises(exercises: IExercise[], { onAction }: RenderOptions = {}) { }

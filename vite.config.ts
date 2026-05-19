@@ -55,10 +55,6 @@ export default defineConfig(({ command }) => {
               return '[name].[ext]';
             }
 
-            // if (assetName.endsWith('.css')) {
-            //   return 'assets/[name].[ext]';
-            // }
-
             return 'assets/[name]-[hash][extname]';
           },
         },
