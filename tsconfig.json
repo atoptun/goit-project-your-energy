@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["dom", "ESNext"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "esnext",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "moduleResolution": "bundler",
+    "allowJs": false,
+    "sourceMap": true,
+    "preserveConstEnums": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+  },
+  "include": ["./src/**/*.ts", "./src/**/*.d.ts", "src/vite-env.d.ts"],
+  "exclude": ["./dist"],
+}
