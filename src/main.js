@@ -1,9 +1,0 @@
-import { initHeader } from './js/header.js';
-import { initFooter } from './js/footer.js';
-import { initExercisesSection } from './js/exercises/exercises-section.js';
-import { initQuote } from './js/quote.js';
-
-initHeader();
-initFooter();
-initQuote();
-initExercisesSection();
