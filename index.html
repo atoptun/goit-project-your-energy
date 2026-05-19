@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YourEnergy</title>
     <script type="module" crossorigin src="/goit-advancedjs-fp-03/index.js"></script>
-    <link rel="stylesheet" crossorigin href="/goit-advancedjs-fp-03/assets/index-B8bo_gsa.css">
+    <link rel="modulepreload" crossorigin href="/goit-advancedjs-fp-03/assets/styles-e8aL63M-.js">
+    <link rel="modulepreload" crossorigin href="/goit-advancedjs-fp-03/assets/vendor-3cGtQH5P.js">
+    <link rel="stylesheet" crossorigin href="/goit-advancedjs-fp-03/assets/styles-B8bo_gsa.css">
   </head>
   <body>
     <header class="header">
@@ -22,7 +24,53 @@
 </header>
 
     <main>
+      <section class="hero">
+  <div class="container">
+  </div>
+</section>
+      <section class="exercises-section">
+  <div class="container">
+    <div class="exercises-section-head">
+      <h2 class="exercises-section-title">
+        Exercises / <span class="js-category-title"></span>
+      </h2>
+      <div class="exercises-section-controls">
+        <form class="search-form" id="js-search-form">
+          <input
+            class="search-input"
+            type="search"
+            name="keyword"
+            placeholder="Search"
+            autocomplete="off"
+          />
+          <button class="search-btn" type="submit" aria-label="Search"></button>
+        </form>
+        <ul class="filter-list">
+          <li class="filter-item">
+            <button class="filter-btn active" data-filter="Muscles">Muscles</button>
+          </li>
+          <li class="filter-item">
+            <button class="filter-btn" data-filter="Body parts">Body parts</button>
+          </li>
+          <li class="filter-item">
+            <button class="filter-btn" data-filter="Equipment">Equipment</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <ul class="category-list js-category-list"></ul>
+    <ul class="exercises-list js-exercises-list"></ul>
+    <div class="pagination js-pagination"></div>
+  </div>
+</section>
     </main>
+
+    <div class="modal-backdrop js-modal-backdrop" hidden>
+  <div class="modal js-modal" role="dialog" aria-modal="true">
+    <button class="modal-close js-modal-close" type="button" aria-label="Close modal"></button>
+    <div class="modal-content js-modal-content"></div>
+  </div>
+</div>
 
     <footer class="footer">
   <div class="container">
