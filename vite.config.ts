@@ -76,6 +76,7 @@ export default defineConfig(({ command }) => {
         eslint: {
           lintCommand: 'eslint "./**/*.{ts,tsx}"',
         },
+        overlay: false,
       }),
       VitePluginSvgSpritemap('./icons/**/*.svg', { injectSvgOnDev: true }),
       ViteImageOptimizer({
