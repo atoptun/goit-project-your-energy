@@ -3,12 +3,12 @@
   --font-primary: 'DM Sans', sans-serif;
 
   /* Colors — fill from Figma */
-  --color-primary-bg: #ffffff;
-  --color-secondary-bg: #f4f4f4;
-  --color-dark-bg: #262626;
-  --color-text-primary: #212121;
-  --color-text-secondary: #808080;
-  --color-text-white: #ffffff;
+  --color-primary-bg: #f4f4f4;
+  --color-secondary-bg: #ffffff;
+  --color-dark-bg: #242424;
+  --color-text-primary: #242424;
+  --color-text-secondary: #24242499; /* #808080;  rgba(36, 36, 36, 0.6); */
+  --color-text-white: #f4f4f499;  /* #ffffff; rgba(244, 244, 244, 0.6); */
   --color-accent: #ef8964;
   --color-border: #e0e0e0;
 
