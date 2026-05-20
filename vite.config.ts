@@ -4,7 +4,7 @@ import { glob } from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 // __ @ts-ignore
-// __ @ts-expect-error Package postcss-sort-media-queries does not have d.ts
+// @ts-expect-error Package postcss-sort-media-queries does not have d.ts
 import SortCss from 'postcss-sort-media-queries';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import checker from 'vite-plugin-checker';
@@ -75,6 +75,7 @@ export default defineConfig(({ command }) => {
         eslint: {
           lintCommand: 'eslint "./**/*.{ts,tsx}"',
         },
+        overlay: false,
       }),
       VitePluginSvgSpritemap('./icons/**/*.svg', { injectSvgOnDev: true }),
       ViteImageOptimizer({
