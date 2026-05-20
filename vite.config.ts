@@ -13,12 +13,11 @@ import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap';
 // import webfontDownload from 'vite-plugin-webfont-dl';
 
 export default defineConfig(({ command }) => {
-  const BASE_PATH = '/goit-advancedjs-fp-03/';
   return {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
-    base: BASE_PATH,
+    base: '/goit-advancedjs-fp-03/',
     root: 'src',
 
     css: {
