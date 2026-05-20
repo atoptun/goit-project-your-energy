@@ -17,7 +17,6 @@ export default defineConfig(({ command }) => {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
-    base: '/goit-advancedjs-fp-03/',
     root: 'src',
 
     css: {
