@@ -9,14 +9,18 @@ import SortCss from 'postcss-sort-media-queries';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import checker from 'vite-plugin-checker';
 import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap';
+import { replaceSpritemapReferences } from './vite-plugins/replace-spritemap-references';
 // import { compression } from 'vite-plugin-compression2';
 // import webfontDownload from 'vite-plugin-webfont-dl';
 
 export default defineConfig(({ command }) => {
+  const isBuild = command === 'build';
+
   return {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
+    // base: '/goit-advancedjs-fp-03/',
     root: 'src',
 
     css: {
@@ -77,7 +81,10 @@ export default defineConfig(({ command }) => {
         },
         overlay: false,
       }),
-      VitePluginSvgSpritemap('./icons/**/*.svg', { injectSvgOnDev: true }),
+      VitePluginSvgSpritemap('./icons/**/*.svg', {
+        output: 'spritemap.svg',
+      }),
+      ...(isBuild ? [replaceSpritemapReferences()] : []),
       ViteImageOptimizer({
         cache: true,
         cacheLocation: path.resolve(
