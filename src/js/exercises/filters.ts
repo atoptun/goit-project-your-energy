@@ -1,10 +1,21 @@
+import { TFilterCategory } from '../types';
+import { SELECTORS, FILTER_CATEGORIES } from '../constants';
+
 interface FilterOptions {
-  onFilterChange?: (filter: string) => void;
+  onFilterChange?: (filter: TFilterCategory) => void;
   onSearch?: (keyword: string) => void;
 }
 
+function isFilterCategory(value: unknown): value is TFilterCategory {
+  return typeof value === 'string' && [
+    FILTER_CATEGORIES.muscles,
+    FILTER_CATEGORIES.bodyParts,
+    FILTER_CATEGORIES.equipment
+  ].includes(value as TFilterCategory);
+}
+
 export function initFilters({ onFilterChange, onSearch }: FilterOptions = {}) {
-  const filterList = document.querySelector<HTMLUListElement>('.filter-list');
+  const filterList = document.querySelector<HTMLUListElement>(SELECTORS.filterList);
 
   if (!filterList) {
     console.error('Filter list not found');
@@ -12,18 +23,18 @@ export function initFilters({ onFilterChange, onSearch }: FilterOptions = {}) {
   }
 
   filterList.addEventListener('click', (event: MouseEvent) => {
-    const target = (event.target as HTMLElement).closest<HTMLButtonElement>('.filter-btn');
+    const target = (event.target as HTMLElement).closest<HTMLButtonElement>(SELECTORS.filterBtn);
     if (!target) {
       return;
     }
 
-    const currentActive = filterList.querySelector<HTMLButtonElement>('.filter-btn.active');
+    const currentActive = filterList.querySelector<HTMLButtonElement>(SELECTORS.filterBtnActive);
     if (currentActive === target) {
       return;
     }
 
     const filter = target.dataset.filter;
-    if (!filter) {
+    if (!filter || !isFilterCategory(filter)) {
       return;
     }
 
@@ -33,11 +44,11 @@ export function initFilters({ onFilterChange, onSearch }: FilterOptions = {}) {
     onFilterChange?.(filter);
   });
 
-  const searchForm = document.querySelector<HTMLFormElement>('#js-search-form');
+  const searchForm = document.querySelector<HTMLFormElement>(SELECTORS.searchForm);
   if (searchForm) {
     searchForm.addEventListener('submit', (event: Event) => {
       event.preventDefault();
-      const searchInput = searchForm.querySelector<HTMLInputElement>('.search-input');
+      const searchInput = searchForm.querySelector<HTMLInputElement>(SELECTORS.searchInput);
       const keyword = searchInput?.value.trim() || '';
       onSearch?.(keyword);
     });
