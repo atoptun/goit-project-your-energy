@@ -10,7 +10,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@spiriit/vite-plugin-svg-spritemap": "^7.0.0",
     "@types/node": "^25.9.0",
     "eslint": "^10.4.0",
     "glob": "^13.0.6",
