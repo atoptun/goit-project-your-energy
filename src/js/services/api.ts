@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ICategory } from '../types';
 
 axios.defaults.baseURL = 'https://your-energy.b.goit.study/api';
 
@@ -8,7 +9,16 @@ interface FilterParams {
   limit?: number,
 }
 
-export async function fetchFilters(params: FilterParams = {}) {
+interface Response<T> {
+  page: number;
+  perPage: number;
+  totalPages: number;
+  results: T;
+}
+
+
+
+export async function fetchFilters(params: FilterParams = {}): Promise<Response<ICategory[]>> {
   const { data } = await axios.get('/filters', {
     params: params,
   });
