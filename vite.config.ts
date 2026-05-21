@@ -76,7 +76,7 @@ export default defineConfig(({ command }) => {
         },
         overlay: false,
       }),
-ViteImageOptimizer({
+      ViteImageOptimizer({
         cache: true,
         cacheLocation: path.resolve(
           __dirname,
@@ -87,6 +87,7 @@ ViteImageOptimizer({
         jpg: { quality: 80 },
         webp: { quality: 75 },
         avif: { quality: 75 },
+        exclude: /\.svg$/,
       }),
     ],
   };
