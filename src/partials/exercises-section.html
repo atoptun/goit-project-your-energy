@@ -14,8 +14,18 @@
             name="keyword"
             placeholder="Search"
             autocomplete="off"
+            required
           />
-          <button class="search-btn" type="submit" aria-label="Search"></button>
+          <button class="clear-btn" type="button" aria-label="Clear" hidden>
+            <svg class="search-icon" aria-hidden="true">
+              <use href="./images/icons.svg#icon-close"></use>
+            </svg>
+          </button>
+          <button class="search-btn" type="submit" aria-label="Search">
+            <svg class="search-icon" aria-hidden="true">
+              <use href="./images/icons.svg#icon-search"></use>
+            </svg>
+          </button>
         </form>
         <ul class="filter-list">
           <li class="filter-item">
@@ -30,8 +40,16 @@
         </ul>
       </div>
     </div>
-    <ul class="category-list js-category-list"></ul>
-    <ul class="exercises-list js-exercises-list"></ul>
-    <div class="pagination js-pagination"></div>
+    <div class="exercises-main-content">
+      <aside class="sidebar-info">
+        <load src="partials/quote.html" />
+      </aside>
+
+      <div class="cards-wrapper">
+        <ul class="category-list js-category-list"></ul>
+        <ul class="exercises-list js-exercises-list"></ul>
+        <ul class="pagination js-pagination"></ul>
+      </div>
+    </div>
   </div>
 </section>
