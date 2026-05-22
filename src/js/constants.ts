@@ -7,7 +7,7 @@ export const SELECTORS = {
   filterList: '.filter-list',
   filterBtn: '.filter-btn',
   filterBtnActive: '.filter-btn.active',
-  searchForm: '#js-search-form',
+  searchForm: '.search-form',
   searchFormClass: '.search-form',
   searchInput: '.search-input',
   categoryTitle: '.js-category-title',
