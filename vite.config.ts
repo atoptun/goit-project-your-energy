@@ -4,11 +4,10 @@ import { glob } from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 // __ @ts-ignore
-// __ @ts-expect-error Package postcss-sort-media-queries does not have d.ts
+// @ts-expect-error Package postcss-sort-media-queries does not have d.ts
 import SortCss from 'postcss-sort-media-queries';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import checker from 'vite-plugin-checker';
-import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap';
 // import { compression } from 'vite-plugin-compression2';
 // import webfontDownload from 'vite-plugin-webfont-dl';
 
@@ -17,7 +16,6 @@ export default defineConfig(({ command }) => {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
-    base: '/goit-advancedjs-fp-03/',
     root: 'src',
 
     css: {
@@ -76,8 +74,8 @@ export default defineConfig(({ command }) => {
         eslint: {
           lintCommand: 'eslint "./**/*.{ts,tsx}"',
         },
+        overlay: false,
       }),
-      VitePluginSvgSpritemap('./icons/**/*.svg', { injectSvgOnDev: true }),
       ViteImageOptimizer({
         cache: true,
         cacheLocation: path.resolve(
@@ -89,12 +87,7 @@ export default defineConfig(({ command }) => {
         jpg: { quality: 80 },
         webp: { quality: 75 },
         avif: { quality: 75 },
-        // svg: {
-        //   plugins: [
-        //     { name: 'removeViewBox', active: false },
-        //     { name: 'sortAttrs', active: true },
-        //   ],
-        // },
+        exclude: /\.svg$/,
       }),
     ],
   };

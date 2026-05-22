@@ -42,6 +42,12 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+body.is-menu-open {
+  overflow: hidden;
+  touch-action: none;
+  height: 100vh;
+}
+
 main {
   flex-grow: 1;
 }
