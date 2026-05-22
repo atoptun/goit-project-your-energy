@@ -64,3 +64,7 @@ body.is-menu-open {
 main {
   flex-grow: 1;
 }
+
+.hidden {
+  display: none;
+}

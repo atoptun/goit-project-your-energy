@@ -12,6 +12,19 @@
   grid-row: 2;
 }
 
+.exercises-section-head {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 768px) {
+  .exercises-section-head {
+    margin-bottom: 32px;
+  }
+}
+
+
 @media only screen and (min-width: 768px) {
   .exercises-main-content {
     gap: 64px;
@@ -20,8 +33,12 @@
 }
 
 @media only screen and (min-width: 1440px) {
+  .exercises-section {
+    padding-top: 64px;
+  }
+
   .exercises-main-content {
-    grid-template-columns: 444px 1fr; 
+    grid-template-columns: 444px 1fr;
     gap: 32px;
   }
 
@@ -33,5 +50,13 @@
   .cards-wrapper {
     grid-column: 2;
     grid-row: 1;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .exercises-section-head {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 }
