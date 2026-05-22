@@ -9,16 +9,14 @@ interface FilterParams {
   limit?: number,
 }
 
-interface Response<T> {
+interface PaginatedResponse<T> {
   page: number;
   perPage: number;
   totalPages: number;
   results: T;
 }
 
-
-
-export async function fetchFilters(params: FilterParams = {}): Promise<Response<ICategory[]>> {
+export async function fetchFilters(params: FilterParams = {}): Promise<PaginatedResponse<ICategory[]>> {
   const { data } = await axios.get('/filters', {
     params: params,
   });

@@ -7,11 +7,7 @@ interface FilterOptions {
 }
 
 function isFilterCategory(value: unknown): value is TFilterCategory {
-  return typeof value === 'string' && [
-    FILTER_CATEGORIES.muscles,
-    FILTER_CATEGORIES.bodyParts,
-    FILTER_CATEGORIES.equipment
-  ].includes(value as TFilterCategory);
+  return typeof value === 'string' && (Object.values(FILTER_CATEGORIES) as string[]).includes(value);
 }
 
 export function initFilters({ onFilterChange, onSearch }: FilterOptions) {

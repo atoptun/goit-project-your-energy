@@ -1,3 +1,5 @@
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 import { fetchFilters } from '../services/api';
 import { ICategory } from '../types';
 import { SELECTORS } from '../constants';
@@ -11,7 +13,7 @@ interface CategoryListOptions {
 
 export function initCategoryList({ onSelect, onPageChange }: CategoryListOptions = {}) {
   categoryListEl?.addEventListener('click', (event: MouseEvent) => {
-    const target = (event.target as HTMLElement).closest<HTMLElement>('.category-item');
+    const target = (event.target as HTMLElement).closest<HTMLElement>(SELECTORS.categoryItem);
     if (!target) {
       return;
     }
@@ -63,6 +65,8 @@ export async function renderCategories(filter?: string, page?: number) {
   try {
     const data = await fetchFilters({ filter, limit: ITEMS_PER_PAGE, page })
 
+    if (!data) return;
+
     const categoryList = data.results.map(item => createCategoryItemMarkup(item)).join("")
 
     if (!categoryListEl) return;
@@ -71,9 +75,21 @@ export async function renderCategories(filter?: string, page?: number) {
 
     if (!pagination) return;
 
+    if (data.totalPages <= 1) {
+      pagination.innerHTML = '';
+      pagination.hidden = true;
+      return;
+    }
+
+    pagination.hidden = false;
     pagination.innerHTML = createPaginationMarkup(data.totalPages, page);
 
   } catch (error) {
     console.error(error);
+    iziToast.error({
+      message: 'Failed to load categories. Please try again later.',
+      position: 'topRight',
+      timeout: 3000,
+    });
   }
 }
