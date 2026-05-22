@@ -7,3 +7,12 @@ export interface ICategory {
     "name": string;
     "imgURL": string;
 }
+
+export interface IQuote {
+  quote: string;
+  author: string;
+}
+
+export interface IStoredQuote extends IQuote {
+  date: string;
+}
