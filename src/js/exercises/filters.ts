@@ -1,12 +1,19 @@
+import { TFilterCategory } from '../types';
+import { SELECTORS, FILTER_CATEGORIES } from '../constants';
+
 interface FilterOptions {
-  onFilterChange: (filter: string) => void;
+  onFilterChange: (filter: TFilterCategory) => void;
   onSearch: (keyword: string) => void;
 }
 
+function isFilterCategory(value: unknown): value is TFilterCategory {
+  return typeof value === 'string' && (Object.values(FILTER_CATEGORIES) as string[]).includes(value);
+}
+
 export function initFilters({ onFilterChange, onSearch }: FilterOptions) {
-  const filterList = document.querySelector<HTMLUListElement>('.filter-list');
-  const searchForm = document.querySelector<HTMLFormElement>('.search-form');
-  const searchInput = searchForm?.querySelector<HTMLInputElement>('.search-input');
+  const filterList = document.querySelector<HTMLUListElement>(SELECTORS.filterList);
+  const searchForm = document.querySelector<HTMLFormElement>(SELECTORS.searchForm);
+  const searchInput = searchForm?.querySelector<HTMLInputElement>(SELECTORS.searchInput);
   const clearBtn = searchForm?.querySelector<HTMLButtonElement>('.clear-btn');
 
   const toggleClearBtn = () => {
@@ -17,18 +24,18 @@ export function initFilters({ onFilterChange, onSearch }: FilterOptions) {
 
   if (filterList) {
     filterList.addEventListener('click', (event: MouseEvent) => {
-      const target = (event.target as HTMLElement).closest<HTMLButtonElement>('.filter-btn');
+      const target = (event.target as HTMLElement).closest<HTMLButtonElement>(SELECTORS.filterBtn);
       if (!target) {
         return;
       }
 
-      const currentActive = filterList.querySelector<HTMLButtonElement>('.filter-btn.active');
+      const currentActive = filterList.querySelector<HTMLButtonElement>(SELECTORS.filterBtnActive);
       if (currentActive === target) {
         return;
       }
 
       const filter = target.dataset.filter;
-      if (!filter) {
+      if (!filter || !isFilterCategory(filter)) {
         return;
       }
 
