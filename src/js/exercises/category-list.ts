@@ -6,9 +6,10 @@ const categoryListEl = document.querySelector<HTMLUListElement>(SELECTORS.catego
 
 interface CategoryListOptions {
   onSelect?: (category: string) => void;
+  onPageChange?: (page: number) => void;
 }
 
-export function initCategoryList({ onSelect }: CategoryListOptions = {}) {
+export function initCategoryList({ onSelect, onPageChange }: CategoryListOptions = {}) {
   categoryListEl?.addEventListener('click', (event: MouseEvent) => {
     const target = (event.target as HTMLElement).closest<HTMLElement>('.category-item');
     if (!target) {
@@ -20,10 +21,22 @@ export function initCategoryList({ onSelect }: CategoryListOptions = {}) {
       onSelect?.(categoryName);
     }
   });
+
+  const paginationNav = document.querySelector<HTMLUListElement>(SELECTORS.pagination);
+  paginationNav?.addEventListener('click', (event: MouseEvent) => {
+    const target = (event.target as HTMLElement).closest<HTMLLIElement>(SELECTORS.paginationItem);
+
+    if (!target) {
+      return;
+    }
+
+    const page = Number(target.dataset.page);
+    onPageChange?.(page);
+  });
 }
 
 
-export function createCategoryItemMarkup(category: ICategory) {
+function createCategoryItemMarkup(category: ICategory) {
   return `
       <li class="category-item" data-category="${category.name}">
         <img class="category-image" src="${category.imgURL}" alt="${category.name}">
@@ -35,8 +48,7 @@ export function createCategoryItemMarkup(category: ICategory) {
       `
 }
 
-
-export function createPaginationMarkup(totalPages: number, currentPage: number) {
+function createPaginationMarkup(totalPages: number, currentPage: number) {
   return Array.from({ length: totalPages }, (_, idx) => idx + 1).map(page => {
     return `<li class="pagination-item ${currentPage === page ? 'active' : ''}" data-page="${page}">${page}</li>`
   }).join('');
@@ -65,26 +77,3 @@ export async function renderCategories(filter?: string, page?: number) {
     console.error(error);
   }
 }
-
-
-const paginationNav = document.querySelector<HTMLUListElement>(SELECTORS.pagination);
-
-paginationNav?.addEventListener('click', (event: MouseEvent) => {
-  const target = (event.target as HTMLElement).closest<HTMLLIElement>(SELECTORS.paginationItem);
-  if (!target) {
-    return;
-  }
-
-  const currentPage = Number(document.querySelector(SELECTORS.paginationItemActive)?.getAttribute('data-page'));
-  const page = Number(target.dataset.page || '1');
-  if (!page || page === currentPage) {
-    return;
-  }
-
-  const selectedCategory = document.querySelector(SELECTORS.filterBtnActive)?.getAttribute('data-filter');
-  if (!selectedCategory) {
-    return;
-  }
-
-  renderCategories(selectedCategory, page);
-})
