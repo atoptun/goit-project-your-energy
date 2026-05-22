@@ -25,3 +25,6 @@ pull-requests.txt
 *.njsproj
 *.sln
 *.sw?
+
+
+/src/icons/*

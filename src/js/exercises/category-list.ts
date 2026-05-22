@@ -1,8 +1,13 @@
 import { fetchFilters } from '../services/api';
-import { ICategory } from '../types';
+import { ICategory, TFilterCategory } from '../types';
 import { SELECTORS } from '../constants';
+import { showPagination, hidePagination } from '../pagination';
 
-const categoryListEl = document.querySelector<HTMLUListElement>(SELECTORS.categoryList);
+const ITEMS_PER_PAGE = window.innerWidth < 768 ? 9 : 12;
+
+const categoryListEl = document.querySelector<HTMLUListElement>(
+  SELECTORS.categoryList
+);
 
 interface CategoryListOptions {
   onSelect?: (category: string) => void;
@@ -10,10 +15,10 @@ interface CategoryListOptions {
 
 export function initCategoryList({ onSelect }: CategoryListOptions = {}) {
   categoryListEl?.addEventListener('click', (event: MouseEvent) => {
-    const target = (event.target as HTMLElement).closest<HTMLElement>('.category-item');
-    if (!target) {
-      return;
-    }
+    const target = (event.target as HTMLElement).closest<HTMLElement>(
+      '.category-item'
+    );
+    if (!target) return;
 
     const categoryName = target.dataset.category || '';
     if (categoryName) {
@@ -22,69 +27,57 @@ export function initCategoryList({ onSelect }: CategoryListOptions = {}) {
   });
 }
 
-
-export function createCategoryItemMarkup(category: ICategory) {
-  return `
-      <li class="category-item" data-category="${category.name}">
-        <img class="category-image" src="${category.imgURL}" alt="${category.name}">
-        <div class="category-info">
-          <h3 class="category-name">${category.name}</h3>
-          <p class="category-filter">${category.filter}</p>
-        </div>
-      </li>
-      `
+export function hideCategoryList() {
+  if (categoryListEl) {
+    categoryListEl.innerHTML = '';
+  }
 }
 
-
-export function createPaginationMarkup(totalPages: number, currentPage: number) {
-  return Array.from({ length: totalPages }, (_, idx) => idx + 1).map(page => {
-    return `<li class="pagination-item ${currentPage === page ? 'active' : ''}" data-page="${page}">${page}</li>`
-  }).join('');
+interface RenderOptions {
+  filter: TFilterCategory;
+  page?: number;
 }
 
-export async function renderCategories(filter?: string, page?: number) {
-  page ||= 1;
-  const ITEMS_PER_PAGE = window.innerWidth < 768 ? 9 : 12;
+export async function renderCategories(option: RenderOptions) {
+  const { filter, page } = option;
+  const currentPage = page || 1;
 
-  const pagination = document.querySelector<HTMLElement>(SELECTORS.pagination);
+  hidePagination();
 
+  const breadcrumbEl = document.querySelector(SELECTORS.categoryTitle);
+  if (breadcrumbEl) {
+    breadcrumbEl.textContent = '';
+  }
   try {
-    const data = await fetchFilters({ filter, limit: ITEMS_PER_PAGE, page })
+    const data = await fetchFilters({ filter, limit: ITEMS_PER_PAGE, page });
 
-    const categoryList = data.results.map(item => createCategoryItemMarkup(item)).join("")
+    const categoryList = data.results
+      .map(item => createCategoryItemMarkup(item))
+      .join('');
 
     if (!categoryListEl) return;
 
     categoryListEl.innerHTML = categoryList;
 
-    if (!pagination) return;
-
-    pagination.innerHTML = createPaginationMarkup(data.totalPages, page);
-
+    showPagination({
+      totalPages: data.totalPages,
+      currentPage: currentPage,
+      onChangedPage: ({ page }: { page: number }) =>
+        renderCategories({ filter, page }),
+    });
   } catch (error) {
     console.error(error);
   }
 }
 
-
-const paginationNav = document.querySelector<HTMLUListElement>(SELECTORS.pagination);
-
-paginationNav?.addEventListener('click', (event: MouseEvent) => {
-  const target = (event.target as HTMLElement).closest<HTMLLIElement>(SELECTORS.paginationItem);
-  if (!target) {
-    return;
-  }
-
-  const currentPage = Number(document.querySelector(SELECTORS.paginationItemActive)?.getAttribute('data-page'));
-  const page = Number(target.dataset.page || '1');
-  if (!page || page === currentPage) {
-    return;
-  }
-
-  const selectedCategory = document.querySelector(SELECTORS.filterBtnActive)?.getAttribute('data-filter');
-  if (!selectedCategory) {
-    return;
-  }
-
-  renderCategories(selectedCategory, page);
-})
+function createCategoryItemMarkup(category: ICategory) {
+  return `
+    <li class="category-item" data-category="${category.name}">
+      <img class="category-image" src="${category.imgURL}" alt="${category.name}">
+      <div class="category-info">
+        <h3 class="category-name">${category.name}</h3>
+        <p class="category-filter">${category.filter}</p>
+      </div>
+    </li>
+    `;
+}

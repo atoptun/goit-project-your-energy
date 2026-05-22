@@ -2,8 +2,12 @@ import { TFilterCategory } from '../types';
 import { SELECTORS } from '../constants';
 import { fetchExercises, ExercisesParams } from '../services/api';
 import { openExerciseModal } from './exercise-modal';
-import { createExerciseItemMarkup } from './exercise-card';
+import {
+  createExerciseItemMarkup,
+  createExerciseEmptyMessage,
+} from './exercise-card';
 import { showErrorMessage } from '../utils';
+import { showPagination, hidePagination } from '../pagination';
 
 const ITEMS_PER_PAGE = window.innerWidth < 768 ? 8 : 10;
 
@@ -11,60 +15,76 @@ const exercisesListEl = document.querySelector<HTMLUListElement>(
   SELECTORS.exercisesList
 );
 
-let currentFilter: TFilterCategory;
 let currentCategory: string;
-let currentKeyword: string;
 let currentPage = 1;
 
+export function initExercisesList() {
+  exercisesListEl?.addEventListener('click', (event: MouseEvent) => {
+    const target = (event.target as HTMLElement).closest<HTMLElement>(
+      '.exercise-item'
+    );
+    if (!target) {
+      return;
+    }
 
-exercisesListEl?.addEventListener('click', (event: MouseEvent) => {
-  const target = (event.target as HTMLElement).closest<HTMLElement>(
-    '.exercise-item'
-  );
-  if (!target) {
-    return;
-  }
+    const exerciseId = target.dataset.exerciseId || '';
+    if (exerciseId) {
+      openExerciseModal(exerciseId);
+    }
+  });
+}
 
-  const exerciseId = target.dataset.exerciseId || '';
-  if (exerciseId) {
-    openExerciseModal(exerciseId);
+export function hideExercisesList() {
+  if (exercisesListEl) {
+    exercisesListEl.innerHTML = '';
   }
-});
+}
 
 interface RenderOptions {
   filter?: TFilterCategory;
   category?: string;
   keyword?: string;
   page?: number;
-  onAction?: (action: string) => void;
 }
 
-export async function renderExercises(options: RenderOptions = {}) {
+export async function renderExercises(options: RenderOptions) {
+  if (!exercisesListEl) {
+    return;
+  }
+
+  hidePagination();
+
   const selectedFilter =
-    options.filter || currentFilter || 
+    options.filter ||
     (document
       .querySelector(SELECTORS.filterBtnActive)
       ?.getAttribute('data-filter') as TFilterCategory);
 
   if (!selectedFilter) {
-    // something went wrong
-    console.error('Filter undefined');
+    showErrorMessage('Something went wrong. Filter undefined.');
     return;
   }
 
   const selectedCategory = options.category || currentCategory;
 
   if (!selectedCategory) {
-    // something went wrong
-    console.error('Category undefined');
+    showErrorMessage('Something went wrong. Category undefined.');
     return;
   }
 
-  const selectedKeyword = options.keyword || currentKeyword;
+  const categoryTitleEl = document.querySelector(SELECTORS.categoryTitle);
+  if (categoryTitleEl) {
+    categoryTitleEl.textContent = selectedCategory;
+  }
 
-  currentFilter = selectedFilter;
+  const breadcrumbEl = document.querySelector(SELECTORS.categoryTitle);
+  if (breadcrumbEl) {
+    breadcrumbEl.textContent = selectedCategory;
+  }
+
+  const selectedKeyword = options.keyword;
+
   currentCategory = selectedCategory;
-  currentKeyword = selectedKeyword;
   currentPage = options.page || 1;
 
   const fetchParams: ExercisesParams = {
@@ -80,18 +100,30 @@ export async function renderExercises(options: RenderOptions = {}) {
   try {
     const data = await fetchExercises(fetchParams);
 
+    if (data.results.length === 0) {
+      exercisesListEl.innerHTML = createExerciseEmptyMessage();
+      return;
+    }
+
     const exerciseList = data.results
       .map(item => createExerciseItemMarkup(item))
       .join('');
 
-    if (!exercisesListEl) return;
-
     exercisesListEl.innerHTML = exerciseList;
 
-    // if (!pagination) return;
-
-    // pagination.innerHTML = createPaginationMarkup(data.totalPages, page);
+    showPagination({
+      totalPages: data.totalPages,
+      currentPage: currentPage,
+      onChangedPage: ({ page }: { page: number }) =>
+        renderExercises({
+          filter: selectedFilter,
+          category: currentCategory,
+          keyword: selectedKeyword,
+          page,
+        }),
+    });
   } catch {
+    exercisesListEl.innerHTML = createExerciseEmptyMessage();
     showErrorMessage('Something went wrong. Try later.');
   } finally {
     // Hide loading state

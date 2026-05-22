@@ -1,33 +1,41 @@
-import { initFilters } from './filters';
-import { renderCategories, initCategoryList } from './category-list';
-import { renderExercises } from './exercises-list'
-import { SELECTORS } from '../constants';
+import { initFilters, hideSearchForm, showSearchForm } from './filters';
+import {
+  renderCategories,
+  initCategoryList,
+  hideCategoryList,
+} from './category-list';
+import {
+  initExercisesList,
+  renderExercises,
+  hideExercisesList,
+} from './exercises-list';
+import { FILTER_CATEGORIES } from '../constants';
+import { initPafination } from '../pagination';
+import { TFilterCategory } from '../types';
 
 export function initExercisesSection() {
+  initPafination();
+
   initFilters({
-    onFilterChange: (filter?: string) => renderCategories(filter),
-    onSearch: (keyword: string) => renderExercises({keyword: keyword}),
+    onFilterChange: (filter: TFilterCategory) => {
+      hideSearchForm();
+      hideExercisesList();
+      renderCategories({ filter });
+    },
+    onSearch: (keyword: string) => renderExercises({ keyword }),
   });
 
   initCategoryList({
     onSelect: (category: string) => {
-      const searchInput = document.querySelector<HTMLInputElement>(SELECTORS.searchFormClass);
+      showSearchForm();
 
-      searchInput?.classList.remove('hidden');
-      const categoryList = document.querySelector<HTMLUListElement>(SELECTORS.categoryList);
-
-      if (categoryList) {
-        categoryList.innerHTML = '';
-      }
+      hideCategoryList();
       // Handle category selection
-      renderExercises({
-        category: category,
-        onAction: () => {
-          
-        }
-      });
+      renderExercises({ category });
     },
   });
 
-  renderCategories('Muscles');
+  initExercisesList();
+
+  renderCategories({ filter: FILTER_CATEGORIES.muscles });
 }

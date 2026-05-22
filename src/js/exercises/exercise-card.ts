@@ -66,3 +66,13 @@ export function createExerciseItemMarkup(exercise: IExercise) {
       </ul>
     </li>`;
 }
+
+export function createExerciseEmptyMessage() { 
+  return `
+    <li class="exercises-empty-state">
+      <p class="exercises-empty-text">
+        No exercises found. Try a different filter or keyword.
+      </p>
+    </li>
+  `;  
+}

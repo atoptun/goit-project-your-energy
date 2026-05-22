@@ -15,6 +15,21 @@
   }
 }
 
+.exercises-empty-state {
+  grid-column: 1 / -1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+
+  padding: 40px 20px;
+}
+
+.exercises-empty-text {
+  color: rgba(36, 36, 36, 0.5);
+}
+
 /* Exercise Card */
 
 .exercise-card {
@@ -161,7 +176,10 @@
 /* Line 3: Meta */
 .card-meta-list {
   display: grid;
-  grid-template-columns: minmax(130px, max-content) minmax(91px, max-content) minmax(64px, max-content);
+  grid-template-columns:
+    minmax(130px, max-content)
+    minmax(91px, max-content)
+    minmax(64px, max-content);
 
   gap: 10px;
   padding: 0;

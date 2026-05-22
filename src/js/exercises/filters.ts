@@ -7,28 +7,42 @@ interface FilterOptions {
 }
 
 function isFilterCategory(value: unknown): value is TFilterCategory {
-  return typeof value === 'string' && [
-    FILTER_CATEGORIES.muscles,
-    FILTER_CATEGORIES.bodyParts,
-    FILTER_CATEGORIES.equipment
-  ].includes(value as TFilterCategory);
+  return (
+    typeof value === 'string' &&
+    [
+      FILTER_CATEGORIES.muscles,
+      FILTER_CATEGORIES.bodyParts,
+      FILTER_CATEGORIES.equipment,
+    ].includes(value as TFilterCategory)
+  );
 }
 
 export function initFilters({ onFilterChange, onSearch }: FilterOptions) {
-  const filterList = document.querySelector<HTMLUListElement>(SELECTORS.filterList);
-  const searchForm = document.querySelector<HTMLFormElement>(SELECTORS.searchForm);
-  const searchInput = searchForm?.querySelector<HTMLInputElement>(SELECTORS.searchInput);
+  const filterList = document.querySelector<HTMLUListElement>(
+    SELECTORS.filterList
+  );
+  const searchForm = document.querySelector<HTMLFormElement>(
+    SELECTORS.searchForm
+  );
+  const searchInput = searchForm?.querySelector<HTMLInputElement>(
+    SELECTORS.searchInput
+  );
 
   if (filterList) {
     filterList.addEventListener('click', (event: MouseEvent) => {
-      const target = (event.target as HTMLElement).closest<HTMLButtonElement>(SELECTORS.filterBtn);
+      const target = (event.target as HTMLElement).closest<HTMLButtonElement>(
+        SELECTORS.filterBtn
+      );
       if (!target) {
         return;
       }
 
-      const currentActive = filterList.querySelector<HTMLButtonElement>(SELECTORS.filterBtnActive);
+      const currentActive = filterList.querySelector<HTMLButtonElement>(
+        SELECTORS.filterBtnActive
+      );
       if (currentActive === target) {
-        return;
+        // need to reload if exercise list is opened
+        // return;
       }
 
       const filter = target.dataset.filter;
@@ -40,7 +54,7 @@ export function initFilters({ onFilterChange, onSearch }: FilterOptions) {
       target.classList.add('active');
 
       if (searchInput) {
-        searchInput.value = "";
+        searchInput.value = '';
       }
 
       onFilterChange(filter);
@@ -52,7 +66,21 @@ export function initFilters({ onFilterChange, onSearch }: FilterOptions) {
       event.preventDefault();
       const keyword = searchInput.value.trim();
       onSearch(keyword);
-      searchInput.value = '';
+      // searchInput.value = '';
     });
   }
+}
+
+export function hideSearchForm() {
+  const searchFormEl = document.querySelector<HTMLFormElement>(
+    SELECTORS.searchForm
+  );
+  searchFormEl?.classList.add('hidden');
+}
+
+export function showSearchForm() {
+  const searchFormEl = document.querySelector<HTMLFormElement>(
+    SELECTORS.searchForm
+  );
+  searchFormEl?.classList.remove('hidden');
 }

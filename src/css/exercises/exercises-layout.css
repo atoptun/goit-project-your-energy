@@ -54,5 +54,6 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    min-height: 48px; /* To prevent layout shifting when displaying the search form */
   }
 }
