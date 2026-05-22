@@ -25,6 +25,7 @@ export function initExercisesSection() {
     onSearch: (keyword) => {
       state.keyword = keyword;
       state.exercisePage = 1;
+      console.log('onSearch:', keyword);
     },
   });
 
