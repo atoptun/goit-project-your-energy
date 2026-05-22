@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { ICategory } from '../types';
+import { ICategory, IExercise } from '../types';
 
 axios.defaults.baseURL = 'https://your-energy.b.goit.study/api';
 
 interface FilterParams {
-  filter?: string,
-  page?: number,
-  limit?: number,
+  filter?: string;
+  page?: number;
+  limit?: number;
 }
 
 interface Response<T> {
@@ -16,16 +16,16 @@ interface Response<T> {
   results: T;
 }
 
-
-
-export async function fetchFilters(params: FilterParams = {}): Promise<Response<ICategory[]>> {
+export async function fetchFilters(
+  params: FilterParams = {}
+): Promise<Response<ICategory[]>> {
   const { data } = await axios.get('/filters', {
     params: params,
   });
   return data;
 }
 
-interface ExercisesParams {
+export interface ExercisesParams {
   bodypart?: string;
   muscles?: string;
   equipment?: string;
@@ -34,7 +34,9 @@ interface ExercisesParams {
   limit?: number;
 }
 
-export async function fetchExercises(params: ExercisesParams = {}) {
+export async function fetchExercises(
+  params: ExercisesParams = {}
+): Promise<Response<IExercise[]>> {
   const { data } = await axios.get('/exercises', {
     params: params,
   });
