@@ -7,6 +7,13 @@ export function initFilters({ onFilterChange, onSearch }: FilterOptions) {
   const filterList = document.querySelector<HTMLUListElement>('.filter-list');
   const searchForm = document.querySelector<HTMLFormElement>('.search-form');
   const searchInput = searchForm?.querySelector<HTMLInputElement>('.search-input');
+  const clearBtn = searchForm?.querySelector<HTMLButtonElement>('.clear-btn');
+
+  const toggleClearBtn = () => {
+    if (clearBtn) {
+      clearBtn.hidden = !searchInput?.value;
+    }
+  };
 
   if (filterList) {
     filterList.addEventListener('click', (event: MouseEvent) => {
@@ -29,7 +36,8 @@ export function initFilters({ onFilterChange, onSearch }: FilterOptions) {
       target.classList.add('active');
 
       if (searchInput) {
-        searchInput.value = "";
+        searchInput.value = '';
+        toggleClearBtn();
       }
 
       onFilterChange(filter);
@@ -37,11 +45,20 @@ export function initFilters({ onFilterChange, onSearch }: FilterOptions) {
   }
 
   if (searchForm && searchInput) {
+    searchInput.addEventListener('input', toggleClearBtn);
+
+    clearBtn?.addEventListener('click', () => {
+      searchInput.value = '';
+      toggleClearBtn();
+      searchInput.focus();
+    });
+
     searchForm.addEventListener('submit', (event: Event) => {
       event.preventDefault();
       const keyword = searchInput.value.trim();
       onSearch(keyword);
       searchInput.value = '';
+      toggleClearBtn();
     });
   }
 }
