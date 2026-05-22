@@ -1,35 +1,42 @@
 <section class="exercises-section">
-  <div class="container">
-    <div class="exercises-section-head">
-      <h2 class="exercises-section-title">
-        Exercises / <span class="js-category-title"></span>
-      </h2>
-      <div class="exercises-section-controls">
-        <form class="search-form" id="js-search-form">
-          <input
-            class="search-input"
-            type="search"
-            name="keyword"
-            placeholder="Search"
-            autocomplete="off"
-          />
-          <button class="search-btn" type="submit" aria-label="Search"></button>
-        </form>
-        <ul class="filter-list">
-          <li class="filter-item">
-            <button class="filter-btn active" data-filter="Muscles">Muscles</button>
-          </li>
-          <li class="filter-item">
-            <button class="filter-btn" data-filter="Body parts">Body parts</button>
-          </li>
-          <li class="filter-item">
-            <button class="filter-btn" data-filter="Equipment">Equipment</button>
-          </li>
-        </ul>
+  <div class="container exercises-container">
+    <load src="partials/quote.html" />
+
+    <div class="exercises-content">
+        <div class="exercises-section-head">
+        <h2 class="exercises-section-title">
+          Exercises / <span class="js-category-title"></span>
+        </h2>
+        <div class="exercises-section-controls">
+          <form class="search-form" id="js-search-form">
+            <input
+              class="search-input"
+              type="search"
+              name="keyword"
+              placeholder="Search"
+              autocomplete="off"
+            />
+            <button class="search-btn" type="submit" aria-label="Search"></button>
+          </form>
+          <ul class="filter-list">
+            <li class="filter-item">
+              <button class="filter-btn active" data-filter="Muscles">Muscles</button>
+            </li>
+            <li class="filter-item">
+              <button class="filter-btn" data-filter="Body parts">Body parts</button>
+            </li>
+            <li class="filter-item">
+              <button class="filter-btn" data-filter="Equipment">Equipment</button>
+            </li>
+          </ul>
+        </div>
       </div>
+      <ul class="category-list js-category-list"></ul>
+      <ul class="exercises-list js-exercises-list"></ul>
+      <div class="pagination js-pagination"></div>
     </div>
-    <ul class="category-list js-category-list"></ul>
-    <ul class="exercises-list js-exercises-list"></ul>
-    <div class="pagination js-pagination"></div>
-  </div>
+
+    </div>
+
+
 </section>
