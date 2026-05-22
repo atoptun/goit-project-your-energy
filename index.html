@@ -10,10 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
     <script type="module" crossorigin src="/goit-advancedjs-fp-03/index.js"></script>
     <link rel="modulepreload" crossorigin href="/goit-advancedjs-fp-03/assets/rolldown-runtime-DMWpINJ5.js">
-    <link rel="modulepreload" crossorigin href="/goit-advancedjs-fp-03/assets/mobile-menu-CUAA1dbf.js">
     <link rel="modulepreload" crossorigin href="/goit-advancedjs-fp-03/assets/vendor-X-1lGHjr.js">
-    <link rel="stylesheet" crossorigin href="/goit-advancedjs-fp-03/assets/mobile-menu-BM1zR529.css">
+    <link rel="modulepreload" crossorigin href="/goit-advancedjs-fp-03/assets/mobile-menu-CdVdLKHj.js">
     <link rel="stylesheet" crossorigin href="/goit-advancedjs-fp-03/assets/vendor-DMhSL_Xr.css">
+    <link rel="stylesheet" crossorigin href="/goit-advancedjs-fp-03/assets/mobile-menu-Dpa2bQBC.css">
   </head>
   <body>
     <header class="header">
@@ -21,7 +21,7 @@
     <div class="header-container">
       <a class="header-logo-link" href="./index.html" aria-label="YourEnergy">
         <svg class="header-logo-icon" width="132" height="24">
-          <use href="/goit-advancedjs-fp-03/assets/icons-D9cwikX9.svg#icon-logo" />
+          <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-logo" />
         </svg>
       </a>
       <nav class="header-nav">
@@ -46,7 +46,7 @@
             aria-label="Facebook"
           >
             <svg class="header-social-icon" width="28" height="28">
-              <use href="/goit-advancedjs-fp-03/assets/icons-D9cwikX9.svg#icon-facebook" />
+              <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-facebook" />
             </svg>
           </a>
         </li>
@@ -59,7 +59,7 @@
             aria-label="Instagram"
           >
             <svg class="header-social-icon" width="28" height="28">
-              <use href="/goit-advancedjs-fp-03/assets/icons-D9cwikX9.svg#icon-instagram" />
+              <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-instagram" />
             </svg>
           </a>
         </li>
@@ -72,7 +72,7 @@
             aria-label="Youtube"
           >
             <svg class="header-social-icon" width="28" height="28">
-              <use href="/goit-advancedjs-fp-03/assets/icons-D9cwikX9.svg#icon-youtube" />
+              <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-youtube" />
             </svg>
           </a>
         </li>
@@ -84,7 +84,7 @@
         aria-label="Open mobile menu"
       >
         <svg class="mobile-menu-icon" width="32" height="32">
-          <use href="/goit-advancedjs-fp-03/assets/icons-D9cwikX9.svg#icon-mobile-menu" />
+          <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-mobile-menu" />
         </svg>
       </button>
     </div>
@@ -94,14 +94,60 @@
 
     <main>
       <section class="hero">
-  <div class="container">
+  <div class="container hero-container">
+      <h1 class="hero-title">
+        <svg class="hero-icon" width="38" height="38">
+        <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#sun"></use>
+        </svg>
+        Get <span>Body</span> in shape, Stay healthy
+      </h1>
+      <p class="hero-text">
+      Transform your physique and embrace a healthier lifestyle with our
+      comprehensive fitness and nutrition support.
+    </p>
+
+    <img class="hero-side-image"
+      srcset="/goit-advancedjs-fp-03/assets/hero-legs@2x-C452ZCMw.jpg 2x"
+      src="/goit-advancedjs-fp-03/assets/hero-legs-CQMWrj23.jpg"
+      alt="Women stretching"
+      width="168"
+      height="100"
+    />
+
+    <picture class="hero-picture">
+      <source
+        srcset="/goit-advancedjs-fp-03/assets/hero-desktop-CIqdkTT1.jpg 1x, /goit-advancedjs-fp-03/assets/hero-desktop@2x-C5aXSZga.jpg 2x"
+        media="(min-width: 1440px)"
+        />
+      <source
+        srcset="/goit-advancedjs-fp-03/assets/hero-tablet-lEgpa1bT.jpg 1x, /goit-advancedjs-fp-03/assets/hero-tablet@2x-C-8sVei2.jpg 2x"
+        media="(min-width: 768px)"
+        />
+
+      <img class="hero-main-image"
+      srcset="/goit-advancedjs-fp-03/assets/hero-mobile-wLNaQq9X.jpg 1x, /goit-advancedjs-fp-03/assets/hero-mobile@2x-o0kEreeL.jpg 2x"
+      src="/goit-advancedjs-fp-03/assets/hero-mobile-wLNaQq9X.jpg"
+      alt="Women training together"
+      width="336"
+      height="460"
+      />
+
+    </picture>
+
+    <ul class="hero-tags">
+      <li class="hero-tag">#Sport</li>
+      <li class="hero-tag">#Healthy</li>
+      <li class="hero-tag">#Workout</li>
+      <li class="hero-tag">#Diet</li>
+    </ul>
   </div>
 </section>
       <section class="exercises-section">
   <div class="container">
+
     <div class="exercises-section-head">
       <h2 class="exercises-section-title">
-        Exercises / <span class="js-category-title"></span>
+        Exercises<span class="js-category-title"></span>
       </h2>
       <div class="exercises-section-controls">
         <form class="search-form" id="js-search-form">
@@ -115,38 +161,95 @@
           />
           <button class="clear-btn" type="button" aria-label="Clear" hidden>
             <svg class="search-icon" aria-hidden="true">
-              <use href="/goit-advancedjs-fp-03/assets/icons-D9cwikX9.svg#icon-close"></use>
+              <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-close"></use>
             </svg>
           </button>
           <button class="search-btn" type="submit" aria-label="Search">
             <svg class="search-icon" aria-hidden="true">
-              <use href="/goit-advancedjs-fp-03/assets/icons-D9cwikX9.svg#icon-search"></use>
+              <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-search"></use>
             </svg>
           </button>
         </form>
         <ul class="filter-list">
           <li class="filter-item">
-            <button class="filter-btn active" data-filter="Muscles">
-              Muscles
-            </button>
+            <button class="filter-btn active" data-filter="Muscles">Muscles</button>
           </li>
           <li class="filter-item">
-            <button class="filter-btn" data-filter="Body parts">
-              Body parts
-            </button>
+            <button class="filter-btn" data-filter="Body parts">Body parts</button>
           </li>
           <li class="filter-item">
-            <button class="filter-btn" data-filter="Equipment">
-              Equipment
-            </button>
+            <button class="filter-btn" data-filter="Equipment">Equipment</button>
           </li>
         </ul>
       </div>
     </div>
     <div class="exercises-main-content">
       <aside class="sidebar-info">
-        <div class="quote">
-</div>
+        <section class="quote-section">
+
+    <ul class="quote-list">
+      <li class="quote-card">
+        <div class="quote-icon-box">
+          <svg class="quote-icon" width="32" height="32">
+            <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#running"></use>
+          </svg>
+        </div>
+
+        <div class="quote-content">
+          <div class="quote-header">
+            <h2 class="quote-title">Quote of the day</h2>
+
+            <svg class="quote-mark-icon" width="20" height="20">
+              <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#quote"></use>
+            </svg>
+          </div>
+
+          <p class="quote-text" data-quote-text>Loading quote...</p>
+          <p class="quote-author" data-quote-author></p>
+        </div>
+      </li>
+
+      <li class="quote-image-card">
+        <picture>
+          <source
+            media="(min-width: 1440px)"
+            srcset="/goit-advancedjs-fp-03/assets/quote-desktop-Dz6iVYVu.jpg 1x, /goit-advancedjs-fp-03/assets/quote-desktop@2x-ChJcmWIG.jpg 2x"
+          />
+          <source
+            media="(min-width: 768px)"
+            srcset="/goit-advancedjs-fp-03/assets/quote-tablet-BkP8gky9.jpg 1x, /goit-advancedjs-fp-03/assets/quote-tablet@2x-DAWV1phb.jpg 2x"
+          />
+
+          <img
+            class="quote-image"
+            src="/goit-advancedjs-fp-03/assets/quote-mobile-CwmsA43i.jpg"
+            srcset="/goit-advancedjs-fp-03/assets/quote-mobile-CwmsA43i.jpg 1x, /goit-advancedjs-fp-03/assets/quote-mobile@2x-RuMAP1Uo.jpg 2x"
+            alt="Women drinking water after training"
+            width="335"
+            height="242"
+          />
+        </picture>
+      </li>
+
+      <li class="daily-card">
+        <div class="daily-icon-box">
+          <svg class="daily-icon" width="32" height="32">
+            <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#dumbbell"></use>
+          </svg>
+        </div>
+
+        <div class="daily-content">
+          <h3 class="daily-title">110 min</h3>
+          <p class="daily-subtitle">Daily norm of sports</p>
+
+          <p class="daily-text">
+            The World Health Organization recommends at least 150 minutes of moderate-intensity aerobic physical activity throughout the week for adults aged 18-64. However, what happens if we adjust that number to 110 minutes every day? While it might seem like a high number to hit, dedicating 110 minutes daily to sporting activities may offer unparalleled benefits to physical health, mental well-being, and overall quality of life.
+          </p>
+        </div>
+      </li>
+    </ul>
+
+</section>
       </aside>
 
       <div class="cards-wrapper">
@@ -180,7 +283,7 @@
       aria-label="Close mobile menu"
     >
       <svg class="close-mobile-icon" width="32" height="32">
-        <use href="/goit-advancedjs-fp-03/assets/icons-D9cwikX9.svg#icon-close" />
+        <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-close" />
       </svg>
     </button>
 
@@ -207,7 +310,7 @@
           aria-label="Facebook"
         >
           <svg class="mobile-social-icon" width="28" height="28">
-            <use href="/goit-advancedjs-fp-03/assets/icons-D9cwikX9.svg#icon-facebook" />
+            <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-facebook" />
           </svg>
         </a>
       </li>
@@ -220,7 +323,7 @@
           aria-label="Instagram"
         >
           <svg class="mobile-social-icon" width="28" height="28">
-            <use href="/goit-advancedjs-fp-03/assets/icons-D9cwikX9.svg#icon-instagram" />
+            <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-instagram" />
           </svg>
         </a>
       </li>
@@ -233,7 +336,7 @@
           aria-label="Youtube"
         >
           <svg class="mobile-social-icon" width="28" height="28">
-            <use href="/goit-advancedjs-fp-03/assets/icons-D9cwikX9.svg#icon-youtube" />
+            <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-youtube" />
           </svg>
         </a>
       </li>
