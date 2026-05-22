@@ -34,8 +34,8 @@
   margin-right: 24px;
   cursor: pointer;
 
-  -webkit-mask-image: url('/__spritemap#sprite-close');
-  mask-image: url('/__spritemap#sprite-close');
+  -webkit-mask-image: url('../../icons/close.svg');
+  mask-image: url('../../icons/close.svg');
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
