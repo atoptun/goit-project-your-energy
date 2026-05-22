@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ICategory } from '../types';
+import { ICategory, IQuote } from '../types';
 
 axios.defaults.baseURL = 'https://your-energy.b.goit.study/api';
 
@@ -44,8 +44,8 @@ export async function fetchExerciseById(id: string) {
   return data;
 }
 
-export async function fetchDailyQuote() {
-  const { data } = await axios.get('/quote');
+export async function fetchDailyQuote(): Promise<IQuote> {
+  const { data } = await axios.get<IQuote>('/quote');
   return data;
 }
 

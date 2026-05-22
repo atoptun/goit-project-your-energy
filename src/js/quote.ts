@@ -1,13 +1,5 @@
 import { fetchDailyQuote } from './services/api';
-
-interface Quote {
-  quote: string;
-  author: string;
-}
-
-interface StoredQuote extends Quote {
-  date: string;
-}
+import { IQuote, IStoredQuote } from './types';
 
 const QUOTE_KEY = 'dailyQuote';
 
@@ -21,10 +13,10 @@ function getTodayDate(): string {
   return `${year}-${month}-${day}`;
 }
 
-function isQuote(data: unknown): data is Quote {
+function isQuote(data: unknown): data is IQuote {
   if (!data || typeof data !== 'object') return false;
 
-  const quoteData = data as Quote;
+  const quoteData = data as IQuote;
 
   return (
     typeof quoteData.quote === 'string' &&
@@ -32,7 +24,7 @@ function isQuote(data: unknown): data is Quote {
   );
 }
 
-function getSavedQuote(): StoredQuote | null {
+function getSavedQuote(): IStoredQuote | null {
   const savedQuote = localStorage.getItem(QUOTE_KEY);
 
   if (!savedQuote) return null;
@@ -49,7 +41,7 @@ function getSavedQuote(): StoredQuote | null {
       return null;
     }
 
-    return parsedQuote as StoredQuote;
+    return parsedQuote as IStoredQuote;
   } catch {
     localStorage.removeItem(QUOTE_KEY);
     return null;
@@ -57,8 +49,8 @@ function getSavedQuote(): StoredQuote | null {
 
 }
 
-function saveQuote(quote: Quote): void {
-  const quoteToSave: StoredQuote = {
+function saveQuote(quote: IQuote): void {
+  const quoteToSave: IStoredQuote = {
     ...quote,
     date: getTodayDate(),
   };
@@ -70,7 +62,7 @@ function saveQuote(quote: Quote): void {
   }
 }
 
-function renderQuote({ quote, author }: Quote): void {
+function renderQuote({ quote, author }: IQuote): void {
   const quoteTextEl = document.querySelector<HTMLElement>('[data-quote-text]');
   const quoteAuthorEl = document.querySelector<HTMLElement>(
     '[data-quote-author]'
