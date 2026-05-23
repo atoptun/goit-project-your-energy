@@ -17,6 +17,8 @@ export const SELECTORS = {
   modalExercise: '.js-modal-exercise',
   // footer
   footerYear: '.js-footer-year',
+  subscriptionForm: '.js-footer-form',
+  subscriptionBtn: '.js-footer-form-btn'
 } as const;
 
 export const FILTER_CATEGORIES = {

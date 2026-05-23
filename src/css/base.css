@@ -69,3 +69,7 @@ main {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
+.iziToast {
+  border-radius: 8px !important;
+}
