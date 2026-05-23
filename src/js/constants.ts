@@ -11,6 +11,7 @@ export const SELECTORS = {
   searchForm: '.search-form',
   searchInput: '.search-input',
   categoryTitle: '.js-category-title',
+  footerYear: '.js-footer-year',
 } as const;
 
 export const FILTER_CATEGORIES = {
