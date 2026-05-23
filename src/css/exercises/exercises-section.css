@@ -9,14 +9,23 @@
     color: var(--color-text-primary);
 }
 
+.category-separator {
+    display: none;
+}
 
+.category-separator:has(+ .js-category-title:not(:empty)) {
+    display: inline;
+}
 
-.js-category-title {
+.category-title {
+    display: inline-block;
     font-size: 20px;
-    line-height: 1;
     color: var(--color-text-secondary);
 }
 
+.category-title::first-letter {
+    text-transform: uppercase;
+}
 
 .exercises-section-controls {
     display: flex;

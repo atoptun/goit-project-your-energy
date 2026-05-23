@@ -24,14 +24,19 @@ export function initFilters({ onFilterChange, onSearch }: FilterOptions) {
 
   if (filterList) {
     filterList.addEventListener('click', (event: MouseEvent) => {
-      const target = (event.target as HTMLElement).closest<HTMLButtonElement>(SELECTORS.filterBtn);
+      const target = (event.target as HTMLElement).closest<HTMLButtonElement>(
+        SELECTORS.filterBtn
+      );
       if (!target) {
         return;
       }
 
-      const currentActive = filterList.querySelector<HTMLButtonElement>(SELECTORS.filterBtnActive);
+      const currentActive = filterList.querySelector<HTMLButtonElement>(
+        SELECTORS.filterBtnActive
+      );
       if (currentActive === target) {
-        return;
+        // need to reload if exercise list is opened
+        // return;
       }
 
       const filter = target.dataset.filter;
@@ -68,4 +73,18 @@ export function initFilters({ onFilterChange, onSearch }: FilterOptions) {
       toggleClearBtn();
     });
   }
+}
+
+export function hideSearchForm() {
+  const searchFormEl = document.querySelector<HTMLFormElement>(
+    SELECTORS.searchForm
+  );
+  searchFormEl?.classList.add('hidden');
+}
+
+export function showSearchForm() {
+  const searchFormEl = document.querySelector<HTMLFormElement>(
+    SELECTORS.searchForm
+  );
+  searchFormEl?.classList.remove('hidden');
 }
