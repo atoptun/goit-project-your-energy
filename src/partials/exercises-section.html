@@ -1,8 +1,9 @@
 <section class="exercises-section">
   <div class="container">
+
     <div class="exercises-section-head">
       <h2 class="exercises-section-title">
-        Exercises / <span class="js-category-title"></span>
+        Exercises<span class="js-category-title"></span>
       </h2>
       <div class="exercises-section-controls">
         <form class="search-form" id="js-search-form">
@@ -12,24 +13,28 @@
             name="keyword"
             placeholder="Search"
             autocomplete="off"
+            required
           />
-          <button class="search-btn" type="submit" aria-label="Search"></button>
+          <button class="clear-btn" type="button" aria-label="Clear" hidden>
+            <svg class="search-icon" aria-hidden="true">
+              <use href="./images/icons.svg#icon-close"></use>
+            </svg>
+          </button>
+          <button class="search-btn" type="submit" aria-label="Search">
+            <svg class="search-icon" aria-hidden="true">
+              <use href="./images/icons.svg#icon-search"></use>
+            </svg>
+          </button>
         </form>
         <ul class="filter-list">
           <li class="filter-item">
-            <button class="filter-btn active" data-filter="Muscles">
-              Muscles
-            </button>
+            <button class="filter-btn active" data-filter="Muscles">Muscles</button>
           </li>
           <li class="filter-item">
-            <button class="filter-btn" data-filter="Body parts">
-              Body parts
-            </button>
+            <button class="filter-btn" data-filter="Body parts">Body parts</button>
           </li>
           <li class="filter-item">
-            <button class="filter-btn" data-filter="Equipment">
-              Equipment
-            </button>
+            <button class="filter-btn" data-filter="Equipment">Equipment</button>
           </li>
         </ul>
       </div>
@@ -42,7 +47,7 @@
       <div class="cards-wrapper">
         <ul class="category-list js-category-list"></ul>
         <ul class="exercises-list js-exercises-list"></ul>
-        <div class="pagination js-pagination"></div>
+        <ul class="pagination js-pagination"></ul>
       </div>
     </div>
   </div>
