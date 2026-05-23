@@ -15,8 +15,6 @@ export const SELECTORS = {
   categoryTitle: '.js-category-title',
   // modals
   modalBackdrop: '.js-modal-backdrop',
-  modalCloseBtn: '.js-modal-close',
-  modalContent: '.js-modal-content',
 
 } as const;
 

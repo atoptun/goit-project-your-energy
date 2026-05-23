@@ -69,6 +69,7 @@ export function createExerciseModalCardMarkup(data: IExercise): string {
           alt="${data.name}"
         />
       </div>
+      
       <div class="mcard-content-wrapper">
         <div class="mcard-header">
           <p class="mcard-exercise-name">${data.name}</p>
@@ -104,20 +105,20 @@ export function createExerciseModalCardMarkup(data: IExercise): string {
         </ul>
 
         <p class="mcard-description">${data.description}</p>
-
-        <div class="mcard-actions">
-          <button type="button" class="btn btn-white btn-favorites js-btn-favorites">
-            <span class="js-fav-btn-text">Add to favorites</span>
-            <svg class="btn-icon" width="20" height="20">
-              <use href="./images/icons.svg#icon-heart" class="js-fav-icon"/>
-            </svg>
-          </button>
-          <button type="button" class="btn btn-black btn-rating">
-            Give a rating
-          </button>
-        </div>
-
       </div>
+
+      <div class="mcard-actions">
+        <button type="button" class="btn btn-white btn-favorites js-btn-favorites">
+          <span class="js-fav-btn-text">Add to favorites</span>
+          <svg class="btn-icon" width="20" height="20">
+            <use href="./images/icons.svg#icon-heart" class="js-fav-icon"/>
+          </svg>
+        </button>
+        <button type="button" class="btn btn-black btn-rating js-btn-rating">
+          Give a rating
+        </button>
+      </div>
+
     </div>
     `;
 }
