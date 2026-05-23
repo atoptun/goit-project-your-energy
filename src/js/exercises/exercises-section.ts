@@ -1,45 +1,42 @@
-import { initFilters } from './filters';
-import { renderCategories, initCategoryList } from './category-list';
+import { initFilters, hideSearchForm, showSearchForm } from './filters';
+import {
+  renderCategories,
+  initCategoryList,
+  hideCategoryList,
+} from './category-list';
+import {
+  initExercisesList,
+  renderExercises,
+  hideExercisesList,
+} from './exercises-list';
 import { FILTER_CATEGORIES } from '../constants';
+import { initPafination } from '../pagination';
 import { TFilterCategory } from '../types';
 
-const state = {
-  filter: FILTER_CATEGORIES.muscles as TFilterCategory,
-  keyword: '',
-  categoryPage: 1,
-  exercisePage: 1,
-};
-
-function loadCategories() {
-  void renderCategories(state.filter, state.categoryPage);
-}
 
 export function initExercisesSection() {
+  initPafination();
+
   initFilters({
-    onFilterChange: (filter) => {
-      state.filter = filter;
-      state.keyword = '';
-      state.categoryPage = 1;
-      loadCategories();
+    onFilterChange: (filter: TFilterCategory) => {
+      hideSearchForm();
+      hideExercisesList();
+      renderCategories({ filter });
     },
-    onSearch: (keyword) => {
-      state.keyword = keyword;
-      state.exercisePage = 1;
-      console.log('onSearch:', keyword);
-    },
+    onSearch: (keyword: string) => renderExercises({ keyword }),
   });
 
   initCategoryList({
-    onPageChange: (page) => {
-      state.categoryPage = page;
-      loadCategories();
-    },
-    onSelect: (category) => {
-      console.log('Category selected:', category);
-      // Exercise list will be implemented in the next task.
-      // state.keyword will carry the active search keyword into that view.
+    onSelect: (category: string) => {
+      showSearchForm();
+
+      hideCategoryList();
+      // Handle category selection
+      renderExercises({ category });
     },
   });
 
-  loadCategories();
+  initExercisesList();
+
+  renderCategories({ filter: FILTER_CATEGORIES.muscles });
 }

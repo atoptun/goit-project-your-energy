@@ -1,17 +1,20 @@
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
 import { fetchFilters } from '../services/api';
-import { ICategory } from '../types';
+import { ICategory, TFilterCategory } from '../types';
 import { SELECTORS } from '../constants';
+import { showPagination, hidePagination } from '../pagination';
+import { showErrorMessage } from '../utils'
 
-const categoryListEl = document.querySelector<HTMLUListElement>(SELECTORS.categoryList);
+const ITEMS_PER_PAGE = window.innerWidth < 768 ? 9 : 12;
+
+const categoryListEl = document.querySelector<HTMLUListElement>(
+  SELECTORS.categoryList
+);
 
 interface CategoryListOptions {
   onSelect?: (category: string) => void;
-  onPageChange?: (page: number) => void;
 }
 
-export function initCategoryList({ onSelect, onPageChange }: CategoryListOptions = {}) {
+export function initCategoryList({ onSelect }: CategoryListOptions = {}) {
   categoryListEl?.addEventListener('click', (event: MouseEvent) => {
     const target = (event.target as HTMLElement).closest<HTMLElement>(SELECTORS.categoryItem);
     if (!target) {
@@ -23,73 +26,59 @@ export function initCategoryList({ onSelect, onPageChange }: CategoryListOptions
       onSelect?.(categoryName);
     }
   });
-
-  const paginationNav = document.querySelector<HTMLUListElement>(SELECTORS.pagination);
-  paginationNav?.addEventListener('click', (event: MouseEvent) => {
-    const target = (event.target as HTMLElement).closest<HTMLLIElement>(SELECTORS.paginationItem);
-
-    if (!target) {
-      return;
-    }
-
-    const page = Number(target.dataset.page);
-    onPageChange?.(page);
-  });
 }
 
-
-function createCategoryItemMarkup(category: ICategory) {
-  return `
-      <li class="category-item" data-category="${category.name}">
-        <img class="category-image" src="${category.imgURL}" alt="${category.name}">
-        <div class="category-info">
-          <h3 class="category-name">${category.name}</h3>
-          <p class="category-filter">${category.filter}</p>
-        </div>
-      </li>
-      `
+export function hideCategoryList() {
+  if (categoryListEl) {
+    categoryListEl.innerHTML = '';
+  }
 }
 
-function createPaginationMarkup(totalPages: number, currentPage: number) {
-  return Array.from({ length: totalPages }, (_, idx) => idx + 1).map(page => {
-    return `<li class="pagination-item ${currentPage === page ? 'active' : ''}" data-page="${page}">${page}</li>`
-  }).join('');
+interface RenderOptions {
+  filter: TFilterCategory;
+  page?: number;
 }
 
-export async function renderCategories(filter?: string, page?: number) {
-  page ||= 1;
-  const ITEMS_PER_PAGE = window.innerWidth < 768 ? 9 : 12;
+export async function renderCategories({ filter, page }: RenderOptions) {
+  const currentPage = page || 1;
 
-  const pagination = document.querySelector<HTMLElement>(SELECTORS.pagination);
+  hidePagination();
 
+  const breadcrumbEl = document.querySelector(SELECTORS.categoryTitle);
+  if (breadcrumbEl) {
+    breadcrumbEl.textContent = '';
+  }
   try {
-    const data = await fetchFilters({ filter, limit: ITEMS_PER_PAGE, page })
+    const data = await fetchFilters({ filter, limit: ITEMS_PER_PAGE, page });
 
     if (!data) return;
 
-    const categoryList = data.results.map(item => createCategoryItemMarkup(item)).join("")
+    const categoryList = data.results.map(item => createCategoryItemMarkup(item)).join('')
 
     if (!categoryListEl) return;
 
     categoryListEl.innerHTML = categoryList;
 
-    if (!pagination) return;
-
-    if (data.totalPages <= 1) {
-      pagination.innerHTML = '';
-      pagination.hidden = true;
-      return;
-    }
-
-    pagination.hidden = false;
-    pagination.innerHTML = createPaginationMarkup(data.totalPages, page);
-
+    showPagination({
+      totalPages: data.totalPages,
+      currentPage: currentPage,
+      onChangedPage: ({ page }: { page: number }) =>
+        renderCategories({ filter, page }),
+    });
   } catch (error) {
     console.error(error);
-    iziToast.error({
-      message: 'Failed to load categories. Please try again later.',
-      position: 'topRight',
-      timeout: 3000,
-    });
+    showErrorMessage('Failed to load categories. Please try again later.');
   }
+}
+
+function createCategoryItemMarkup(category: ICategory) {
+  return `
+    <li class="category-item" data-category="${category.name}">
+      <img class="category-image" src="${category.imgURL}" alt="${category.name}">
+      <div class="category-info">
+        <h3 class="category-name">${category.name}</h3>
+        <p class="category-filter">${category.filter}</p>
+      </div>
+    </li>
+    `;
 }
