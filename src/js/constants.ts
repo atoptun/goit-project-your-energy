@@ -1,5 +1,6 @@
 export const SELECTORS = {
   categoryList: '.js-category-list',
+  categoryItem: '.category-item',
   exercisesList: '.js-exercises-list',
   pagination: '.js-pagination',
   paginationItem: '.pagination-item',
@@ -8,7 +9,6 @@ export const SELECTORS = {
   filterBtn: '.filter-btn',
   filterBtnActive: '.filter-btn.active',
   searchForm: '.search-form',
-  searchFormClass: '.search-form',
   searchInput: '.search-input',
   categoryTitle: '.js-category-title',
 } as const;

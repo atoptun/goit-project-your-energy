@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ICategory, IExercise } from '../types';
+import { ICategory, IExercise, IQuote } from '../types';
 
 axios.defaults.baseURL = 'https://your-energy.b.goit.study/api';
 
@@ -9,16 +9,14 @@ interface FilterParams {
   limit?: number;
 }
 
-interface Response<T> {
+interface PaginatedResponse<T> {
   page: number;
   perPage: number;
   totalPages: number;
   results: T;
 }
 
-export async function fetchFilters(
-  params: FilterParams = {}
-): Promise<Response<ICategory[]>> {
+export async function fetchFilters(params: FilterParams = {}): Promise<PaginatedResponse<ICategory[]>> {
   const { data } = await axios.get('/filters', {
     params: params,
   });
@@ -36,7 +34,7 @@ export interface ExercisesParams {
 
 export async function fetchExercises(
   params: ExercisesParams = {}
-): Promise<Response<IExercise[]>> {
+): Promise<PaginatedResponse<IExercise[]>> {
   const { data } = await axios.get('/exercises', {
     params: params,
   });
@@ -48,8 +46,8 @@ export async function fetchExerciseById(id: string) {
   return data;
 }
 
-export async function fetchDailyQuote() {
-  const { data } = await axios.get('/quote');
+export async function fetchDailyQuote(): Promise<IQuote> {
+  const { data } = await axios.get<IQuote>('/quote');
   return data;
 }
 

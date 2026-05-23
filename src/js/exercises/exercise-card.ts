@@ -11,7 +11,7 @@ export function createExerciseItemMarkup(exercise: IExercise) {
 
       html += `
         <svg class="icon-star${isActive}" width="18" height="18">
-          <use href="./images/sprite.svg#icon-star"></use>
+          <use href="./images/icons.svg#icon-star"></use>
         </svg>
       `;
     }
@@ -36,7 +36,7 @@ export function createExerciseItemMarkup(exercise: IExercise) {
         <button type="button" class="card-start-btn">
           Start
           <svg class="icon-arrow" width="16" height="16">
-            <use href="./images/sprite.svg#icon-arrow"></use>
+            <use href="./images/icons.svg#icon-arrow"></use>
           </svg>
         </button>
       </div>
@@ -44,7 +44,7 @@ export function createExerciseItemMarkup(exercise: IExercise) {
       <div class="card-title-line">
         <div class="icon-run-wrapper">
           <svg class="icon-run" width="24" height="24">
-            <use href="./images/sprite.svg#icon-run"></use>
+            <use href="./images/icons.svg#icon-run"></use>
           </svg>
         </div>
         <p class="exercise-name">${exercise.name}</p>

@@ -2,6 +2,7 @@ import { fetchFilters } from '../services/api';
 import { ICategory, TFilterCategory } from '../types';
 import { SELECTORS } from '../constants';
 import { showPagination, hidePagination } from '../pagination';
+import { showErrorMessage } from '../utils'
 
 const ITEMS_PER_PAGE = window.innerWidth < 768 ? 9 : 12;
 
@@ -15,10 +16,10 @@ interface CategoryListOptions {
 
 export function initCategoryList({ onSelect }: CategoryListOptions = {}) {
   categoryListEl?.addEventListener('click', (event: MouseEvent) => {
-    const target = (event.target as HTMLElement).closest<HTMLElement>(
-      '.category-item'
-    );
-    if (!target) return;
+    const target = (event.target as HTMLElement).closest<HTMLElement>(SELECTORS.categoryItem);
+    if (!target) {
+      return;
+    }
 
     const categoryName = target.dataset.category || '';
     if (categoryName) {
@@ -38,8 +39,7 @@ interface RenderOptions {
   page?: number;
 }
 
-export async function renderCategories(option: RenderOptions) {
-  const { filter, page } = option;
+export async function renderCategories({ filter, page }: RenderOptions) {
   const currentPage = page || 1;
 
   hidePagination();
@@ -51,9 +51,9 @@ export async function renderCategories(option: RenderOptions) {
   try {
     const data = await fetchFilters({ filter, limit: ITEMS_PER_PAGE, page });
 
-    const categoryList = data.results
-      .map(item => createCategoryItemMarkup(item))
-      .join('');
+    if (!data) return;
+
+    const categoryList = data.results.map(item => createCategoryItemMarkup(item)).join('')
 
     if (!categoryListEl) return;
 
@@ -67,6 +67,7 @@ export async function renderCategories(option: RenderOptions) {
     });
   } catch (error) {
     console.error(error);
+    showErrorMessage('Failed to load categories. Please try again later.');
   }
 }
 

@@ -13,6 +13,7 @@ import { FILTER_CATEGORIES } from '../constants';
 import { initPafination } from '../pagination';
 import { TFilterCategory } from '../types';
 
+
 export function initExercisesSection() {
   initPafination();
 

@@ -7,26 +7,20 @@ interface FilterOptions {
 }
 
 function isFilterCategory(value: unknown): value is TFilterCategory {
-  return (
-    typeof value === 'string' &&
-    [
-      FILTER_CATEGORIES.muscles,
-      FILTER_CATEGORIES.bodyParts,
-      FILTER_CATEGORIES.equipment,
-    ].includes(value as TFilterCategory)
-  );
+  return typeof value === 'string' && (Object.values(FILTER_CATEGORIES) as string[]).includes(value);
 }
 
 export function initFilters({ onFilterChange, onSearch }: FilterOptions) {
-  const filterList = document.querySelector<HTMLUListElement>(
-    SELECTORS.filterList
-  );
-  const searchForm = document.querySelector<HTMLFormElement>(
-    SELECTORS.searchForm
-  );
-  const searchInput = searchForm?.querySelector<HTMLInputElement>(
-    SELECTORS.searchInput
-  );
+  const filterList = document.querySelector<HTMLUListElement>(SELECTORS.filterList);
+  const searchForm = document.querySelector<HTMLFormElement>(SELECTORS.searchForm);
+  const searchInput = searchForm?.querySelector<HTMLInputElement>(SELECTORS.searchInput);
+  const clearBtn = searchForm?.querySelector<HTMLButtonElement>('.clear-btn');
+
+  const toggleClearBtn = () => {
+    if (clearBtn) {
+      clearBtn.hidden = !searchInput?.value;
+    }
+  };
 
   if (filterList) {
     filterList.addEventListener('click', (event: MouseEvent) => {
@@ -55,6 +49,7 @@ export function initFilters({ onFilterChange, onSearch }: FilterOptions) {
 
       if (searchInput) {
         searchInput.value = '';
+        toggleClearBtn();
       }
 
       onFilterChange(filter);
@@ -62,11 +57,20 @@ export function initFilters({ onFilterChange, onSearch }: FilterOptions) {
   }
 
   if (searchForm && searchInput) {
+    searchInput.addEventListener('input', toggleClearBtn);
+
+    clearBtn?.addEventListener('click', () => {
+      searchInput.value = '';
+      toggleClearBtn();
+      searchInput.focus();
+    });
+
     searchForm.addEventListener('submit', (event: Event) => {
       event.preventDefault();
       const keyword = searchInput.value.trim();
       onSearch(keyword);
-      // searchInput.value = '';
+      searchInput.value = '';
+      toggleClearBtn();
     });
   }
 }

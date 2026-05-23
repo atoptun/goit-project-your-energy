@@ -21,3 +21,12 @@ export interface IExercise {
   time: number;
   popularity: number;
 }
+
+export interface IQuote {
+  quote: string;
+  author: string;
+}
+
+export interface IStoredQuote extends IQuote {
+  date: string;
+}

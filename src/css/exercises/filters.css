@@ -28,26 +28,33 @@
 .search-input::-webkit-search-cancel-button {
   -webkit-appearance: none;
   appearance: none;
-
-  height: 18px;
-  width: 18px;
-  margin-right: 24px;
-  cursor: pointer;
-
-  -webkit-mask-image: url('../../icons/close.svg');
-  mask-image: url('../../icons/close.svg');
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-
-
-  background-color: var(--color-text-secondary);
-  transition: background-color var(--transition);
 }
 
-.search-input::-webkit-search-cancel-button:hover {
-  background-color: var(--color-text-primary);
+.clear-btn[hidden] {
+  display: none;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 36px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  color: var(--color-text-secondary);
+  transition: color var(--transition);
+}
+
+.clear-btn:hover {
+  color: var(--color-text-primary);
 }
 
 .search-btn {

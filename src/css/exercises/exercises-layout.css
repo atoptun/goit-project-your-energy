@@ -33,6 +33,10 @@
 }
 
 @media only screen and (min-width: 1440px) {
+  .exercises-section {
+    padding-top: 64px;
+  }
+
   .exercises-main-content {
     grid-template-columns: 444px 1fr;
     gap: 32px;
