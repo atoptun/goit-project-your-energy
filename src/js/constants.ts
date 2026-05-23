@@ -11,6 +11,8 @@ export const SELECTORS = {
   searchForm: '.search-form',
   searchInput: '.search-input',
   categoryTitle: '.js-category-title',
+  subscriptionForm: '.js-footer-form',
+  subscriptionBtn: '.js-footer-form-btn'
 } as const;
 
 export const FILTER_CATEGORIES = {

@@ -68,3 +68,7 @@ main {
 .hidden {
   display: none;
 }
+
+.iziToast {
+  border-radius: 8px !important;
+}
