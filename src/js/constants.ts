@@ -2,6 +2,7 @@ export const SELECTORS = {
   categoryList: '.js-category-list',
   categoryItem: '.category-item',
   exercisesList: '.js-exercises-list',
+  exerciseItem: '.exercise-item',
   pagination: '.js-pagination',
   paginationItem: '.pagination-item',
   paginationItemActive: '.pagination-item.active',

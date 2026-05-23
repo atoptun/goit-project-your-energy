@@ -4,7 +4,9 @@ const paginationNav = document.querySelector<HTMLUListElement>(
   SELECTORS.pagination
 );
 
-let currentRenderHandler: CallableFunction | null = null;
+type PageChangeHandler = (opts: { page: number }) => void;
+
+let currentRenderHandler: PageChangeHandler | null = null;
 
 export function initPafination() {
   if (!paginationNav) return;
@@ -21,18 +23,18 @@ export function hidePagination() {
 interface ShowOptions {
   totalPages: number;
   currentPage: number;
-  onChangedPage: CallableFunction | null;
+  onChangedPage: PageChangeHandler | null;
 }
 
 export function showPagination({
   totalPages,
   currentPage,
-  onChangedPage: renderHandler,
+  onChangedPage,
 }: ShowOptions) {
   if (!paginationNav) return;
 
   paginationNav.innerHTML = createPaginationMarkup(totalPages, currentPage);
-  currentRenderHandler = renderHandler;
+  currentRenderHandler = onChangedPage;
 }
 
 function onPageClickHanddler(event: MouseEvent) {
@@ -58,6 +60,9 @@ function onPageClickHanddler(event: MouseEvent) {
 }
 
 function createPaginationMarkup(totalPages: number, currentPage: number) {
+  if (totalPages <= 1) {
+    return '';
+  }
   return Array.from({ length: totalPages }, (_, idx) => idx + 1)
     .map(page => {
       return `<li class="pagination-item ${currentPage === page ? 'active' : ''}" data-page="${page}">${page}</li>`;

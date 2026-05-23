@@ -17,14 +17,13 @@
     display: inline;
 }
 
-.js-category-title {
+.category-title {
     display: inline-block;
     font-size: 20px;
-    line-height: 1;
     color: var(--color-text-secondary);
 }
 
-.js-category-title::first-letter {
+.category-title::first-letter {
     text-transform: uppercase;
 }
 

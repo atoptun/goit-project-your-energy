@@ -1,5 +1,5 @@
 import { TFilterCategory } from '../types';
-import { SELECTORS } from '../constants';
+import { FILTER_CATEGORIES, SELECTORS } from '../constants';
 import { fetchExercises, ExercisesParams } from '../services/api';
 import { openExerciseModal } from './exercise-modal';
 import {
@@ -15,13 +15,13 @@ const exercisesListEl = document.querySelector<HTMLUListElement>(
   SELECTORS.exercisesList
 );
 
-let currentCategory: string;
+let currentCategory: string | undefined;
 let currentPage = 1;
 
 export function initExercisesList() {
   exercisesListEl?.addEventListener('click', (event: MouseEvent) => {
     const target = (event.target as HTMLElement).closest<HTMLElement>(
-      '.exercise-item'
+      SELECTORS.exerciseItem
     );
     if (!target) {
       return;
@@ -77,26 +77,29 @@ export async function renderExercises(options: RenderOptions) {
     categoryTitleEl.textContent = selectedCategory;
   }
 
-  const breadcrumbEl = document.querySelector(SELECTORS.categoryTitle);
-  if (breadcrumbEl) {
-    breadcrumbEl.textContent = selectedCategory;
-  }
-
   const selectedKeyword = options.keyword;
 
   currentCategory = selectedCategory;
   currentPage = options.page || 1;
 
   const fetchParams: ExercisesParams = {
-    bodypart: selectedFilter == 'Body parts' ? selectedCategory : undefined,
-    muscles: selectedFilter == 'Muscles' ? selectedCategory : undefined,
-    equipment: selectedFilter == 'Equipment' ? selectedCategory : undefined,
+    bodypart:
+      selectedFilter == FILTER_CATEGORIES.bodyParts
+        ? selectedCategory
+        : undefined,
+    muscles:
+      selectedFilter == FILTER_CATEGORIES.muscles
+        ? selectedCategory
+        : undefined,
+    equipment:
+      selectedFilter == FILTER_CATEGORIES.equipment
+        ? selectedCategory
+        : undefined,
     keyword: selectedKeyword,
     page: currentPage,
     limit: ITEMS_PER_PAGE,
   };
 
-  //Show loading state
   try {
     const data = await fetchExercises(fetchParams);
 
@@ -125,7 +128,5 @@ export async function renderExercises(options: RenderOptions) {
   } catch {
     exercisesListEl.innerHTML = createExerciseEmptyMessage();
     showErrorMessage('Something went wrong. Try later.');
-  } finally {
-    // Hide loading state
   }
 }
