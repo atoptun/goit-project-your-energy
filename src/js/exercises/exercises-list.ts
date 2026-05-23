@@ -21,13 +21,12 @@ let currentPage = 1;
 export function initExercisesList() {
   exercisesListEl?.addEventListener('click', (event: MouseEvent) => {
     const target = (event.target as HTMLElement).closest<HTMLElement>(
-      SELECTORS.exerciseItem
+      SELECTORS.showExerciseCardBtn
     );
-    if (!target) {
-      return;
-    }
+    if (!target) return;
 
-    const exerciseId = target.dataset.exerciseId || '';
+    const card = target.closest<HTMLElement>(SELECTORS.exerciseItem);
+    const exerciseId = card?.dataset.exerciseId || '';
     if (exerciseId) {
       openExerciseModal(exerciseId);
     }

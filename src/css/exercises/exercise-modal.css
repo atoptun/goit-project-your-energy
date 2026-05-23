@@ -7,7 +7,7 @@
   border: 1px solid rgba(244, 244, 244, 0.1);
 }
 
-.modal-exercise .modal-close {
+.modal-exercise .close-btn {
   top: 14px;
   right: 14px;
   stroke: #f4f4f4;
@@ -71,11 +71,11 @@
   gap: 2px;
 }
 
-.icon-star {
+.modal-exercise-card .icon-star {
   fill: rgba(244, 244, 244, 0.2);
 }
 
-.icon-star.is-active {
+.modal-exercise-card .icon-star.is-active {
   fill: #eea10c;
 }
 
@@ -113,6 +113,10 @@
   text-overflow: ellipsis;
 }
 
+.mcard-meta-value::first-letter {
+  text-transform: uppercase;
+}
+
 .mcard-description {
   font-size: 14px;
   line-height: 1.29;
@@ -132,62 +136,13 @@
   gap: 10px;
 }
 
-.btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-
-  font-size: 14px;
-  line-height: 1.29;
-
-  padding: 12px 24px;
-  border-radius: 30px;
-  cursor: pointer;
-
-  transition:
-    border var(--transition),
-    color var(--transition),
-    background-color var(--transition);
-}
-
-.btn-white {
-  border: none;
-  color: #242424;
-  background-color: #f4f4f4;
-  stroke: #242424;
-}
-
-.btn-white:hover,
-.btn-white:focus {
-  border: 1px solid #f4f4f4;
-  color: #f4f4f4;
-  background-color: #242424;
-  stroke: #f4f4f4;
-}
-
-.btn-black {
-  border: 1px solid #f4f4f4;
-  color: #f4f4f4;
-  background-color: #242424;
-  stroke: #f4f4f4;
-}
-
-.btn-black:hover,
-.btn-black:focus {
-  border: none;
-  color: #242424;
-  background-color: #f4f4f4;
-  stroke: #242424;
-}
-
 @media only screen and (min-width: 768px) {
   .modal-exercise {
     max-width: 704px;
     padding: 32px;
   }
 
-  .modal-exercise .modal-close {
+  .modal-exercise .close-btn {
     top: 16px;
     right: 16px;
   }

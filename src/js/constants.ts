@@ -2,7 +2,8 @@ export const SELECTORS = {
   categoryList: '.js-category-list',
   categoryItem: '.category-item',
   exercisesList: '.js-exercises-list',
-  exerciseItem: '.exercise-item',
+  exerciseItem: '.exercise-card',
+  showExerciseCardBtn: '.js-show-card-btn',
   pagination: '.js-pagination',
   paginationItem: '.pagination-item',
   paginationItemActive: '.pagination-item.active',
@@ -15,7 +16,8 @@ export const SELECTORS = {
   // modals
   modalBackdrop: '.js-modal-backdrop',
   modalCloseBtn: '.js-modal-close',
-  modalExercise: '.js-modal-exercise',
+  modalContent: '.js-modal-content',
+
 } as const;
 
 export const FILTER_CATEGORIES = {

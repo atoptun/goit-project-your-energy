@@ -82,12 +82,12 @@
   gap: 2px;
 }
 
-.icon-star {
+.exercise-card  .icon-star {
   padding: 2px;
   fill: rgba(36, 36, 36, 0.2);
 }
 
-.icon-star.is-active {
+.exercise-card  .icon-star.is-active {
   fill: #ffbc11;
 }
 

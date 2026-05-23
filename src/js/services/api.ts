@@ -16,7 +16,9 @@ interface PaginatedResponse<T> {
   results: T;
 }
 
-export async function fetchFilters(params: FilterParams = {}): Promise<PaginatedResponse<ICategory[]>> {
+export async function fetchFilters(
+  params: FilterParams = {}
+): Promise<PaginatedResponse<ICategory[]>> {
   const { data } = await axios.get('/filters', {
     params: params,
   });
@@ -41,7 +43,7 @@ export async function fetchExercises(
   return data;
 }
 
-export async function fetchExerciseById(id: string) {
+export async function fetchExerciseById(id: string): Promise<IExercise> {
   const { data } = await axios.get(`/exercises/${id}`);
   return data;
 }

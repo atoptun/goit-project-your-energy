@@ -1,96 +1,20 @@
 <div
-  class="modal modal-exercise js-modal-exercise"
+  class="modal modal-exercise js-modal-exercise-container"
   role="dialog"
   aria-modal="true"
   data-modal-type="exercise"
-  __hidden
+  hidden
 >
   <button
-    class="modal-close js-modal-close"
+    class="close-btn js-modal-close"
     type="button"
     aria-label="Close modal"
   >
-    <svg class="modal-close-icon" width="24" height="24">
+    <svg class="close-btn-icon" width="24" height="24">
       <use href="./images/icons.svg#icon-close"></use>
     </svg>
   </button>
-  <div class="modal-content modal-exercise-content js-modal-exercise-content">
-    <div class="modal-exercise-card">
-      <div class="mcard-image-wrapper">
-        <img
-          class="mcard-image"
-          src="https://ftp.goit.study/img/power-pulse/gifs/0798.gif"
-          alt="stationary bike walk"
-        />
-      </div>
-      <div class="mcard-content-wrapper">
-        <div class="mcard-header">
-          <p class="mcard-exercise-name">stationary bike walk</p>
-          <div class="card-rating">
-            <span class="rating-value">4.11</span>
-            <div class="stars-list">
-              <svg class="icon-star is-active" width="18" height="18">
-                <use href="./images/icons.svg#icon-star"></use>
-              </svg>
-              <svg class="icon-star is-active" width="18" height="18">
-                <use href="./images/icons.svg#icon-star"></use>
-              </svg>
-              <svg class="icon-star is-active" width="18" height="18">
-                <use href="./images/icons.svg#icon-star"></use>
-              </svg>
-              <svg class="icon-star is-active" width="18" height="18">
-                <use href="./images/icons.svg#icon-star"></use>
-              </svg>
-              <svg class="icon-star" width="18" height="18">
-                <use href="./images/icons.svg#icon-star"></use>
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <ul class="mcard-meta-list">
-          <li class="mcard-meta-item">
-            <span class="mcard-meta-label">Target</span
-            ><span class="mcard-meta-value">Abs</span>
-          </li>
-          <li class="mcard-meta-item">
-            <span class="mcard-meta-label">Body Part</span
-            ><span class="mcard-meta-value">Waist</span>
-          </li>
-          <li class="mcard-meta-item">
-            <span class="mcard-meta-label">Equipment</span
-            ><span class="mcard-meta-value">Body weight</span>
-          </li>
-          <li class="mcard-meta-item">
-            <span class="mcard-meta-label">Popular</span
-            ><span class="mcard-meta-value">150 </span>
-          </li>
-          <li class="mcard-meta-item">
-            <span class="mcard-meta-label">Burned Calories</span
-            ><span class="mcard-meta-value">323/3 min</span>
-          </li>
-        </ul>
-
-        <p class="mcard-description">
-          This refers to your core muscles, which include the rectus abdominis,
-          obliques, and transverse abdominis. They're essential for maintaining
-          posture, stability, and generating force in many movements. Exercises
-          that target the abs include crunches, leg raises, and planks.
-        </p>
-
-        <div class="mcard-actions">
-          <button type="button" class="btn btn-white btn-favorites">
-            Add to favorites
-            <svg class="btn-icon" width="20" height="20">
-              <use href="./images/icons.svg#icon-heart" />
-            </svg>
-          </button>
-          <button type="button" class="btn btn-black btn-rating">
-            Give a rating
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </div>
+  <div
+    class="modal-content modal-exercise-content js-modal-exercise-content"
+  ></div>
 </div>

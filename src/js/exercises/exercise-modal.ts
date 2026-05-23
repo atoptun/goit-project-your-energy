@@ -1,75 +1,56 @@
 import { coreOpenModal, coreCloseModal } from '../modal-core';
 import { SELECTORS } from '../constants';
 import { fetchExerciseById } from '../services/api';
+import { createExerciseModalCardMarkup } from './exercise-card';
+import { IExercise } from '../types';
+import { showErrorMessage } from '../utils';
+
+const CONSTS = {
+  container: '.js-modal-exercise-container',
+  content: '.js-modal-exercise-content',
+  favBtn: '.js-btn-favorites',
+  favBtnText: '.js-fav-btn-text',
+  favBtnIcon: '.js-fav-icon',
+
+}
 
 const refs = {
-  modal: document.querySelector<HTMLElement>(SELECTORS.modalExercise),
+  container: document.querySelector<HTMLElement>(CONSTS.container),
   closeBtn: document.querySelector<HTMLButtonElement>(SELECTORS.modalCloseBtn),
-  content: document.querySelector<HTMLElement>('.js-modal-exercise-content'),
+  content: document.querySelector<HTMLElement>(CONSTS.content),
+
 };
 
 
-interface ExerciseData {
-  _id: string;
-  bodyPart: string;
-  equipment: string;
-  gifUrl: string;
-  name: string;
-  target: string;
-  description: string;
-  rating: number;
-  burnedCalories: number;
-  time: number;
-  popularity: number;
-}
-
-
-export async function openExerciseModal(exerciseId: string): Promise<void> {
-  coreOpenModal(refs.modal!, closeExerciseModal);
+export function openExerciseModal(exerciseId: string): void {
+  coreOpenModal(refs.container!, closeExerciseModal);
 
   refs.closeBtn?.addEventListener('click', closeExerciseModal);
-  refs.modal?.removeAttribute('hidden');
+  refs.container?.removeAttribute('hidden');
 
-  try {
-    const data = await fetchExerciseById(exerciseId);
-
-    refs.content!.innerHTML = renderExerciseData(data as ExerciseData);
-
-  } catch (error) {
-    console.error('Error fetching exercise data:', error);
-    return;
-  }
-
-
+  fetchExerciseById(exerciseId)
+    .then(data => {
+      renderExerciseCard(data);
+    })
+    .catch(() => {
+      showErrorMessage('Unable to load exercise data. Please try again.');
+    });
 }
 
 export function closeExerciseModal(): void {
-  coreCloseModal(refs.modal!);
+  coreCloseModal(refs.container!);
   refs.closeBtn?.removeEventListener('click', closeExerciseModal);
 }
 
-function renderExerciseData(data: ExerciseData): string { 
-  // Implementation for rendering exercise data
-  return '';
+function renderExerciseCard(data: IExercise): void {
+  refs.content!.innerHTML = createExerciseModalCardMarkup(data);
+
+  const favBtn = refs.content?.querySelector<HTMLButtonElement>(CONSTS.favBtn);
+
+  updateFavoriteBtn(favBtn!, false);
+
 }
 
-/**
- * 
-{
-  "_id": "64f389465ae26083f39b1a0e",
-  "bodyPart": "cardio",
-  "equipment": "leverage machine",
-  "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0798.gif",
-  "name": "stationary bike walk",
-  "target": "cardiovascular system",
-  "description": "While not a muscle, this system is essential for endurance training. Aerobic exercises like running, cycling, and swimming improve cardiovascular health.",
-  "rating": 4.11,
-  "burnedCalories": 116,
-  "time": 3,
-  "popularity": 2087
+function updateFavoriteBtn(btn: HTMLButtonElement, isFavorite: boolean): void { 
+  
 }
-  *
- */
-
-
-
