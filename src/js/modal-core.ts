@@ -1,7 +1,6 @@
+import { SELECTORS } from './constants'
 
-
-// change to const
-const backdrop = document.querySelector<HTMLElement>('.js-modal-backdrop');
+const backdrop = document.querySelector<HTMLElement>(SELECTORS.modalBackdrop);
 
 let currentCloseCallback: (() => void) | null = null;
 
