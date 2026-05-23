@@ -11,6 +11,11 @@ export const SELECTORS = {
   searchForm: '.search-form',
   searchInput: '.search-input',
   categoryTitle: '.js-category-title',
+  // modals
+  modalBackdrop: '.js-modal-backdrop',
+  modalCloseBtn: '.js-modal-close',
+  modalExercise: '.js-modal-exercise',
+  // footer
   footerYear: '.js-footer-year',
 } as const;
 
