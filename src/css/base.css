@@ -42,7 +42,8 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-body.is-menu-open {
+body.is-menu-open,
+body.is-modal-open {
   overflow: hidden;
   touch-action: none;
   height: 100vh;
