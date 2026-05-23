@@ -1,11 +1,184 @@
 .modal-exercise {
-  max-width: 335px; 
+  width: 100%;
+  max-width: 335px;
+  background-color: var(--color-dark-bg);
+  border-radius: 20px;
   padding: 40px 20px;
+  border: 1px solid rgba(244, 244, 244, 0.1);
 }
 
 .modal-exercise .modal-close {
   top: 14px;
   right: 14px;
+  stroke: #f4f4f4;
+  transition: stroke var(--transition);
+}
+
+.modal-exercise-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mcard-image-wrapper {
+  width: 100%;
+  height: 258px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--color-dark-bg);
+}
+
+.mcard-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mcard-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  min-width: 0;
+}
+
+.mcard-exercise-name {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #f4f4f4;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rating-value {
+  font-size: 12px;
+  color: #f4f4f4;
+}
+
+.stars-list {
+  display: flex;
+  gap: 2px;
+}
+
+.icon-star {
+  fill: rgba(244, 244, 244, 0.2);
+}
+
+.icon-star.is-active {
+  fill: #eea10c;
+}
+
+.mcard-meta-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(244, 244, 244, 0.2);
+  border-bottom: 1px solid rgba(244, 244, 244, 0.2);
+}
+
+.mcard-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  min-width: 0;
+  max-width: 136px;
+}
+
+.mcard-meta-label {
+  font-size: 12px;
+  color: rgba(244, 244, 244, 0.4);
+}
+
+.mcard-meta-value {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  color: #f4f4f4;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mcard-description {
+  font-size: 14px;
+  line-height: 1.29;
+  color: rgba(244, 244, 244, 0.6);
+  margin-bottom: 20px;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 10;
+  -webkit-line-clamp: 10;
+  overflow: hidden;
+}
+
+.mcard-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 14px;
+  line-height: 1.29;
+
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+
+  transition:
+    border var(--transition),
+    color var(--transition),
+    background-color var(--transition);
+}
+
+.btn-white {
+  border: none;
+  color: #242424;
+  background-color: #f4f4f4;
+  stroke: #242424;
+}
+
+.btn-white:hover,
+.btn-white:focus {
+  border: 1px solid #f4f4f4;
+  color: #f4f4f4;
+  background-color: #242424;
+  stroke: #f4f4f4;
+}
+
+.btn-black {
+  border: 1px solid #f4f4f4;
+  color: #f4f4f4;
+  background-color: #242424;
+  stroke: #f4f4f4;
+}
+
+.btn-black:hover,
+.btn-black:focus {
+  border: none;
+  color: #242424;
+  background-color: #f4f4f4;
+  stroke: #242424;
 }
 
 @media only screen and (min-width: 768px) {
@@ -13,9 +186,44 @@
     max-width: 704px;
     padding: 32px;
   }
+
   .modal-exercise .modal-close {
     top: 16px;
     right: 16px;
   }
-}
 
+  .modal-exercise-card {
+    display: grid;
+    grid-template-columns: 270px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .mcard-content-wrapper {
+    gap: 16px;
+  }
+
+  .mcard-exercise-name {
+    font-size: 24px;
+  }
+
+  .mcard-meta-list {
+    gap: 16px;
+    padding: 8px 0;
+  }
+
+  .mcard-meta-item {
+    max-width: 166px;
+  }
+
+  .mcard-description {
+    margin-bottom: 40px;
+  }
+
+  /* Кнопки стають у рядок внизу правої колонки */
+  .mcard-actions {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px;
+  }
+}
