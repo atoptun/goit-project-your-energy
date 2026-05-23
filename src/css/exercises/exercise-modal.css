@@ -1,0 +1,21 @@
+.modal-exercise {
+  max-width: 335px; 
+  padding: 40px 20px;
+}
+
+.modal-exercise .modal-close {
+  top: 14px;
+  right: 14px;
+}
+
+@media only screen and (min-width: 768px) {
+  .modal-exercise {
+    max-width: 704px;
+    padding: 32px;
+  }
+  .modal-exercise .modal-close {
+    top: 16px;
+    right: 16px;
+  }
+}
+

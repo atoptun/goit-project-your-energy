@@ -9,6 +9,11 @@ const EMAIL_PATTERN = /^\w+(\.\w+)?@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 iziToast.settings({ maxWidth: 360 });
 
 export function initFooter(): void {
+  const yearEl = document.querySelector<HTMLElement>(SELECTORS.footerYear);
+  if (yearEl) {
+    yearEl.textContent = `©${new Date().getFullYear()}`;
+  }
+
   const form = document.querySelector<HTMLFormElement>(
     SELECTORS.subscriptionForm
   );

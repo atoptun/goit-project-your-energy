@@ -24,3 +24,8 @@
 
 /* Mobile menu */
 @import url('./mobile-menu.css');
+
+/* Modals */
+@import url('./modal-base.css');
+@import url('./exercises/exercise-modal.css');
+
