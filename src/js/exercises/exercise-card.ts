@@ -1,6 +1,6 @@
 import { IExercise } from '../types';
 
-export function createExerciseItemMarkup(exercise: IExercise) {
+export function createExerciseItemMarkup(exercise: IExercise, isFavorite: boolean = false) {
   function createStarsMarkup(rating: number) {
     const totalStars = 5;
     const activeStarsCount = Math.round(rating);
@@ -19,18 +19,30 @@ export function createExerciseItemMarkup(exercise: IExercise) {
     return html;
   }
 
+  const badgeContent = isFavorite
+    ? `
+      <button type="button" class="card-delete-btn js-remove-favorite" aria-label="Remove from favorites">
+        <svg width="16" height="16">
+          <use href="./images/icons.svg#icon-trash"></use>
+        </svg>
+      </button>
+    `
+    : `
+      <div class="card-rating">
+        <span class="rating-value">${exercise.rating || '0.0'}</span>
+        <div class="stars-list">
+          ${createStarsMarkup(exercise.rating || 0)}
+        </div>
+      </div>
+    `;
+
   return `
   
     <li class="exercise-card" data-exercise-id="${exercise._id}">
       <div class="card-top-line">
-        <div class="card-badge-wrapper">
+        <div class="card-badge-wrapper ${isFavorite ? 'is-favorite' : ''}">
           <span class="card-badge">Workout</span>
-          <div class="card-rating">
-            <span class="rating-value">${exercise.rating || '0.0'}</span>
-            <div class="stars-list">
-              ${createStarsMarkup(exercise.rating || 0)}
-            </div>
-          </div>
+          ${badgeContent}
         </div>
 
         <button type="button" class="card-start-btn">
