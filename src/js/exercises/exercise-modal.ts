@@ -1,9 +1,10 @@
 import { coreOpenModal, coreCloseModal } from '../modal-core';
+import { SELECTORS } from '../constants';
 
 const refs = {
   // change to consts
-  modal: document.querySelector<HTMLElement>('.js-modal-exercise'),
-  closeBtn: document.querySelector<HTMLButtonElement>('.js-modal-close'),
+  modal: document.querySelector<HTMLElement>(SELECTORS.modalExercise),
+  closeBtn: document.querySelector<HTMLButtonElement>(SELECTORS.modalCloseBtn),
 };
 
 export function openExerciseModal(exerciseId: string): void {
