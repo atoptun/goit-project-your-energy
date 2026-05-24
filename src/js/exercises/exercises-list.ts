@@ -7,7 +7,7 @@ import {
   createExerciseEmptyMessage,
 } from './exercise-card';
 import { showErrorMessage } from '../utils';
-import { showPagination } from '../pagination';
+import { showPagination, hidePagination } from '../pagination';
 
 const ITEMS_PER_PAGE = window.innerWidth < 768 ? 8 : 10;
 
@@ -103,6 +103,7 @@ export async function renderExercises(options: RenderOptions) {
 
     if (data.results.length === 0) {
       exercisesListEl.innerHTML = createExerciseEmptyMessage();
+      hidePagination();
       return;
     }
 
@@ -125,6 +126,7 @@ export async function renderExercises(options: RenderOptions) {
     });
   } catch {
     exercisesListEl.innerHTML = createExerciseEmptyMessage();
+    hidePagination();
     showErrorMessage('Something went wrong. Try later.');
   }
 }
