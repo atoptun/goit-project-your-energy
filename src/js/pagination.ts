@@ -74,7 +74,7 @@ function createPaginationMarkup(totalPages: number, currentPage: number) {
   const isLast = currentPage === totalPages;
 
   let windowStart = Math.max(1, currentPage - 1);
-  let windowEnd = Math.min(totalPages, windowStart + 2);
+  const windowEnd = Math.min(totalPages, windowStart + 2);
   windowStart = Math.max(1, windowEnd - 2);
 
   const showLeftEllipsis = windowStart > 1;
