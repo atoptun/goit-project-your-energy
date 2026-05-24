@@ -14,6 +14,57 @@
   transition: stroke var(--transition);
 }
 
+.modal-exercise-content {
+  position: relative;
+}
+
+/* Loader */
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-dark-bg);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+
+.modal-exercise-content.is-loading .modal-loader-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-exercise-content.is-error .modal-error-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.loader-spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgba(244, 244, 244, 0.1);
+  border-top-color: #f4f4f4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Exercise Card */
 .modal-exercise-card {
   display: flex;
   flex-direction: column;
@@ -149,6 +200,12 @@
     right: 16px;
   }
 
+  .modal-exercise-content {
+    width: 638px;
+    min-height: 410px;
+  }
+
+  /* Exercise Card */
   .modal-exercise-card {
     display: grid;
     grid-template-columns: 270px 1fr;
@@ -177,7 +234,6 @@
     margin-bottom: 40px;
   }
 
-  /* Кнопки стають у рядок внизу правої колонки */
   .mcard-actions {
     grid-column: span 2;
 

@@ -8,7 +8,7 @@
   --color-dark-bg: #242424;
   --color-text-primary: #242424;
   --color-text-secondary: #24242499; /* #808080;  rgba(36, 36, 36, 0.6); */
-  --color-text-white: #f4f4f499;  /* #ffffff; rgba(244, 244, 244, 0.6); */
+  --color-text-white: #f4f4f499; /* #ffffff; rgba(244, 244, 244, 0.6); */
   --color-accent: #ef8964;
   --color-border: #e0e0e0;
 
@@ -20,6 +20,11 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
 }
 
 body {
