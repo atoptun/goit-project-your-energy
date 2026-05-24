@@ -47,6 +47,7 @@ export async function renderCategories({ filter, page }: RenderOptions) {
   const breadcrumbEl = document.querySelector(SELECTORS.categoryTitle);
   if (breadcrumbEl) {
     breadcrumbEl.textContent = '';
+    document.querySelector(SELECTORS.categorySeparator)?.classList.remove('is-visible');
   }
   try {
     const data = await fetchFilters({ filter, limit: ITEMS_PER_PAGE, page });

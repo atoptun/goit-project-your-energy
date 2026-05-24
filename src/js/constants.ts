@@ -12,6 +12,7 @@ export const SELECTORS = {
   searchForm: '.search-form',
   searchInput: '.search-input',
   categoryTitle: '.js-category-title',
+  categorySeparator: '.js-category-separator',
   // modals
   modalBackdrop: '.js-modal-backdrop',
   modalCloseBtn: '.js-modal-close',
