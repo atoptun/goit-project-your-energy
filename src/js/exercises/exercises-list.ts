@@ -73,7 +73,9 @@ export async function renderExercises(options: RenderOptions) {
   if (categoryTitleEl) {
     categoryTitleEl.textContent =
       selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1);
-    document.querySelector(SELECTORS.categorySeparator)?.classList.add('is-visible');
+    document
+      .querySelector(SELECTORS.categorySeparator)
+      ?.classList.add('is-visible');
   }
 
   const selectedKeyword = options.keyword;

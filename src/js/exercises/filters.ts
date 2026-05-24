@@ -7,13 +7,22 @@ interface FilterOptions {
 }
 
 function isFilterCategory(value: unknown): value is TFilterCategory {
-  return typeof value === 'string' && (Object.values(FILTER_CATEGORIES) as string[]).includes(value);
+  return (
+    typeof value === 'string' &&
+    (Object.values(FILTER_CATEGORIES) as string[]).includes(value)
+  );
 }
 
 export function initFilters({ onFilterChange, onSearch }: FilterOptions) {
-  const filterList = document.querySelector<HTMLUListElement>(SELECTORS.filterList);
-  const searchForm = document.querySelector<HTMLFormElement>(SELECTORS.searchForm);
-  const searchInput = searchForm?.querySelector<HTMLInputElement>(SELECTORS.searchInput);
+  const filterList = document.querySelector<HTMLUListElement>(
+    SELECTORS.filterList
+  );
+  const searchForm = document.querySelector<HTMLFormElement>(
+    SELECTORS.searchForm
+  );
+  const searchInput = searchForm?.querySelector<HTMLInputElement>(
+    SELECTORS.searchInput
+  );
   const clearBtn = searchForm?.querySelector<HTMLButtonElement>('.clear-btn');
 
   const toggleClearBtn = () => {

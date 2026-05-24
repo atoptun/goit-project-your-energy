@@ -33,8 +33,7 @@ export default defineConfig(({ command }) => {
       sourcemap: true,
       cssCodeSplit: false,
       rollupOptions: {
-        input: glob.sync('./*.html', { cwd: 'src' }),
-        // input: glob.sync('./src/*.html').map(file => path.relative('./src', file)),
+        input: glob.sync(path.resolve(__dirname, 'src/**/*.html')),
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {

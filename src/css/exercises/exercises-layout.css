@@ -28,7 +28,6 @@
   }
 }
 
-
 @media only screen and (min-width: 768px) {
   .exercises-section {
     padding-top: 48px;
@@ -37,7 +36,6 @@
   .exercises-main-content {
     gap: 64px;
   }
-
 }
 
 @media only screen and (min-width: 1440px) {
