@@ -14,8 +14,8 @@
     <script type="module" crossorigin src="/goit-advancedjs-fp-03/favorites.js"></script>
     <link rel="modulepreload" crossorigin href="/goit-advancedjs-fp-03/assets/rolldown-runtime-DMWpINJ5.js">
     <link rel="modulepreload" crossorigin href="/goit-advancedjs-fp-03/assets/vendor-BMtsypGf.js">
-    <link rel="modulepreload" crossorigin href="/goit-advancedjs-fp-03/assets/mobile-menu-D9ccfRW2.js">
-    <link rel="stylesheet" crossorigin href="/goit-advancedjs-fp-03/assets/mobile-menu-D0DeigUR.css">
+    <link rel="modulepreload" crossorigin href="/goit-advancedjs-fp-03/assets/mobile-menu-BOR1fsA5.js">
+    <link rel="stylesheet" crossorigin href="/goit-advancedjs-fp-03/assets/mobile-menu-vgUY_uDr.css">
   </head>
   <body>
     <header class="header">
@@ -23,7 +23,7 @@
     <div class="header-container">
       <a class="header-logo-link" href="./index.html" aria-label="YourEnergy">
         <svg class="header-logo-icon" width="132" height="24">
-          <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-logo" />
+          <use href="/goit-advancedjs-fp-03/assets/icons-BVop3-xk.svg#icon-logo" />
         </svg>
       </a>
       <nav class="header-nav">
@@ -48,7 +48,7 @@
             aria-label="Facebook"
           >
             <svg class="header-social-icon" width="28" height="28">
-              <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-facebook" />
+              <use href="/goit-advancedjs-fp-03/assets/icons-BVop3-xk.svg#icon-facebook" />
             </svg>
           </a>
         </li>
@@ -61,7 +61,7 @@
             aria-label="Instagram"
           >
             <svg class="header-social-icon" width="28" height="28">
-              <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-instagram" />
+              <use href="/goit-advancedjs-fp-03/assets/icons-BVop3-xk.svg#icon-instagram" />
             </svg>
           </a>
         </li>
@@ -74,7 +74,7 @@
             aria-label="Youtube"
           >
             <svg class="header-social-icon" width="28" height="28">
-              <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-youtube" />
+              <use href="/goit-advancedjs-fp-03/assets/icons-BVop3-xk.svg#icon-youtube" />
             </svg>
           </a>
         </li>
@@ -86,7 +86,7 @@
         aria-label="Open mobile menu"
       >
         <svg class="mobile-menu-icon" width="32" height="32">
-          <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-mobile-menu" />
+          <use href="/goit-advancedjs-fp-03/assets/icons-BVop3-xk.svg#icon-mobile-menu" />
         </svg>
       </button>
     </div>
@@ -97,10 +97,57 @@
     <main>
       <section class="favorites-section">
   <div class="container">
-    <ul class="exercises-list js-favorites-list"></ul>
-    <p class="favorites-empty js-favorites-empty" hidden>
-      Your favorites list is empty.
-    </p>
+    <h1 class="favorites-title">Favorites</h1>
+
+    <div class="favorites-content">
+      <aside class="favorites-sidebar">
+        <div class="quote-card">
+          <div class="quote-icon-box">
+            <svg class="quote-icon" width="32" height="32">
+              <use href="/goit-advancedjs-fp-03/assets/icons-BVop3-xk.svg#running"></use>
+            </svg>
+          </div>
+          <div class="quote-content">
+            <div class="quote-header">
+              <h2 class="quote-title">Quote of the day</h2>
+              <svg class="quote-mark-icon" width="20" height="20">
+                <use href="/goit-advancedjs-fp-03/assets/icons-BVop3-xk.svg#quote"></use>
+              </svg>
+            </div>
+            <p class="quote-text" data-quote-text>Loading quote...</p>
+            <p class="quote-author" data-quote-author></p>
+          </div>
+        </div>
+
+        <div class="favorites-sidebar-bottom">
+          <div class="favorites-daily-card">
+            <div class="favorites-daily-icon">
+              <svg width="20" height="20">
+                <use href="/goit-advancedjs-fp-03/assets/icons-BVop3-xk.svg#icon-fluent-food"></use>
+              </svg>
+            </div>
+            <div class="favorites-daily-content">
+              <h3 class="favorites-daily-title">110 min</h3>
+              <p class="favorites-daily-subtitle">Daily norm of sports</p>
+            </div>
+          </div>
+
+          <div class="favorites-image-card">
+            <img class="favorites-image" src="/goit-advancedjs-fp-03/assets/favorites-D4txrV4T.jpg"
+              srcset="/goit-advancedjs-fp-03/assets/favorites-D4txrV4T.jpg 1x, /goit-advancedjs-fp-03/assets/favorites@2x-D8gR77TF.jpg 2x" alt="Women working out outdoors"
+              loading="lazy" />
+          </div>
+        </div>
+      </aside>
+
+      <div class="favorites-main">
+        <ul class="exercises-list js-favorites-list"></ul>
+        <div class="favorites-empty js-favorites-empty" hidden>
+          <p class="favorites-empty-text">It appears that you haven't added any exercises to your favorites yet. To get
+            started, you can add exercises that you like to your favorites for easier access in the future.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
     </main>
@@ -119,7 +166,7 @@
       aria-label="Close mobile menu"
     >
       <svg class="close-mobile-icon" width="32" height="32">
-        <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-close" />
+        <use href="/goit-advancedjs-fp-03/assets/icons-BVop3-xk.svg#icon-close" />
       </svg>
     </button>
 
@@ -146,7 +193,7 @@
           aria-label="Facebook"
         >
           <svg class="mobile-social-icon" width="28" height="28">
-            <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-facebook" />
+            <use href="/goit-advancedjs-fp-03/assets/icons-BVop3-xk.svg#icon-facebook" />
           </svg>
         </a>
       </li>
@@ -159,7 +206,7 @@
           aria-label="Instagram"
         >
           <svg class="mobile-social-icon" width="28" height="28">
-            <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-instagram" />
+            <use href="/goit-advancedjs-fp-03/assets/icons-BVop3-xk.svg#icon-instagram" />
           </svg>
         </a>
       </li>
@@ -172,7 +219,7 @@
           aria-label="Youtube"
         >
           <svg class="mobile-social-icon" width="28" height="28">
-            <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-youtube" />
+            <use href="/goit-advancedjs-fp-03/assets/icons-BVop3-xk.svg#icon-youtube" />
           </svg>
         </a>
       </li>
@@ -195,7 +242,7 @@
     aria-label="Close modal"
   >
     <svg class="modal-close-icon" width="24" height="24">
-      <use href="/goit-advancedjs-fp-03/assets/icons-LIgR2W4p.svg#icon-close"></use>
+      <use href="/goit-advancedjs-fp-03/assets/icons-BVop3-xk.svg#icon-close"></use>
     </svg>
   </button>
   <div class="modal-content modal-exercise-content js-modal-exercise-content">

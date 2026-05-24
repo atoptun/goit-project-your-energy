@@ -1,4 +1,4 @@
-import{r as e}from"./assets/rolldown-runtime-DMWpINJ5.js";import{a as t,i as n,n as r,r as i,t as a}from"./assets/mobile-menu-D9ccfRW2.js";import{t as o}from"./assets/vendor-BMtsypGf.js";var s={categoryList:`.js-category-list`,categoryItem:`.category-item`,exercisesList:`.js-exercises-list`,exerciseItem:`.exercise-item`,pagination:`.js-pagination`,paginationItem:`.pagination-item`,paginationItemActive:`.pagination-item.active`,filterList:`.filter-list`,filterBtn:`.filter-btn`,filterBtnActive:`.filter-btn.active`,searchForm:`.search-form`,searchInput:`.search-input`,categoryTitle:`.js-category-title`,modalBackdrop:`.js-modal-backdrop`,modalCloseBtn:`.js-modal-close`,modalExercise:`.js-modal-exercise`},c={muscles:`Muscles`,bodyParts:`Body parts`,equipment:`Equipment`};function l(e){return typeof e==`string`&&Object.values(c).includes(e)}function u({onFilterChange:e,onSearch:t}){let n=document.querySelector(s.filterList),r=document.querySelector(s.searchForm),i=r?.querySelector(s.searchInput),a=r?.querySelector(`.clear-btn`),o=()=>{a&&(a.hidden=!i?.value)};n&&n.addEventListener(`click`,t=>{let r=t.target.closest(s.filterBtn);if(!r)return;let a=n.querySelector(s.filterBtnActive),c=r.dataset.filter;!c||!l(c)||(a?.classList.remove(`active`),r.classList.add(`active`),i&&(i.value=``,o()),e(c))}),r&&i&&(i.addEventListener(`input`,o),a?.addEventListener(`click`,()=>{i.value=``,o(),i.focus()}),r.addEventListener(`submit`,e=>{e.preventDefault(),t(i.value.trim()),i.value=``,o()}))}function d(){document.querySelector(s.searchForm)?.classList.add(`hidden`)}function f(){document.querySelector(s.searchForm)?.classList.remove(`hidden`)}var p=document.querySelector(s.pagination),m=null;function h(){p&&p.addEventListener(`click`,v)}function g(){p&&(p.innerHTML=``),m=null}function _({totalPages:e,currentPage:t,onChangedPage:n}){p&&(p.innerHTML=y(e,t),m=n)}function v(e){if(!m)return;let t=e.target.closest(s.paginationItem);if(!t)return;let n=Number(document.querySelector(s.paginationItemActive)?.getAttribute(`data-page`)),r=Number(t.dataset.page||`1`);!r||r===n||m({page:r})}function y(e,t){return e<=1?``:Array.from({length:e},(e,t)=>t+1).map(e=>`<li class="pagination-item ${t===e?`active`:``}" data-page="${e}">${e}</li>`).join(``)}var b=e(o(),1);b.default.settings({timeout:5e3,resetOnHover:!0,icon:`material-icons`,transitionIn:`flipInX`,transitionOut:`flipOutX`,position:`topRight`});function x(e){b.default.error({title:`Error`,message:e})}var S=window.innerWidth<768?9:12,C=document.querySelector(s.categoryList);function w({onSelect:e}={}){C?.addEventListener(`click`,t=>{let n=t.target.closest(s.categoryItem);if(!n)return;let r=n.dataset.category||``;r&&e?.(r)})}function T(){C&&(C.innerHTML=``)}async function E({filter:e,page:t}){let r=t||1;g();let i=document.querySelector(s.categoryTitle);i&&(i.textContent=``);try{let i=await n({filter:e,limit:S,page:t});if(!i)return;let a=i.results.map(e=>D(e)).join(``);if(!C)return;C.innerHTML=a,_({totalPages:i.totalPages,currentPage:r,onChangedPage:({page:t})=>E({filter:e,page:t})})}catch(e){console.error(e),x(`Failed to load categories. Please try again later.`)}}function D(e){return`
+import{a as e,c as t,i as n,l as r,n as i,r as a,s as o,t as s}from"./assets/mobile-menu-BOR1fsA5.js";var c={categoryList:`.js-category-list`,categoryItem:`.category-item`,exercisesList:`.js-exercises-list`,exerciseItem:`.exercise-item`,pagination:`.js-pagination`,paginationItem:`.pagination-item`,paginationItemActive:`.pagination-item.active`,filterList:`.filter-list`,filterBtn:`.filter-btn`,filterBtnActive:`.filter-btn.active`,searchForm:`.search-form`,searchInput:`.search-input`,categoryTitle:`.js-category-title`,modalBackdrop:`.js-modal-backdrop`,modalCloseBtn:`.js-modal-close`,modalExercise:`.js-modal-exercise`},l={muscles:`Muscles`,bodyParts:`Body parts`,equipment:`Equipment`};function u(e){return typeof e==`string`&&Object.values(l).includes(e)}function d({onFilterChange:e,onSearch:t}){let n=document.querySelector(c.filterList),r=document.querySelector(c.searchForm),i=r?.querySelector(c.searchInput),a=r?.querySelector(`.clear-btn`),o=()=>{a&&(a.hidden=!i?.value)};n&&n.addEventListener(`click`,t=>{let r=t.target.closest(c.filterBtn);if(!r)return;let a=n.querySelector(c.filterBtnActive),s=r.dataset.filter;!s||!u(s)||(a?.classList.remove(`active`),r.classList.add(`active`),i&&(i.value=``,o()),e(s))}),r&&i&&(i.addEventListener(`input`,o),a?.addEventListener(`click`,()=>{i.value=``,o(),i.focus()}),r.addEventListener(`submit`,e=>{e.preventDefault(),t(i.value.trim()),i.value=``,o()}))}function f(){document.querySelector(c.searchForm)?.classList.add(`hidden`)}function p(){document.querySelector(c.searchForm)?.classList.remove(`hidden`)}var m=document.querySelector(c.pagination),h=null,g=0;function _(){m&&m.addEventListener(`click`,b)}function v(){m&&(m.innerHTML=``),h=null,g=0}function y({totalPages:e,currentPage:t,onChangedPage:n}){m&&(m.innerHTML=x(e,t),h=n,g=e)}function b(e){if(!h)return;let t=e.target.closest(c.paginationItem);if(!t||t.classList.contains(`disabled`)||t.classList.contains(`pagination-ellipsis`))return;let n=Number(document.querySelector(c.paginationItemActive)?.getAttribute(`data-page`)),r=t.dataset.page,i;i=r===`first`?1:r===`prev`?Math.max(1,n-1):r===`next`?Math.min(g,n+1):r===`last`?g:Number(r),!(!i||i===n)&&h({page:i})}function x(e,t){if(e<=1)return``;if(e<=3)return Array.from({length:e},(e,t)=>t+1).map(e=>`<li class="pagination-item${e===t?` active`:``}" data-page="${e}">${e}</li>`).join(``);let n=t===1,r=t===e,i=Math.max(1,t-1),a=Math.min(e,i+2);i=Math.max(1,a-2);let o=i>1,s=a<e,c=(e,t=!1)=>`<svg width="40" height="40"${t?` style="transform:scaleX(-1)"`:``}><use href="./images/icons.svg#${e}"></use></svg>`,l=(e,t,n)=>`<li class="pagination-item pagination-nav${n?` disabled`:``}" data-page="${t}" aria-label="${t}">${e}</li>`,u=e=>`<li class="pagination-item${e===t?` active`:``}" data-page="${e}">${e}</li>`,d=`<li class="pagination-item pagination-ellipsis" aria-hidden="true">…</li>`,f=[l(c(`icon-pagination-last`,!0),`first`,n),l(c(`icon-pagination-next`,!0),`prev`,n)];o&&f.push(d);for(let e=i;e<=a;e++)f.push(u(e));return s&&f.push(d),f.push(l(c(`icon-pagination-next`),`next`,r),l(c(`icon-pagination-last`),`last`,r)),f.join(``)}var S=window.innerWidth<768?9:12,C=document.querySelector(c.categoryList);function w({onSelect:e}={}){C?.addEventListener(`click`,t=>{let n=t.target.closest(c.categoryItem);if(!n)return;let r=n.dataset.category||``;r&&e?.(r)})}function T(){C&&(C.innerHTML=``)}async function E({filter:n,page:r}){let i=r||1;v();let a=document.querySelector(c.categoryTitle);a&&(a.textContent=``);try{let e=await t({filter:n,limit:S,page:r});if(!e)return;let a=e.results.map(e=>D(e)).join(``);if(!C)return;C.innerHTML=a,y({totalPages:e.totalPages,currentPage:i,onChangedPage:({page:e})=>E({filter:n,page:e})})}catch(t){console.error(t),e(`Failed to load categories. Please try again later.`)}}function D(e){return`
     <li class="category-item" data-category="${e.name}">
       <img class="category-image" src="${e.imgURL}" alt="${e.name}">
       <div class="category-info">
@@ -6,60 +6,5 @@ import{r as e}from"./assets/rolldown-runtime-DMWpINJ5.js";import{a as t,i as n,n
         <p class="category-filter">${e.filter}</p>
       </div>
     </li>
-    `}var O=document.querySelector(s.modalBackdrop),k=null;function A(e,t){!O||!e||(O.removeAttribute(`hidden`),e.removeAttribute(`hidden`),document.body.classList.add(`is-modal-open`),k=t,O.addEventListener(`click`,M),document.addEventListener(`keydown`,N))}function j(e){!O||!e||(O.setAttribute(`hidden`,``),e.setAttribute(`hidden`,``),document.body.classList.remove(`is-modal-open`),O.removeEventListener(`click`,M),document.removeEventListener(`keydown`,N),k=null)}function M(e){e.target===O&&k&&k()}function N(e){e.code===`Escape`&&k&&k()}var P={modal:document.querySelector(s.modalExercise),closeBtn:document.querySelector(s.modalCloseBtn)};function F(e){A(P.modal,I),P.closeBtn?.addEventListener(`click`,I),P.modal?.removeAttribute(`hidden`)}function I(){j(P.modal),P.closeBtn?.removeEventListener(`click`,I)}function L(e){function t(e){let t=Math.round(e),n=``;for(let e=1;e<=5;e++)n+=`
-        <svg class="icon-star${e<=t?` is-active`:``}" width="18" height="18">
-          <use href="./images/icons.svg#icon-star"></use>
-        </svg>
-      `;return n}return`
-  
-    <li class="exercise-card" data-exercise-id="${e._id}">
-      <div class="card-top-line">
-        <div class="card-badge-wrapper">
-          <span class="card-badge">Workout</span>
-          <div class="card-rating">
-            <span class="rating-value">${e.rating||`0.0`}</span>
-            <div class="stars-list">
-              ${t(e.rating||0)}
-            </div>
-          </div>
-        </div>
-
-        <button type="button" class="card-start-btn">
-          Start
-          <svg class="icon-arrow" width="16" height="16">
-            <use href="./images/icons.svg#icon-arrow"></use>
-          </svg>
-        </button>
-      </div>
-
-      <div class="card-title-line">
-        <div class="icon-run-wrapper">
-          <svg class="icon-run" width="24" height="24">
-            <use href="./images/icons.svg#icon-run"></use>
-          </svg>
-        </div>
-        <p class="exercise-name">${e.name}</p>
-      </div>
-
-      <ul class="card-meta-list">
-        <li class="meta-item">
-          <span class="meta-label">Burned calories:</span>
-          <span class="meta-value">${e.burnedCalories} / ${e.time} min</span>
-        </li>
-        <li class="meta-item">
-          <span class="meta-label">Body part:</span>
-          <span class="meta-value">${e.bodyPart}</span>
-        </li>
-        <li class="meta-item">
-          <span class="meta-label">Target:</span>
-          <span class="meta-value">${e.target}</span>
-        </li>
-      </ul>
-    </li>`}function R(){return`
-    <li class="exercises-empty-state">
-      <p class="exercises-empty-text">
-        No exercises found. Try a different filter or keyword.
-      </p>
-    </li>
-  `}var z=window.innerWidth<768?8:10,B=document.querySelector(s.exercisesList),V,H=1;function U(){B?.addEventListener(`click`,e=>{let t=e.target.closest(s.exerciseItem);if(!t)return;let n=t.dataset.exerciseId||``;n&&F(n)})}function W(){B&&(B.innerHTML=``)}async function G(e){if(!B)return;g();let t=e.filter||document.querySelector(s.filterBtnActive)?.getAttribute(`data-filter`);if(!t){x(`Something went wrong. Filter undefined.`);return}let n=e.category||V;if(!n){x(`Something went wrong. Category undefined.`);return}let r=document.querySelector(s.categoryTitle);r&&(r.textContent=n);let a=e.keyword;V=n,H=e.page||1;let o={bodypart:t==c.bodyParts?n:void 0,muscles:t==c.muscles?n:void 0,equipment:t==c.equipment?n:void 0,keyword:a,page:H,limit:z};try{let e=await i(o);if(e.results.length===0){B.innerHTML=R();return}B.innerHTML=e.results.map(e=>L(e)).join(``),_({totalPages:e.totalPages,currentPage:H,onChangedPage:({page:e})=>G({filter:t,category:V,keyword:a,page:e})})}catch{B.innerHTML=R(),x(`Something went wrong. Try later.`)}}function K(){h(),u({onFilterChange:e=>{d(),W(),E({filter:e})},onSearch:e=>G({keyword:e})}),w({onSelect:e=>{f(),T(),G({category:e})}}),U(),E({filter:c.muscles})}t(),r(),K(),a();
+    `}var O=document.querySelector(c.modalBackdrop),k=null;function A(e,t){!O||!e||(O.removeAttribute(`hidden`),e.removeAttribute(`hidden`),document.body.classList.add(`is-modal-open`),k=t,O.addEventListener(`click`,M),document.addEventListener(`keydown`,N))}function j(e){!O||!e||(O.setAttribute(`hidden`,``),e.setAttribute(`hidden`,``),document.body.classList.remove(`is-modal-open`),O.removeEventListener(`click`,M),document.removeEventListener(`keydown`,N),k=null)}function M(e){e.target===O&&k&&k()}function N(e){e.code===`Escape`&&k&&k()}var P={modal:document.querySelector(c.modalExercise),closeBtn:document.querySelector(c.modalCloseBtn)};function F(e){A(P.modal,I),P.closeBtn?.addEventListener(`click`,I),P.modal?.removeAttribute(`hidden`)}function I(){j(P.modal),P.closeBtn?.removeEventListener(`click`,I)}var L=window.innerWidth<768?8:10,R=document.querySelector(c.exercisesList),z,B=1;function V(){R?.addEventListener(`click`,e=>{let t=e.target.closest(c.exerciseItem);if(!t)return;let n=t.dataset.exerciseId||``;n&&F(n)})}function H(){R&&(R.innerHTML=``)}async function U(t){if(!R)return;let r=t.filter||document.querySelector(c.filterBtnActive)?.getAttribute(`data-filter`);if(!r){e(`Something went wrong. Filter undefined.`);return}let i=t.category||z;if(!i){e(`Something went wrong. Category undefined.`);return}let s=document.querySelector(c.categoryTitle);s&&(s.textContent=i);let u=t.keyword;z=i,B=t.page||1;let d={bodypart:r==l.bodyParts?i:void 0,muscles:r==l.muscles?i:void 0,equipment:r==l.equipment?i:void 0,keyword:u,page:B,limit:L};try{let e=await o(d);if(e.results.length===0){R.innerHTML=a();return}R.innerHTML=e.results.map(e=>n(e)).join(``),y({totalPages:e.totalPages,currentPage:B,onChangedPage:({page:e})=>U({filter:r,category:z,keyword:u,page:e})})}catch{R.innerHTML=a(),e(`Something went wrong. Try later.`)}}function W(){_(),d({onFilterChange:e=>{f(),H(),E({filter:e})},onSearch:e=>U({keyword:e})}),w({onSelect:e=>{p(),T(),U({category:e})}}),V(),E({filter:l.muscles})}r(),i(),W(),s();
 //# sourceMappingURL=index.js.map
