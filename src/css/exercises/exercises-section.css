@@ -13,7 +13,7 @@
     display: none;
 }
 
-.category-separator:has(+ .js-category-title:not(:empty)) {
+.category-separator.is-visible {
     display: inline;
 }
 

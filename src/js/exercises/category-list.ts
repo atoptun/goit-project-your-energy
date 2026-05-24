@@ -47,6 +47,7 @@ export async function renderCategories({ filter, page }: RenderOptions) {
   const breadcrumbEl = document.querySelector(SELECTORS.categoryTitle);
   if (breadcrumbEl) {
     breadcrumbEl.textContent = '';
+    document.querySelector(SELECTORS.categorySeparator)?.classList.remove('is-visible');
   }
   try {
     const data = await fetchFilters({ filter, limit: ITEMS_PER_PAGE, page });
@@ -74,7 +75,7 @@ export async function renderCategories({ filter, page }: RenderOptions) {
 function createCategoryItemMarkup(category: ICategory) {
   return `
     <li class="category-item" data-category="${category.name}">
-      <img class="category-image" src="${category.imgURL}" alt="${category.name}">
+      <img class="category-image" src="${category.imgURL}" alt="${category.name}" loading="lazy">
       <div class="category-info">
         <h3 class="category-name">${category.name}</h3>
         <p class="category-filter">${category.filter}</p>
