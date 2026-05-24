@@ -1,4 +1,4 @@
-import { getDailyQuote } from './services/quoteService';
+import { getDailyQuote } from './services/quote-service';
 import { IQuote } from './types';
 
 function renderQuote({ quote, author }: IQuote): void {
