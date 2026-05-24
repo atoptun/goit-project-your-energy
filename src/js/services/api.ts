@@ -55,7 +55,7 @@ export async function fetchDailyQuote(): Promise<IQuote> {
   return data;
 }
 
-export async function subscribeExercises(email: string): Promise<SubscriptionResponse> {
+export async function subscribeNewsletter(email: string): Promise<SubscriptionResponse> {
   const { data } = await axios.post<SubscriptionResponse>('/subscription', { email });
   return data;
 }

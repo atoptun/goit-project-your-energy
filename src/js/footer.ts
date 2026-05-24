@@ -1,12 +1,9 @@
-import axios from 'axios';
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
-import { subscribeExercises } from './services/api';
+import { isAxiosError } from 'axios';
+import { subscribeNewsletter } from './services/api';
 import { SELECTORS } from './constants';
+import { showErrorMessage, showSuccessMessage, showWarningMessage } from './utils';
 
 const EMAIL_PATTERN = /^\w+(\.\w+)?@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-
-iziToast.settings({ maxWidth: 360 });
 
 export function initFooter(): void {
   const yearEl = document.querySelector<HTMLElement>(SELECTORS.footerYear);
@@ -14,9 +11,7 @@ export function initFooter(): void {
     yearEl.textContent = `©${new Date().getFullYear()}`;
   }
 
-  const form = document.querySelector<HTMLFormElement>(
-    SELECTORS.subscriptionForm
-  );
+  const form = document.querySelector<HTMLFormElement>(SELECTORS.subscriptionForm);
   if (!form) return;
 
   form.addEventListener('submit', async (e: SubmitEvent) => {
@@ -25,35 +20,27 @@ export function initFooter(): void {
     const input = form.elements.namedItem('email') as HTMLInputElement;
     const email = input.value.trim();
     if (!EMAIL_PATTERN.test(email)) {
-      iziToast.error({
-        message: 'Please enter a valid email address.',
-        position: 'topRight',
-      });
+      showErrorMessage('Please enter a valid email address.');
       return;
     }
 
-    const btn = form.querySelector<HTMLButtonElement>(
-      SELECTORS.subscriptionBtn
-    );
+    const btn = form.querySelector<HTMLButtonElement>(SELECTORS.subscriptionBtn);
     if (btn) btn.disabled = true;
 
     try {
-      const res = await subscribeExercises(email);
-      iziToast.success({
-        message: res.message || 'You have successfully subscribed!',
-        position: 'topRight',
-      });
+      const res = await subscribeNewsletter(email);
+      showSuccessMessage(res.message || 'You have successfully subscribed!');
       form.reset();
     } catch (err) {
       let message = 'Something went wrong. Please try again.';
-      if (axios.isAxiosError(err)) {
+      if (isAxiosError(err)) {
         message = err.response?.data?.message ?? message;
         if (err.response?.status === 409) {
-          iziToast.warning({ message, position: 'topRight' });
+          showWarningMessage(message);
           return;
         }
       }
-      iziToast.error({ message, position: 'topRight' });
+      showErrorMessage(message);
     } finally {
       if (btn) btn.disabled = false;
     }
