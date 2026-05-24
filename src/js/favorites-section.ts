@@ -1,6 +1,9 @@
 import { getFavorites, removeFavorite } from './services/storage';
+import { fetchExerciseById } from './services/api';
 import { createExerciseItemMarkup } from './exercises/exercise-card';
 import { showPagination, hidePagination, initPafination } from './pagination';
+import { showErrorMessage } from './utils';
+import { IExercise } from './types';
 
 export function initFavoritesSection() {
   const favoritesList = document.querySelector('.js-favorites-list') as HTMLUListElement;
@@ -14,62 +17,68 @@ export function initFavoritesSection() {
   let currentPage = 1;
   const limit = 10;
 
-  function render() {
-    const favorites = getFavorites();
+  async function render() {
+    const ids = getFavorites();
 
-    if (favorites.length === 0) {
+    if (ids.length === 0) {
       favoritesList.innerHTML = '';
       if (emptyState) emptyState.hidden = false;
       hidePagination();
-    } else {
-      if (emptyState) emptyState.hidden = true;
-      
-      let paginatedFavorites = favorites;
-      
-      if (!desktopMedia.matches) {
-        const totalPages = Math.ceil(favorites.length / limit);
-        const start = (currentPage - 1) * limit;
-        paginatedFavorites = favorites.slice(start, start + limit);
-        
-        showPagination({
-          totalPages,
-          currentPage,
-          onChangedPage: ({ page }) => {
-            currentPage = page;
-            render();
-            favoritesList.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
-      } else {
-        hidePagination();
-      }
-
-      favoritesList.innerHTML = paginatedFavorites.map(fav => createExerciseItemMarkup(fav, true)).join('');
+      return;
     }
+
+    if (emptyState) emptyState.hidden = true;
+
+    let pageIds = ids;
+
+    if (!desktopMedia.matches) {
+      const totalPages = Math.ceil(ids.length / limit);
+      const start = (currentPage - 1) * limit;
+      pageIds = ids.slice(start, start + limit);
+
+      showPagination({
+        totalPages,
+        currentPage,
+        onChangedPage: ({ page }) => {
+          currentPage = page;
+          void render();
+          favoritesList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        },
+      });
+    } else {
+      hidePagination();
+    }
+
+    let exercises: IExercise[];
+
+    try {
+      exercises = await Promise.all(pageIds.map((id): Promise<IExercise> => fetchExerciseById(id)));
+    } catch {
+      showErrorMessage('Failed to load favorite exercises. Please try again later.');
+      return;
+    }
+    favoritesList.innerHTML = exercises.map(ex => createExerciseItemMarkup(ex, true)).join('');
   }
 
-  render();
+  void render();
 
   desktopMedia.addEventListener('change', () => {
-    currentPage = 1; 
-    render();
+    currentPage = 1;
+    void render();
   });
 
   favoritesList.addEventListener('click', (event) => {
     const target = event.target as HTMLElement;
-    
+
     const deleteBtn = target.closest('.js-remove-favorite') as HTMLButtonElement;
     if (deleteBtn) {
       const card = deleteBtn.closest('.exercise-card') as HTMLElement;
       const id = card?.dataset.exerciseId;
       if (id) {
         removeFavorite(id);
-        const totalItemsAfterRemove = getFavorites().length;
-        const totalPages = Math.ceil(totalItemsAfterRemove / limit);
-        if (currentPage > totalPages && currentPage > 1) {
-            currentPage--;
-        }
-        render();
+        const totalPages = Math.ceil(getFavorites().length / limit);
+        if (currentPage > totalPages && currentPage > 1) currentPage--;
+        void render();
       }
     }
   });
