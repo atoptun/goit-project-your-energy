@@ -28,6 +28,8 @@
     "vite-plugin-image-optimizer": "^2.0.3"
   },
   "dependencies": {
+    "@zag-js/pagination": "^1.41.0",
+    "@zag-js/vanilla": "^1.41.0",
     "axios": "^1.16.1",
     "izitoast": "^1.4.0",
     "modern-normalize": "^3.0.1",
