@@ -50,8 +50,7 @@
     background-color: transparent;
     border: none;
 
-    fill: none;
-    stroke: var(--color-primary-bg);
+    color: var(--color-primary-bg);
   }
 
   .mobile-menu-nav {
