@@ -18,7 +18,9 @@ export const SELECTORS = {
   // footer
   footerYear: '.js-footer-year',
   subscriptionForm: '.js-footer-form',
-  subscriptionBtn: '.js-footer-form-btn'
+  subscriptionBtn: '.js-footer-form-btn',
+  // favorites
+  removeFavoriteBtn: '.js-remove-favorite',
 } as const;
 
 export const FILTER_CATEGORIES = {

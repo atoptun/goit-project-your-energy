@@ -1,12 +1,13 @@
 import { SELECTORS } from './constants';
+import { ModalCloseCallback } from './types';
 
 const backdrop = document.querySelector<HTMLElement>(SELECTORS.modalBackdrop);
 
-let currentCloseCallback: (() => void) | null = null;
+let currentCloseCallback: ModalCloseCallback | null = null;
 
 export function coreOpenModal(
   modalContainer: HTMLElement,
-  onCloseCallback: () => void
+  onCloseCallback: ModalCloseCallback
 ): void {
   if (!backdrop || !modalContainer) return;
 

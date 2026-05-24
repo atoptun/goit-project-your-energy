@@ -1,7 +1,9 @@
 import { coreOpenModal, coreCloseModal } from '../modal-core';
 import { fetchExerciseById } from '../services/api';
 import { showErrorMessage } from '../utils';
-import { IExercise } from '../types';
+import { IExercise, ModalCloseCallback } from '../types';
+import { isFavorite, addFavorite, removeFavorite } from '../services/storage';
+import iconsUrl from '../../images/icons.svg?url';
 
 const CONSTS = {
   container: '.js-modal-exercise-container',
@@ -25,6 +27,7 @@ const CONSTS = {
   favBtnText: '.js-fav-btn-text',
   favBtnIcon: '.js-fav-icon',
   ratingBtn: '.js-btn-rating',
+  isFavoriteClass: 'is-favorite',
 } as const;
 
 const refs = {
@@ -33,31 +36,41 @@ const refs = {
   content: document.querySelector<HTMLElement>(CONSTS.content),
 } as const;
 
+let closeCallback: ModalCloseCallback | null = null;
+
 initContainer();
 
-export function openExerciseModal(exerciseId: string): void {
+export function openExerciseModal(
+  exerciseId: string,
+  onClose?: ModalCloseCallback
+): void {
   showLoader();
   coreOpenModal(refs.container!, closeExerciseModal);
 
+  closeCallback = onClose || null;
   refs.closeBtn?.addEventListener('click', closeExerciseModal);
 
-  fetchExerciseById(exerciseId)
-    .then(data => {
+  async function loadData() {
+    try {
+      const data = await fetchExerciseById(exerciseId);
       refs.content!.dataset.exerciseId = data._id;
       fillContent(data);
-      // get IsFavorite
-      updateFavoriteBtn(false);
 
       hideLoader();
-    })
-    .catch(() => {
+    } catch {
       showErrorState();
-    });
+    }
+  }
+
+  void loadData();
 }
 
 export function closeExerciseModal(): void {
   coreCloseModal(refs.container!);
   refs.closeBtn?.removeEventListener('click', closeExerciseModal);
+  if (closeCallback) {
+    closeCallback();
+  }
 }
 
 function initContainer() {
@@ -93,16 +106,16 @@ function showErrorState() {
 }
 
 function handleFavoriteBtnClick(btn: HTMLElement) {
-  // Get data from localStorage
-  const isFavorite = btn.classList.contains('is-favorite');
+  if (!refs.content?.dataset.exerciseId) return;
+
+  const isFavorite = btn.classList.contains(CONSTS.isFavoriteClass);
 
   if (isFavorite) {
-    // Remove from favorites logic here
-    updateFavoriteBtn(false);
+    removeFavorite(refs.content?.dataset.exerciseId);
   } else {
-    // Add to favorites logic here
-    updateFavoriteBtn(true);
+    addFavorite(refs.content?.dataset.exerciseId);
   }
+  updateFavoriteBtn(!isFavorite);
 }
 
 function handleRatingBtnClick(btn: HTMLElement) {
@@ -142,10 +155,14 @@ function fillContent(data: IExercise) {
   if (burnedCaloriesEl)
     burnedCaloriesEl.textContent = `${data.burnedCalories.toFixed(0)}/${data.time.toFixed(0)} min`;
   if (descriptionEl) descriptionEl.textContent = data.description;
+
+  updateFavoriteBtn(isFavorite(data._id));
 }
 
-function fillRatingStars(rating: number) { 
-  const stars = refs.content?.querySelectorAll<HTMLOrSVGImageElement>(CONSTS.stars);
+function fillRatingStars(rating: number) {
+  const stars = refs.content?.querySelectorAll<HTMLOrSVGImageElement>(
+    CONSTS.stars
+  );
   if (!stars) return;
 
   const fullStars = Math.round(rating);
@@ -165,17 +182,13 @@ function updateFavoriteBtn(isFavorite: boolean): void {
 
   if (!favBtn || !btnTextEl || !iconEl) return;
 
-  let iconUrl = iconEl?.getAttribute('href') || '';
-
   if (isFavorite) {
-    favBtn.classList.add('is-favorite');
+    favBtn.classList.add(CONSTS.isFavoriteClass);
     btnTextEl.textContent = 'Remove from favorites';
-    iconUrl = iconUrl.replace(/#icon-(\w+)?/, '#icon-trash');
-    iconEl.setAttribute('href', iconUrl);
+    iconEl.setAttribute('href', `${iconsUrl}#icon-trash`);
   } else {
-    favBtn.classList.remove('is-favorite');
+    favBtn.classList.remove(CONSTS.isFavoriteClass);
     btnTextEl.textContent = 'Add to favorites';
-    iconUrl = iconUrl.replace(/#icon-(\w+)?/, '#icon-heart');
-    iconEl.setAttribute('href', iconUrl);
+    iconEl.setAttribute('href', `${iconsUrl}#icon-heart`);
   }
 }
