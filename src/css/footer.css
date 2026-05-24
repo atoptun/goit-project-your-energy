@@ -158,6 +158,78 @@
   color: var(--color-primary-bg);
 }
 
+.scroll-up-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-dark-bg);
+  color: var(--color-primary-bg);
+  border: 1px solid rgba(244, 244, 244, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8) translateY(15px);
+
+  transition:
+    opacity var(--transition),
+    visibility var(--transition),
+    transform var(--transition),
+    background-color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.scroll-up-btn.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateY(0);
+}
+
+.scroll-up-btn:hover,
+.scroll-up-btn:focus-visible {
+  background-color: var(--color-accent);
+  color: var(--color-secondary-bg);
+  border-color: var(--color-accent);
+  box-shadow: 0 8px 24px rgba(239, 137, 100, 0.45);
+  transform: scale(1.1) translateY(-4px);
+}
+
+.scroll-up-btn:active {
+  transform: scale(0.95) translateY(0);
+}
+
+.scroll-up-btn-icon {
+  stroke: currentColor;
+  transition: transform var(--transition);
+}
+
+.scroll-up-btn:hover .scroll-up-btn-icon,
+.scroll-up-btn:focus-visible .scroll-up-btn-icon {
+  animation: scrollUpArrowBob 1.2s ease-in-out infinite;
+}
+
+@keyframes scrollUpArrowBob {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .footer {
     padding: 64px 0 16px;
@@ -198,6 +270,12 @@
     font-size: 18px;
   }
 
+  .scroll-up-btn {
+    bottom: 32px;
+    right: 32px;
+    width: 48px;
+    height: 48px;
+  }
 }
 
 @media only screen and (min-width: 1440px) {
@@ -233,5 +311,12 @@
 
   .footer-year {
     margin-left: 34rem;
+  }
+
+  .scroll-up-btn {
+    bottom: 40px;
+    right: 40px;
+    width: 52px;
+    height: 52px;
   }
 }
