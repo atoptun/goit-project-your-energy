@@ -33,7 +33,7 @@ export default defineConfig(({ command }) => {
       sourcemap: true,
       cssCodeSplit: false,
       rollupOptions: {
-        input: glob.sync(path.resolve(__dirname, 'src/**/*.html')),
+        input: glob.sync(path.resolve(__dirname, 'src/*.html')),
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
