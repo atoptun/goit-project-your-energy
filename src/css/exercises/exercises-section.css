@@ -23,9 +23,6 @@
     color: var(--color-text-secondary);
 }
 
-.category-title::first-letter {
-    text-transform: uppercase;
-}
 
 .exercises-section-controls {
     display: flex;
