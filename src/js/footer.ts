@@ -45,4 +45,32 @@ export function initFooter(): void {
       if (btn) btn.disabled = false;
     }
   });
+
+  scrollUpButton();
+}
+
+function scrollUpButton() {
+  const scrollUpBtn = document.querySelector<HTMLButtonElement>(SELECTORS.scrollUpBtn);
+  if (!scrollUpBtn) return;
+
+  const toggleScrollUpBtn = () => {
+    if (window.scrollY > 300) {
+      scrollUpBtn.classList.add('is-visible');
+    } else {
+      scrollUpBtn.classList.remove('is-visible');
+    }
+  };
+
+  toggleScrollUpBtn();
+
+  window.addEventListener('scroll', toggleScrollUpBtn, { passive: true });
+
+  scrollUpBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+
+    scrollUpBtn.blur();
+  });
 }
