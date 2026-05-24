@@ -1,4 +1,5 @@
 import { SELECTORS } from './constants';
+import iconsUrl from '../images/icons.svg?url';
 
 const paginationNav = document.querySelector<HTMLUListElement>(SELECTORS.pagination);
 
@@ -81,7 +82,7 @@ function createPaginationMarkup(totalPages: number, currentPage: number) {
   const showRightEllipsis = windowEnd < totalPages;
 
   const icon = (id: string, flip = false) =>
-    `<svg width="40" height="40"${flip ? ' style="transform:scaleX(-1)"' : ''}><use href="./images/icons.svg#${id}"></use></svg>`;
+    `<svg width="40" height="40"${flip ? ' style="transform:scaleX(-1)"' : ''}><use href="${iconsUrl}#${id}"></use></svg>`;
 
   const nav = (iconMarkup: string, action: string, disabled: boolean) =>
     `<li class="pagination-item pagination-nav${disabled ? ' disabled' : ''}" data-page="${action}" aria-label="${action}">${iconMarkup}</li>`;

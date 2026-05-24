@@ -1,11 +1,12 @@
 import { IExercise } from '../types';
+import iconsUrl from '../../images/icons.svg?url';
 
 export function createExerciseItemMarkup(exercise: IExercise, isFavorite: boolean = false) {
   const badgeContent = isFavorite
     ? `
       <button type="button" class="card-delete-btn js-remove-favorite" aria-label="Remove from favorites">
         <svg width="16" height="16">
-          <use href="./images/icons.svg#icon-trash"></use>
+          <use href="${iconsUrl}#icon-trash"></use>
         </svg>
       </button>
     `
@@ -23,7 +24,7 @@ export function createExerciseItemMarkup(exercise: IExercise, isFavorite: boolea
         <button type="button" class="card-start-btn">
           Start
           <svg class="icon-arrow" width="16" height="16">
-            <use href="./images/icons.svg#icon-start-arrow"></use>
+            <use href="${iconsUrl}#icon-start-arrow"></use>
           </svg>
         </button>
       </div>
@@ -31,7 +32,7 @@ export function createExerciseItemMarkup(exercise: IExercise, isFavorite: boolea
       <div class="card-title-line">
         <div class="icon-run-wrapper">
           <svg class="icon-run" width="24" height="24">
-            <use href="./images/icons.svg#running"></use>
+            <use href="${iconsUrl}#running"></use>
           </svg>
         </div>
         <p class="exercise-name">${exercise.name}</p>
