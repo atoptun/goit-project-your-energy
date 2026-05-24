@@ -1,24 +1,6 @@
 import { IExercise } from '../types';
 
 export function createExerciseItemMarkup(exercise: IExercise, isFavorite: boolean = false) {
-  function createStarsMarkup(rating: number) {
-    const totalStars = 5;
-    const activeStarsCount = Math.round(rating);
-    let html = '';
-
-    for (let i = 1; i <= totalStars; i++) {
-      const isActive = i <= activeStarsCount ? ' is-active' : '';
-
-      html += `
-        <svg class="icon-star${isActive}" width="18" height="18">
-          <use href="./images/icons.svg#icon-star"></use>
-        </svg>
-      `;
-    }
-
-    return html;
-  }
-
   const badgeContent = isFavorite
     ? `
       <button type="button" class="card-delete-btn js-remove-favorite" aria-label="Remove from favorites">
@@ -27,14 +9,7 @@ export function createExerciseItemMarkup(exercise: IExercise, isFavorite: boolea
         </svg>
       </button>
     `
-    : `
-      <div class="card-rating">
-        <span class="rating-value">${exercise.rating || '0.0'}</span>
-        <div class="stars-list">
-          ${createStarsMarkup(exercise.rating || 0)}
-        </div>
-      </div>
-    `;
+    : '';
 
   return `
   
