@@ -7,7 +7,7 @@ import {
   createExerciseEmptyMessage,
 } from './exercise-card';
 import { showErrorMessage } from '../utils';
-import { showPagination, hidePagination } from '../pagination';
+import { showPagination } from '../pagination';
 
 const ITEMS_PER_PAGE = window.innerWidth < 768 ? 8 : 10;
 
@@ -51,8 +51,6 @@ export async function renderExercises(options: RenderOptions) {
   if (!exercisesListEl) {
     return;
   }
-
-  hidePagination();
 
   const selectedFilter =
     options.filter ||
