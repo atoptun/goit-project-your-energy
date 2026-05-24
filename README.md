@@ -10,4 +10,5 @@ A fitness exercise catalog built with Vite.
 
 ## Deploy
 
-Production build is automatically deployed to GitHub Pages on every push to `main`.
+Production build is automatically deployed to GitHub Pages on every push to
+`main`.

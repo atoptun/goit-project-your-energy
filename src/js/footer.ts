@@ -1,7 +1,11 @@
 import { isAxiosError } from 'axios';
 import { subscribeNewsletter } from './services/api';
 import { SELECTORS } from './constants';
-import { showErrorMessage, showSuccessMessage, showWarningMessage } from './utils';
+import {
+  showErrorMessage,
+  showSuccessMessage,
+  showWarningMessage,
+} from './utils';
 
 const EMAIL_PATTERN = /^\w+(\.\w+)?@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
@@ -11,7 +15,9 @@ export function initFooter(): void {
     yearEl.textContent = `©${new Date().getFullYear()}`;
   }
 
-  const form = document.querySelector<HTMLFormElement>(SELECTORS.subscriptionForm);
+  const form = document.querySelector<HTMLFormElement>(
+    SELECTORS.subscriptionForm
+  );
   if (!form) return;
 
   form.addEventListener('submit', async (e: SubmitEvent) => {
@@ -24,7 +30,9 @@ export function initFooter(): void {
       return;
     }
 
-    const btn = form.querySelector<HTMLButtonElement>(SELECTORS.subscriptionBtn);
+    const btn = form.querySelector<HTMLButtonElement>(
+      SELECTORS.subscriptionBtn
+    );
     if (btn) btn.disabled = true;
 
     try {
@@ -50,7 +58,9 @@ export function initFooter(): void {
 }
 
 function scrollUpButton() {
-  const scrollUpBtn = document.querySelector<HTMLButtonElement>(SELECTORS.scrollUpBtn);
+  const scrollUpBtn = document.querySelector<HTMLButtonElement>(
+    SELECTORS.scrollUpBtn
+  );
   if (!scrollUpBtn) return;
 
   const toggleScrollUpBtn = () => {

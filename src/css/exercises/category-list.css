@@ -1,77 +1,77 @@
 .category-list {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    row-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  row-gap: 20px;
 }
 
 .category-item {
-    position: relative;
-    width: 100%;
-    height: 225px;
+  position: relative;
+  width: 100%;
+  height: 225px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    overflow: clip;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  overflow: clip;
+  cursor: pointer;
 }
 
 .category-item::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #11111180;
-    z-index: 1;
-    pointer-events: none;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #11111180;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .category-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
 .category-info {
-    z-index: 2;
-    text-align: center;
+  z-index: 2;
+  text-align: center;
 }
 
 .category-name {
-    margin-bottom: 2px;
-    font-size: 20px;
-    line-height: 20px;
-    letter-spacing: 0px;
-    text-transform: capitalize;
-    color: var(--color-primary-bg);
+  margin-bottom: 2px;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+  color: var(--color-primary-bg);
 }
 
 .category-filter {
-    font-size: 12px;
-    line-height: 18px;
-    color: #F4F4F466;
+  font-size: 12px;
+  line-height: 18px;
+  color: #f4f4f466;
 }
 
 @media only screen and (min-width: 768px) {
-    .category-name {
-        font-size: 24px;
-        line-height: 24px;
-    }
+  .category-name {
+    font-size: 24px;
+    line-height: 24px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
-    .category-list {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 32px 15px;
-    }
+  .category-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px 15px;
+  }
 
   .category-item {
     height: 242px;

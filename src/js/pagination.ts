@@ -1,7 +1,9 @@
 import { SELECTORS } from './constants';
 import iconsUrl from '../images/icons.svg?url';
 
-const paginationNav = document.querySelector<HTMLUListElement>(SELECTORS.pagination);
+const paginationNav = document.querySelector<HTMLUListElement>(
+  SELECTORS.pagination
+);
 
 type PageChangeHandler = (opts: { page: number }) => void;
 
@@ -25,7 +27,11 @@ interface ShowOptions {
   onChangedPage: PageChangeHandler | null;
 }
 
-export function showPagination({ totalPages, currentPage, onChangedPage }: ShowOptions) {
+export function showPagination({
+  totalPages,
+  currentPage,
+  onChangedPage,
+}: ShowOptions) {
   if (!paginationNav) return;
   paginationNav.innerHTML = createPaginationMarkup(totalPages, currentPage);
   currentRenderHandler = onChangedPage;
@@ -35,7 +41,9 @@ export function showPagination({ totalPages, currentPage, onChangedPage }: ShowO
 function onPageClickHandler(event: MouseEvent) {
   if (!currentRenderHandler) return;
 
-  const target = (event.target as HTMLElement).closest<HTMLLIElement>(SELECTORS.paginationItem);
+  const target = (event.target as HTMLElement).closest<HTMLLIElement>(
+    SELECTORS.paginationItem
+  );
   if (
     !target ||
     target.classList.contains('disabled') ||
@@ -44,14 +52,17 @@ function onPageClickHandler(event: MouseEvent) {
     return;
 
   const currentPage = Number(
-    document.querySelector(SELECTORS.paginationItemActive)?.getAttribute('data-page')
+    document
+      .querySelector(SELECTORS.paginationItemActive)
+      ?.getAttribute('data-page')
   );
   const pageAttr = target.dataset.page;
 
   let page: number;
   if (pageAttr === 'first') page = 1;
   else if (pageAttr === 'prev') page = Math.max(1, currentPage - 1);
-  else if (pageAttr === 'next') page = Math.min(currentTotalPages, currentPage + 1);
+  else if (pageAttr === 'next')
+    page = Math.min(currentTotalPages, currentPage + 1);
   else if (pageAttr === 'last') page = currentTotalPages;
   else page = Number(pageAttr);
 
@@ -103,7 +114,7 @@ function createPaginationMarkup(totalPages: number, currentPage: number) {
 
   items.push(
     nav(icon('icon-pagination-next'), 'next', isLast),
-    nav(icon('icon-pagination-last'), 'last', isLast),
+    nav(icon('icon-pagination-last'), 'last', isLast)
   );
 
   return items.join('');

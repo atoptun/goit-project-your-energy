@@ -2,7 +2,7 @@ import { fetchFilters } from '../services/api';
 import { ICategory, TFilterCategory } from '../types';
 import { SELECTORS } from '../constants';
 import { showPagination, hidePagination } from '../pagination';
-import { showErrorMessage } from '../utils'
+import { showErrorMessage } from '../utils';
 
 const ITEMS_PER_PAGE = window.innerWidth < 768 ? 9 : 12;
 
@@ -16,7 +16,9 @@ interface CategoryListOptions {
 
 export function initCategoryList({ onSelect }: CategoryListOptions = {}) {
   categoryListEl?.addEventListener('click', (event: MouseEvent) => {
-    const target = (event.target as HTMLElement).closest<HTMLElement>(SELECTORS.categoryItem);
+    const target = (event.target as HTMLElement).closest<HTMLElement>(
+      SELECTORS.categoryItem
+    );
     if (!target) {
       return;
     }
@@ -47,14 +49,18 @@ export async function renderCategories({ filter, page }: RenderOptions) {
   const breadcrumbEl = document.querySelector(SELECTORS.categoryTitle);
   if (breadcrumbEl) {
     breadcrumbEl.textContent = '';
-    document.querySelector(SELECTORS.categorySeparator)?.classList.remove('is-visible');
+    document
+      .querySelector(SELECTORS.categorySeparator)
+      ?.classList.remove('is-visible');
   }
   try {
     const data = await fetchFilters({ filter, limit: ITEMS_PER_PAGE, page });
 
     if (!data) return;
 
-    const categoryList = data.results.map(item => createCategoryItemMarkup(item)).join('')
+    const categoryList = data.results
+      .map(item => createCategoryItemMarkup(item))
+      .join('');
 
     if (!categoryListEl) return;
 

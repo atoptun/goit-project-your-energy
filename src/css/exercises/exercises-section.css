@@ -1,155 +1,147 @@
 @import url('./exercises-layout.css');
 
 .exercises-section-title {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 
-    font-size: 28px;
-    line-height: 1.36;
-    letter-spacing: -0.02em;
-    color: var(--color-text-primary);
+  font-size: 28px;
+  line-height: 1.36;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
 }
 
 .category-separator {
-    display: none;
+  display: none;
 }
 
 .category-separator.is-visible {
-    display: inline;
+  display: inline;
 }
 
 .category-title {
-    display: inline-block;
-    font-size: 20px;
-    color: var(--color-text-secondary);
+  display: inline-block;
+  font-size: 20px;
+  color: var(--color-text-secondary);
 }
 
-
 .exercises-section-controls {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .pagination {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 @media screen and (min-width: 768px) {
-    .pagination {
-        gap: 8px;
-    }
+  .pagination {
+    gap: 8px;
+  }
 }
 
 .pagination:has(.pagination-item) {
-    margin-top: 32px;
+  margin-top: 32px;
 }
 
 .pagination-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
-    height: 40px;
-    font-size: 16px;
-    line-height: 1;
-    color: rgba(36, 36, 36, 0.3);
-    cursor: pointer;
-    user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  font-size: 16px;
+  line-height: 1;
+  color: rgba(36, 36, 36, 0.3);
+  cursor: pointer;
+  user-select: none;
 }
 
 .pagination-item.active {
-    width: 40px;
-    border-radius: 50%;
-    border: 1.5px solid #242424;
-    color: #242424;
-    cursor: default;
+  width: 40px;
+  border-radius: 50%;
+  border: 1.5px solid #242424;
+  color: #242424;
+  cursor: default;
 }
 
 .pagination-nav {
-    width: 40px;
-    --color1: #242424;
+  width: 40px;
+  --color1: #242424;
 }
 
 .pagination-nav svg {
-    fill: #242424;
-    display: block;
-    pointer-events: none;
+  fill: #242424;
+  display: block;
+  pointer-events: none;
 }
 
 .pagination-nav.disabled {
-    --color1: rgba(36, 36, 36, 0.2);
-    cursor: default;
-    pointer-events: none;
+  --color1: rgba(36, 36, 36, 0.2);
+  cursor: default;
+  pointer-events: none;
 }
 
 .pagination-nav.disabled svg {
-    fill: rgba(36, 36, 36, 0.2);
+  fill: rgba(36, 36, 36, 0.2);
 }
 
 .pagination-ellipsis {
-    cursor: default;
-    pointer-events: none;
+  cursor: default;
+  pointer-events: none;
 }
 
 @media screen and (max-width: 767px) {
-    .pagination-item {
-        min-width: 28px;
-        height: 28px;
-        font-size: 14px;
-    }
+  .pagination-item {
+    min-width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
 
-    .pagination-item.active {
-        width: 28px;
-    }
+  .pagination-item.active {
+    width: 28px;
+  }
 
-    .pagination-nav {
-        width: 28px;
-    }
+  .pagination-nav {
+    width: 28px;
+  }
 
-    .pagination-nav svg {
-        width: 28px;
-        height: 28px;
-    }
+  .pagination-nav svg {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
-    .exercises-section-title {
-        margin-bottom: 32px;
+  .exercises-section-title {
+    margin-bottom: 32px;
 
-        font-size: 44px;
-        line-height: 1.1;
-    }
+    font-size: 44px;
+    line-height: 1.1;
+  }
 }
 
 @media only screen and (min-width: 1440px) {
   .exercises-section-title {
-        margin-bottom: 0;
-    }
+    margin-bottom: 0;
+  }
 }
 
 @media only screen and (min-width: 768px) {
-    .exercises-section-title {
-        font-size: 24px;
-        line-height: 1.33;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    .exercises-section-controls {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
+  .exercises-section-controls {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 @media only screen and (min-width: 1440px) {
-    .exercises-section-controls {
-        gap: 30px;
-    }
+  .exercises-section-controls {
+    gap: 30px;
+  }
 }
