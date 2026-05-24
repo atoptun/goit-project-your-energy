@@ -1,8 +1,8 @@
 import { coreOpenModal, coreCloseModal } from '../modal-core';
 import { fetchExerciseById } from '../services/api';
-import { showErrorMessage } from '../utils';
 import { IExercise, ModalCloseCallback } from '../types';
 import { isFavorite, addFavorite, removeFavorite } from '../services/storage';
+import { openRatingModal } from '../rating-modal';
 import iconsUrl from '../../images/icons.svg?url';
 
 const CONSTS = {
@@ -85,7 +85,7 @@ function initContainer() {
 
     const ratingBtn = target.closest<HTMLElement>(CONSTS.ratingBtn);
     if (ratingBtn) {
-      handleRatingBtnClick(ratingBtn);
+      handleRatingBtnClick();
       return;
     }
   });
@@ -118,8 +118,12 @@ function handleFavoriteBtnClick(btn: HTMLElement) {
   updateFavoriteBtn(!isFavorite);
 }
 
-function handleRatingBtnClick(btn: HTMLElement) {
-  showErrorMessage('Rating feature is not implemented yet.');
+function handleRatingBtnClick() {
+  if (!refs.content?.dataset.exerciseId) return;
+
+  openRatingModal(refs.content?.dataset.exerciseId, updatedExercise => {
+    fillContent(updatedExercise);
+  });
 }
 
 function fillContent(data: IExercise) {
