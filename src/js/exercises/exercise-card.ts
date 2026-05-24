@@ -48,7 +48,7 @@ export function createExerciseItemMarkup(exercise: IExercise, isFavorite: boolea
         <button type="button" class="card-start-btn">
           Start
           <svg class="icon-arrow" width="16" height="16">
-            <use href="./images/icons.svg#icon-arrow"></use>
+            <use href="./images/icons.svg#icon-start-arrow"></use>
           </svg>
         </button>
       </div>
@@ -56,7 +56,7 @@ export function createExerciseItemMarkup(exercise: IExercise, isFavorite: boolea
       <div class="card-title-line">
         <div class="icon-run-wrapper">
           <svg class="icon-run" width="24" height="24">
-            <use href="./images/icons.svg#icon-run"></use>
+            <use href="./images/icons.svg#running"></use>
           </svg>
         </div>
         <p class="exercise-name">${exercise.name}</p>
