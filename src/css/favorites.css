@@ -171,18 +171,6 @@
   margin: 0;
 }
 
-/* Pagination */
-.favorites-section .pagination:has(.pagination-item) {
-  margin-top: 0;
-}
-
-.favorites-section .pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin-top: 0;
-}
 
 /* Tablet (>= 768px) */
 @media screen and (min-width: 768px) {
@@ -258,10 +246,6 @@
 
 /* Desktop (>= 1440px) */
 @media screen and (min-width: 1440px) {
-  .favorites-section .pagination {
-    display: none;
-  }
-
   .favorites-section {
     padding-top: 64px;
     padding-bottom: 100px;
@@ -281,7 +265,7 @@
   .favorites-sidebar .quote-card {
     width: 494px;
     height: auto;
-    min-height: 230px; 
+    min-height: 230px;
     padding: 40px;
   }
 
@@ -308,15 +292,29 @@
   .favorites-main {
     display: flex;
     flex-direction: column;
-    padding-right: 8px;
+    overflow-y: auto;
+    max-height: 495px;
     width: calc(100% - 534px);
-    min-height: 391px;
+    padding-right: 12px;
+    scrollbar-color: #242424 transparent;
+    scrollbar-width: thin;
   }
-  
+
+  .favorites-main::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .favorites-main::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .favorites-main::-webkit-scrollbar-thumb {
+    background: #242424;
+    border-radius: 4px;
+  }
+
   .exercises-list {
     margin: 0;
-    max-height: 484px;
-    overflow-y: auto;
     padding-bottom: 0;
   }
 
@@ -325,17 +323,4 @@
     flex-grow: 1;
   }
 
-  .favorites-main::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  .favorites-main::-webkit-scrollbar-track {
-    background: rgba(36, 36, 36, 0.1);
-    border-radius: 12px;
-  }
-
-  .favorites-main::-webkit-scrollbar-thumb {
-    background: rgba(36, 36, 36, 1);
-    border-radius: 12px;
-  }
 }
