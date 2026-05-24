@@ -9,6 +9,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./css/styles.css" />
+    <!-- Preload LCP hero image per viewport to reduce discovery latency -->
+    <link
+      rel="preload"
+      as="image"
+      href="./images/hero-mobile.jpg"
+      imagesrcset="./images/hero-mobile.jpg 1x, ./images/hero-mobile@2x.jpg 2x"
+      media="(max-width: 767px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="./images/hero-tablet.jpg"
+      imagesrcset="./images/hero-tablet.jpg 1x, ./images/hero-tablet@2x.jpg 2x"
+      media="(min-width: 768px) and (max-width: 1439px)"
+    />
   </head>
   <body>
     <load src="./partials/header.html" />
