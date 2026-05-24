@@ -8,11 +8,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+    <!-- Preload LCP hero image per viewport to reduce discovery latency -->
+    <link
+      rel="preload"
+      as="image"
+      href="/goit-advancedjs-fp-03/assets/hero-mobile-wLNaQq9X.jpg"
+      imagesrcset="/goit-advancedjs-fp-03/assets/hero-mobile-wLNaQq9X.jpg 1x, /goit-advancedjs-fp-03/assets/hero-mobile@2x-o0kEreeL.jpg 2x"
+      media="(max-width: 767px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/goit-advancedjs-fp-03/assets/hero-tablet-lEgpa1bT.jpg"
+      imagesrcset="/goit-advancedjs-fp-03/assets/hero-tablet-lEgpa1bT.jpg 1x, /goit-advancedjs-fp-03/assets/hero-tablet@2x-C-8sVei2.jpg 2x"
+      media="(min-width: 768px) and (max-width: 1439px)"
+    />
     <script type="module" crossorigin src="/goit-advancedjs-fp-03/index.js"></script>
     <link rel="modulepreload" crossorigin href="/goit-advancedjs-fp-03/assets/rolldown-runtime-DMWpINJ5.js">
     <link rel="modulepreload" crossorigin href="/goit-advancedjs-fp-03/assets/vendor-DcqH4JyS.js">
-    <link rel="modulepreload" crossorigin href="/goit-advancedjs-fp-03/assets/mobile-menu-CtX3jchH.js">
-    <link rel="stylesheet" crossorigin href="/goit-advancedjs-fp-03/assets/mobile-menu-CbPLBO4Y.css">
+    <link rel="modulepreload" crossorigin href="/goit-advancedjs-fp-03/assets/mobile-menu-B6CHRGf_.js">
+    <link rel="stylesheet" crossorigin href="/goit-advancedjs-fp-03/assets/mobile-menu-BpiA9sXn.css">
   </head>
   <body>
     <header class="header">
@@ -129,6 +144,7 @@
       alt="Women training together"
       width="336"
       height="460"
+      fetchpriority="high"
       />
 
     </picture>
@@ -226,6 +242,7 @@
             alt="Women drinking water after training"
             width="335"
             height="242"
+            loading="lazy"
           />
         </picture>
       </li>
