@@ -12,6 +12,8 @@ import checker from 'vite-plugin-checker';
 // import webfontDownload from 'vite-plugin-webfont-dl';
 
 export default defineConfig(({ command }) => {
+  const root = path.resolve(__dirname, 'src');
+
   return {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
@@ -33,7 +35,9 @@ export default defineConfig(({ command }) => {
       sourcemap: true,
       cssCodeSplit: false,
       rollupOptions: {
-        input: glob.sync(path.resolve(__dirname, 'src/*.html')),
+        input: glob
+          .sync('*.html', { cwd: root })
+          .map(file => path.resolve(root, file)),
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
