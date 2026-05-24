@@ -30,3 +30,5 @@ export interface IQuote {
 export interface IStoredQuote extends IQuote {
   date: string;
 }
+
+export type ModalCloseCallback = () => void;

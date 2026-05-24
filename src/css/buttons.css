@@ -1,0 +1,78 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 14px;
+  line-height: 1.29;
+
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+
+  border: 1px solid #f4f4f4;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  fill: none;
+
+  transition:
+    color var(--transition),
+    background-color var(--transition),
+    stroke var(--transition),
+    fill var(--transition),
+    outline-color var(--transition);
+}
+
+.btn:focus-visible {
+  outline: 2px solid #f4f4f4;
+}
+
+.btn-white {
+  color: #242424;
+  background-color: #f4f4f4;
+  stroke: #242424;
+}
+
+.btn-white:hover {
+  color: #f4f4f4;
+  background-color: #242424;
+  stroke: #f4f4f4;
+}
+
+.btn-black {
+  color: #f4f4f4;
+  background-color: #242424;
+  stroke: #f4f4f4;
+}
+
+.btn-black:hover {
+  color: #242424;
+  background-color: #f4f4f4;
+  stroke: #242424;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+
+  stroke: #f4f4f4;
+  color: #f4f4f4;
+
+  transition:
+    outline-color var(--transition);
+}
+
+.close-btn:focus-visible {
+  outline: 2px solid #f4f4f4;
+}

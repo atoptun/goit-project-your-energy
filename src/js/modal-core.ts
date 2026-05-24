@@ -1,17 +1,18 @@
-import { SELECTORS } from './constants'
+import { SELECTORS } from './constants';
+import { ModalCloseCallback } from './types';
 
 const backdrop = document.querySelector<HTMLElement>(SELECTORS.modalBackdrop);
 
-let currentCloseCallback: (() => void) | null = null;
+let currentCloseCallback: ModalCloseCallback | null = null;
 
 export function coreOpenModal(
-  modalElement: HTMLElement,
-  onCloseCallback: () => void
+  modalContainer: HTMLElement,
+  onCloseCallback: ModalCloseCallback
 ): void {
-  if (!backdrop || !modalElement) return;
+  if (!backdrop || !modalContainer) return;
 
   backdrop.removeAttribute('hidden');
-  modalElement.removeAttribute('hidden');
+  modalContainer.removeAttribute('hidden');
   document.body.classList.add('is-modal-open');
 
   currentCloseCallback = onCloseCallback;
@@ -20,11 +21,11 @@ export function coreOpenModal(
   document.addEventListener('keydown', onKeyPress);
 }
 
-export function coreCloseModal(modalElement: HTMLElement): void {
-  if (!backdrop || !modalElement) return;
+export function coreCloseModal(modalContainer: HTMLElement): void {
+  if (!backdrop || !modalContainer) return;
 
   backdrop.setAttribute('hidden', '');
-  modalElement.setAttribute('hidden', '');
+  modalContainer.setAttribute('hidden', '');
   document.body.classList.remove('is-modal-open');
 
   backdrop.removeEventListener('click', onBackdropClick);

@@ -1,7 +1,10 @@
 import { IExercise } from '../types';
 import iconsUrl from '../../images/icons.svg?url';
 
-export function createExerciseItemMarkup(exercise: IExercise, isFavorite: boolean = false) {
+export function createExerciseItemMarkup(
+  exercise: IExercise,
+  isFavorite: boolean = false
+) {
   const badgeContent = isFavorite
     ? `
       <button type="button" class="card-delete-btn js-remove-favorite" aria-label="Remove from favorites">
@@ -10,7 +13,7 @@ export function createExerciseItemMarkup(exercise: IExercise, isFavorite: boolea
         </svg>
       </button>
     `
-    : '';
+    : ``;
 
   return `
   
@@ -19,9 +22,15 @@ export function createExerciseItemMarkup(exercise: IExercise, isFavorite: boolea
         <div class="card-badge-wrapper ${isFavorite ? 'is-favorite' : ''}">
           <span class="card-badge">Workout</span>
           ${badgeContent}
+          <div class="card-rating">
+            <span class="rating-value">${exercise.rating.toFixed(2)}</span>
+            <div class="stars-list">
+              ${createStarsMarkup(exercise.rating)}
+            </div>
+          </div>
         </div>
 
-        <button type="button" class="card-start-btn">
+        <button type="button" class="card-start-btn js-show-card-btn">
           Start
           <svg class="icon-arrow" width="16" height="16">
             <use href="${iconsUrl}#icon-start-arrow"></use>
@@ -55,12 +64,30 @@ export function createExerciseItemMarkup(exercise: IExercise, isFavorite: boolea
     </li>`;
 }
 
-export function createExerciseEmptyMessage() { 
+export function createExerciseEmptyMessage() {
   return `
     <li class="exercises-empty-state">
       <p class="exercises-empty-text">
         No exercises found. Try a different filter or keyword.
       </p>
     </li>
-  `;  
+  `;
+}
+
+function createStarsMarkup(rating: number) {
+  const totalStars = 5;
+  const activeStarsCount = Math.round(rating);
+  let html = '';
+
+  for (let i = 1; i <= totalStars; i++) {
+    const isActive = i <= activeStarsCount ? ' is-active' : '';
+
+    html += `
+        <svg class="icon-star${isActive}" width="18" height="18">
+          <use href="${iconsUrl}#icon-star"></use>
+        </svg>
+      `;
+  }
+
+  return html;
 }

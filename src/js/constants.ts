@@ -2,7 +2,8 @@ export const SELECTORS = {
   categoryList: '.js-category-list',
   categoryItem: '.category-item',
   exercisesList: '.js-exercises-list',
-  exerciseItem: '.exercise-item',
+  exerciseItem: '.exercise-card',
+  showExerciseCardBtn: '.js-show-card-btn',
   pagination: '.js-pagination',
   paginationItem: '.pagination-item',
   paginationItemActive: '.pagination-item.active',
@@ -16,12 +17,12 @@ export const SELECTORS = {
   scrollUpBtn: '.js-scroll-up',
   // modals
   modalBackdrop: '.js-modal-backdrop',
-  modalCloseBtn: '.js-modal-close',
-  modalExercise: '.js-modal-exercise',
   // footer
   footerYear: '.js-footer-year',
   subscriptionForm: '.js-footer-form',
-  subscriptionBtn: '.js-footer-form-btn'
+  subscriptionBtn: '.js-footer-form-btn',
+  // favorites
+  removeFavoriteBtn: '.js-remove-favorite',
 } as const;
 
 export const FILTER_CATEGORIES = {

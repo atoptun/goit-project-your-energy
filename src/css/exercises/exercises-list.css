@@ -84,6 +84,26 @@
   color: #242424;
 }
 
+/* Rating */
+
+.rating-value {
+  font-size: 12px;
+}
+
+.stars-list {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.exercise-card .icon-star {
+  padding: 2px;
+  fill: rgba(36, 36, 36, 0.2);
+}
+
+.exercise-card .icon-star.is-active {
+  fill: #ffbc11;
+}
+
 .card-delete-btn svg {
   stroke: currentColor;
   fill: none;
