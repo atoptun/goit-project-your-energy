@@ -31,6 +31,7 @@ export default defineConfig(({ command }) => {
 
     build: {
       sourcemap: true,
+      cssCodeSplit: false,
       rollupOptions: {
         input: glob.sync('./*.html', { cwd: 'src' }),
         // input: glob.sync('./src/*.html').map(file => path.relative('./src', file)),
