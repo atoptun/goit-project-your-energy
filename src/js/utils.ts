@@ -8,6 +8,7 @@ iziToast.settings({
   transitionIn: 'flipInX',
   transitionOut: 'flipOutX',
   position: 'topRight',
+  maxWidth: 360,
 });
 
 export function showErrorMessage(message: string) {
