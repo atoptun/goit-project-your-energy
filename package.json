@@ -15,6 +15,10 @@
       "prettier --write"
     ]
   },
+    "engines": {
+    "node": ">=24",
+    "npm": ">=10"
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^25.9.0",
