@@ -51,8 +51,6 @@ export async function renderExercises(options: RenderOptions) {
     return;
   }
 
-  hidePagination();
-
   const selectedFilter =
     options.filter ||
     (document
@@ -73,7 +71,8 @@ export async function renderExercises(options: RenderOptions) {
 
   const categoryTitleEl = document.querySelector(SELECTORS.categoryTitle);
   if (categoryTitleEl) {
-    categoryTitleEl.textContent = selectedCategory;
+    categoryTitleEl.textContent =
+      selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1);
   }
 
   const selectedKeyword = options.keyword;
@@ -104,6 +103,7 @@ export async function renderExercises(options: RenderOptions) {
 
     if (data.results.length === 0) {
       exercisesListEl.innerHTML = createExerciseEmptyMessage();
+      hidePagination();
       return;
     }
 
@@ -126,6 +126,7 @@ export async function renderExercises(options: RenderOptions) {
     });
   } catch {
     exercisesListEl.innerHTML = createExerciseEmptyMessage();
+    hidePagination();
     showErrorMessage('Something went wrong. Try later.');
   }
 }

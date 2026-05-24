@@ -27,6 +27,11 @@ button {
   cursor: pointer;
 }
 
+.footer-form-input:focus,
+.footer-form-btn:focus {
+  outline: none;
+}
+
 img {
   display: block;
   max-width: 100%;

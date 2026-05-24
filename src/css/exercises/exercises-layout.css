@@ -1,3 +1,7 @@
+.exercises-section {
+  padding-top: 40px;
+}
+
 .exercises-main-content {
   display: grid;
   grid-template-columns: 1fr;
@@ -26,6 +30,10 @@
 
 
 @media only screen and (min-width: 768px) {
+  .exercises-section {
+    padding-top: 48px;
+  }
+
   .exercises-main-content {
     gap: 64px;
   }

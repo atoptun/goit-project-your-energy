@@ -8,12 +8,18 @@ iziToast.settings({
   transitionIn: 'flipInX',
   transitionOut: 'flipOutX',
   position: 'topRight',
-}); 
+  maxWidth: 360,
+});
 
 export function showErrorMessage(message: string) {
-  iziToast.error({
-    title: 'Error',
-    message: message,
-  });
+  iziToast.error({ title: 'Error', message });
+}
+
+export function showSuccessMessage(message: string) {
+  iziToast.success({ message });
+}
+
+export function showWarningMessage(message: string) {
+  iziToast.warning({ message });
 }
 

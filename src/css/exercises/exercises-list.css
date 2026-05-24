@@ -54,7 +54,11 @@
 .card-badge-wrapper {
   display: flex;
   align-items: center;
-  gap: 17px;
+  gap: 16px;
+}
+
+.card-badge-wrapper.is-favorite {
+  gap: 8px;
 }
 
 .card-badge {
@@ -67,12 +71,17 @@
   text-transform: uppercase;
 }
 
-.card-rating {
+/* Delete */
+
+.card-delete-btn {
+  background: none;
+  border: none;
+  padding: 0;
   display: flex;
   align-items: center;
-  gap: 2px;
-
-  font-size: 12px;
+  justify-content: center;
+  cursor: pointer;
+  color: #242424;
 }
 
 /* Rating */
@@ -89,6 +98,11 @@
 
 .exercise-card  .icon-star.is-active {
   fill: #ffbc11;
+}
+
+.card-delete-btn svg {
+  stroke: currentColor;
+  fill: none;
 }
 
 /* Start button */
@@ -148,11 +162,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background-color: #242424;
-  fill: #f4f4f4;
+  color: #f4f4f4;
   flex-shrink: 0;
 }
 

@@ -1,24 +1,30 @@
 import { IExercise } from '../types';
+import iconsUrl from '../../images/icons.svg?url';
 
-export function createExerciseItemMarkup(exercise: IExercise) {
+export function createExerciseItemMarkup(exercise: IExercise, isFavorite: boolean = false) {
+  const badgeContent = isFavorite
+    ? `
+      <button type="button" class="card-delete-btn js-remove-favorite" aria-label="Remove from favorites">
+        <svg width="16" height="16">
+          <use href="${iconsUrl}#icon-trash"></use>
+        </svg>
+      </button>
+    `
+    : '';
+
   return `
   
     <li class="exercise-card" data-exercise-id="${exercise._id}">
       <div class="card-top-line">
-        <div class="card-badge-wrapper">
+        <div class="card-badge-wrapper ${isFavorite ? 'is-favorite' : ''}">
           <span class="card-badge">Workout</span>
-          <div class="card-rating">
-            <span class="rating-value">${exercise.rating || '0.0'}</span>
-            <div class="stars-list">
-              ${createStarsMarkup(exercise.rating || 0)}
-            </div>
-          </div>
+          ${badgeContent}
         </div>
 
         <button type="button" class="card-start-btn js-show-card-btn">
           Start
           <svg class="icon-arrow" width="16" height="16">
-            <use href="./images/icons.svg#icon-arrow"></use>
+            <use href="${iconsUrl}#icon-start-arrow"></use>
           </svg>
         </button>
       </div>
@@ -26,7 +32,7 @@ export function createExerciseItemMarkup(exercise: IExercise) {
       <div class="card-title-line">
         <div class="icon-run-wrapper">
           <svg class="icon-run" width="24" height="24">
-            <use href="./images/icons.svg#icon-run"></use>
+            <use href="${iconsUrl}#running"></use>
           </svg>
         </div>
         <p class="exercise-name">${exercise.name}</p>

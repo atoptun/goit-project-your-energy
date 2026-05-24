@@ -5,10 +5,27 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YourEnergy</title>
+    <meta name="description" content="YourEnergy — a fitness exercise catalog with filters by muscles, body parts and equipment. Browse exercises and save your favorites." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" /></noscript>
     <link rel="stylesheet" href="./css/styles.css" />
+    <!-- Preload LCP hero image per viewport to reduce discovery latency -->
+    <link
+      rel="preload"
+      as="image"
+      href="./images/hero-mobile.jpg"
+      imagesrcset="./images/hero-mobile.jpg 1x, ./images/hero-mobile@2x.jpg 2x"
+      media="(max-width: 767px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="./images/hero-tablet.jpg"
+      imagesrcset="./images/hero-tablet.jpg 1x, ./images/hero-tablet@2x.jpg 2x"
+      media="(min-width: 768px) and (max-width: 1439px)"
+    />
   </head>
   <body>
     <load src="./partials/header.html" />

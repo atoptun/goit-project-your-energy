@@ -1,8 +1,55 @@
 <section class="favorites-section">
   <div class="container">
-    <ul class="exercises-list js-favorites-list"></ul>
-    <p class="favorites-empty js-favorites-empty" hidden>
-      Your favorites list is empty.
-    </p>
+    <h1 class="favorites-title">Favorites</h1>
+
+    <div class="favorites-content">
+      <aside class="favorites-sidebar">
+        <div class="quote-card">
+          <div class="quote-icon-box">
+            <svg class="quote-icon" width="32" height="32">
+              <use href="./images/icons.svg#running"></use>
+            </svg>
+          </div>
+          <div class="quote-content">
+            <div class="quote-header">
+              <h2 class="quote-title">Quote of the day</h2>
+              <svg class="quote-mark-icon" width="20" height="20">
+                <use href="./images/icons.svg#quote"></use>
+              </svg>
+            </div>
+            <p class="quote-text" data-quote-text>Loading quote...</p>
+            <p class="quote-author" data-quote-author></p>
+          </div>
+        </div>
+
+        <div class="favorites-sidebar-bottom">
+          <div class="favorites-daily-card">
+            <div class="favorites-daily-icon">
+              <svg width="20" height="20">
+                <use href="./images/icons.svg#icon-fluent-food"></use>
+              </svg>
+            </div>
+            <div class="favorites-daily-content">
+              <h3 class="favorites-daily-title">110 min</h3>
+              <p class="favorites-daily-subtitle">Daily norm of sports</p>
+            </div>
+          </div>
+
+          <div class="favorites-image-card">
+            <img class="favorites-image" src="./images/favorites.jpg"
+              srcset="./images/favorites.jpg 1x, ./images/favorites@2x.jpg 2x" alt="Women working out outdoors"
+              loading="lazy" />
+          </div>
+        </div>
+      </aside>
+
+      <div class="favorites-main">
+        <ul class="exercises-list js-favorites-list"></ul>
+        <div class="favorites-empty js-favorites-empty" hidden>
+          <p class="favorites-empty-text">It appears that you haven't added any exercises to your favorites yet. To get
+            started, you can add exercises that you like to your favorites for easier access in the future.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

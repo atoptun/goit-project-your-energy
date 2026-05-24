@@ -34,6 +34,10 @@ export interface ExercisesParams {
   limit?: number;
 }
 
+interface SubscriptionResponse {
+  message: string;
+}
+
 export async function fetchExercises(
   params: ExercisesParams = {}
 ): Promise<PaginatedResponse<IExercise[]>> {
@@ -53,7 +57,7 @@ export async function fetchDailyQuote(): Promise<IQuote> {
   return data;
 }
 
-export async function subscribeNewsletter(email: string) {
-  const { data } = await axios.post('/subscription', { email });
+export async function subscribeNewsletter(email: string): Promise<SubscriptionResponse> {
+  const { data } = await axios.post<SubscriptionResponse>('/subscription', { email });
   return data;
 }
