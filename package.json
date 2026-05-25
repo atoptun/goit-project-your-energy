@@ -1,11 +1,15 @@
 {
-  "name": "goit-advancedjs-fp-03",
+  "name": "goit-project-your-energy",
+  "author": {
+    "name": "Andrii Toptun",
+    "email": "andrii.toptun@gmail.com"
+  },
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/goit-advancedjs-fp-03/",
+    "build": "vite build --base=/goit-project-your-energy/",
     "preview": "vite preview",
     "format": "npx prettier --write .",
     "prepare": "husky"
