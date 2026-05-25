@@ -137,8 +137,6 @@
   width: 100%;
 }
 
-
-
 .favorites-empty {
   display: flex;
   justify-content: center;
@@ -160,7 +158,6 @@
   max-width: 335px;
   margin: 0;
 }
-
 
 /* Tablet (>= 768px) */
 @media screen and (min-width: 768px) {
@@ -298,5 +295,4 @@
     margin-top: 0;
     flex-grow: 1;
   }
-
 }

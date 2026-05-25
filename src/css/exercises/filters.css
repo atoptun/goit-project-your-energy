@@ -3,7 +3,6 @@
   width: 100%;
 }
 
-
 .search-input {
   width: 100%;
   height: 48px;
@@ -23,7 +22,6 @@
     line-height: 1.5;
   }
 }
-
 
 .search-input::-webkit-search-cancel-button {
   -webkit-appearance: none;
