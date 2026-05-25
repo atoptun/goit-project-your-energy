@@ -76,3 +76,10 @@
 .close-btn:focus-visible {
   outline: 2px solid #f4f4f4;
 }
+
+@media only screen and (min-width: 768px) {
+  .btn {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
