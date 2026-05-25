@@ -19,26 +19,57 @@
       height="100"
     />
 
-    <picture class="hero-picture">
-      <source
-        srcset="./images/hero-desktop.jpg 1x, ./images/hero-desktop@2x.jpg 2x"
-        media="(min-width: 1440px)"
-        />
-      <source
-        srcset="./images/hero-tablet.jpg 1x, ./images/hero-tablet@2x.jpg 2x"
-        media="(min-width: 768px)"
-        />
+<picture class="hero-picture">
+  <source
+    srcset="./images/avif/hero-desktop.avif 1x, ./images/avif/hero-desktop@2x.avif 2x"
+    media="(min-width: 1440px)"
+    type="image/avif"
+  />
+  <source
+    srcset="./images/webp/hero-desktop.webp 1x, ./images/webp/hero-desktop@2x.webp 2x"
+    media="(min-width: 1440px)"
+    type="image/webp"
+  />
+  <source
+    srcset="./images/hero-desktop.jpg 1x, ./images/hero-desktop@2x.jpg 2x"
+    media="(min-width: 1440px)"
+    type="image/jpeg"
+  />
 
-      <img class="hero-main-image"
-      srcset="./images/hero-mobile.jpg 1x, ./images/hero-mobile@2x.jpg 2x"
-      src="./images/hero-mobile.jpg"
-      alt="Women training together"
-      width="336"
-      height="460"
-      fetchpriority="high"
-      />
+  <source
+    srcset="./images/avif/hero-tablet.avif 1x, ./images/avif/hero-tablet@2x.avif 2x"
+    media="(min-width: 768px)"
+    type="image/avif"
+  />
+  <source
+    srcset="./images/webp/hero-tablet.webp 1x, ./images/webp/hero-tablet@2x.webp 2x"
+    media="(min-width: 768px)"
+    type="image/webp"
+  />
+  <source
+    srcset="./images/hero-tablet.jpg 1x, ./images/hero-tablet@2x.jpg 2x"
+    media="(min-width: 768px)"
+    type="image/jpeg"
+  />
 
-    </picture>
+  <source
+    srcset="./images/avif/hero-mobile.avif 1x, ./images/avif/hero-mobile@2x.avif 2x"
+    type="image/avif"
+  />
+  <source
+    srcset="./images/webp/hero-mobile.webp 1x, ./images/webp/hero-mobile@2x.webp 2x"
+    type="image/webp"
+  />
+  <img 
+    class="hero-main-image"
+    srcset="./images/hero-mobile.jpg 1x, ./images/hero-mobile@2x.jpg 2x"
+    src="./images/hero-mobile.jpg"
+    alt="Women training together"
+    width="336"
+    height="460"
+    fetchpriority="high"
+  />
+</picture>    
 
     <ul class="hero-tags">
       <li class="hero-tag"><a href="#">#Sport</a></li>
