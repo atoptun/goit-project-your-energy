@@ -71,3 +71,5 @@ The production build is configured for GitHub Pages and uses the
 /goit-advancedjs-fp-03/ base path.
 
 [Figma design](https://www.figma.com/design/zKPKZDAKSveZXmG9506rDs/YourEnergy--Copy-?node-id=87-4849&t=Bd6HS03ahkNE6glH-0)
+
+[API docs](https://your-energy.b.goit.study/api-docs)
