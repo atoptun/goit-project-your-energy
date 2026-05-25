@@ -77,7 +77,13 @@ export async function renderCategories({ filter, page }: RenderOptions) {
 function createCategoryItemMarkup(category: ICategory) {
   return `
     <li class="category-item" data-category="${category.name}">
-      <img class="category-image" src="${category.imgURL}" alt="${category.name}" loading="lazy">
+      <img class="category-image"
+        src="${category.imgURL}" 
+        alt="${category.name}" 
+        width="335"
+        height="225"
+        loading="lazy"
+      >
       <div class="category-info">
         <h3 class="category-name">${category.name}</h3>
         <p class="category-filter">${category.filter}</p>
