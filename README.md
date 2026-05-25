@@ -70,6 +70,8 @@ npm run preview
 The production build is configured for GitHub Pages and uses the
 /goit-advancedjs-fp-03/ base path.
 
+[Tech Specs](https://docs.google.com/spreadsheets/d/1I-cnXqfg4xXXcNOycpQY5HAk-SHKYHocjK89CzNgnhA/edit?gid=0#gid=0)
+
 [Figma design](https://www.figma.com/design/zKPKZDAKSveZXmG9506rDs/YourEnergy--Copy-?node-id=87-4849&t=Bd6HS03ahkNE6glH-0)
 
 [API docs](https://your-energy.b.goit.study/api-docs)
