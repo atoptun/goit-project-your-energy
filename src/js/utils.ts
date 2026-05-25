@@ -1,6 +1,5 @@
 import iziToast from 'izitoast';
 
-
 iziToast.settings({
   timeout: 5000,
   resetOnHover: true,
@@ -22,4 +21,3 @@ export function showSuccessMessage(message: string) {
 export function showWarningMessage(message: string) {
   iziToast.warning({ message });
 }
-

@@ -6,11 +6,10 @@
 
   padding: 20px 0;
 
-  background-color: var(--color-primary-bg); 
+  background-color: var(--color-primary-bg);
   /* border-bottom: 1px solid  rgb(36 36 36 / 0.5); */
 
   transition: box-shadow var(--transition);
-
 }
 
 .header.is-scrolled {

@@ -13,7 +13,6 @@ import { FILTER_CATEGORIES } from '../constants';
 import { hidePagination, initPafination } from '../pagination';
 import { TFilterCategory } from '../types';
 
-
 export function initExercisesSection() {
   initPafination();
 

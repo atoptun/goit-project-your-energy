@@ -28,12 +28,10 @@
   }
 }
 
-
 @media only screen and (min-width: 768px) {
   .exercises-main-content {
     gap: 64px;
   }
-
 }
 
 @media only screen and (min-width: 1440px) {
