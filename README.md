@@ -68,7 +68,7 @@ npm run preview
 ## Deployment
 
 The production build is configured for GitHub Pages and uses the
-/goit-advancedjs-fp-03/ base path.
+/goit-project-your-energy/ base path.
 
 [Tech Specs](https://docs.google.com/spreadsheets/d/1I-cnXqfg4xXXcNOycpQY5HAk-SHKYHocjK89CzNgnhA/edit?gid=0#gid=0)
 

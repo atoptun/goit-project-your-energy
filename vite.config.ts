@@ -17,6 +17,7 @@ export default defineConfig(({ command }) => {
       [command === 'serve' ? 'global' : '_global']: {},
     },
     root: 'src',
+    base: '/goit-project-your-energy/', // Adjust to local preview path
 
     css: {
       devSourcemap: true,
