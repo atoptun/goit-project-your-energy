@@ -1,8 +1,9 @@
 import { coreOpenModal, coreCloseModal } from './modal-core';
 import { IRatingPayload, sendRating, ApiError } from './services/api';
-import { showErrorMessage } from './utils';
+import { showErrorMessage, showSuccessMessage } from './utils';
 import { IExercise } from './types';
 import { saveRatingData, getRatingData } from './services/storage';
+import { startLoading, stopLoading } from './loaders';
 
 export type SendRatingCloseCallback = (exercise: IExercise) => void;
 
@@ -84,8 +85,7 @@ function initContainer() {
         rate: Number(rate),
       };
 
-      showLoader();
-
+      startLoading(refs.content, true);
       try {
         const data = await sendRating(exerciseId, ratinPayload);
 
@@ -93,6 +93,7 @@ function initContainer() {
           email: ratinPayload.email,
           message: ratinPayload.review,
         });
+        showSuccessMessage('Rating submitted successfully!');
 
         closeCallback?.(data);
         closeRatingModal();
@@ -103,18 +104,10 @@ function initContainer() {
           showErrorMessage('Failed to submit rating. Please try again later.');
         }
       } finally {
-        hideLoader();
+        stopLoading(refs.content, true);
       }
     }
 
     void submitRating();
   });
-}
-
-function showLoader() {
-  refs.content?.classList.add('is-loading');
-}
-
-function hideLoader() {
-  refs.content?.classList.remove('is-loading');
 }

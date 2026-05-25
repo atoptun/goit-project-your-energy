@@ -10,7 +10,7 @@ import {
   hideExercisesList,
 } from './exercises-list';
 import { FILTER_CATEGORIES } from '../constants';
-import { initPafination } from '../pagination';
+import { hidePagination, initPafination } from '../pagination';
 import { TFilterCategory } from '../types';
 
 
@@ -20,6 +20,7 @@ export function initExercisesSection() {
   initFilters({
     onFilterChange: (filter: TFilterCategory) => {
       hideSearchForm();
+      hidePagination();
       hideExercisesList();
       renderCategories({ filter });
     },
@@ -29,7 +30,7 @@ export function initExercisesSection() {
   initCategoryList({
     onSelect: (category: string) => {
       showSearchForm();
-
+      hidePagination();
       hideCategoryList();
       // Handle category selection
       renderExercises({ category });

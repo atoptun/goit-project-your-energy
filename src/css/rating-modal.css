@@ -18,39 +18,6 @@
   position: relative;
 }
 
-/* Loader */
-
-.form-loader-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(27, 27, 27, 0.85);
-  backdrop-filter: blur(1px);
-  border-radius: 20px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--transition);
-}
-
-.modal-rating-content.is-loading .form-loader-overlay {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.modal-rating-content.is-loading {
-  pointer-events: none;
-  user-select: none;
-}
-
 /* Send form */
 
 .rating-form {
