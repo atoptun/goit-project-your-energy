@@ -8,6 +8,7 @@ import {
 } from './exercise-card';
 import { showErrorMessage } from '../utils';
 import { showPagination, hidePagination } from '../pagination';
+import { startLoading, stopLoading } from '../loaders';
 
 const ITEMS_PER_PAGE = window.innerWidth < 768 ? 8 : 10;
 
@@ -98,7 +99,7 @@ export async function renderExercises(options: RenderOptions) {
     page: currentPage,
     limit: ITEMS_PER_PAGE,
   };
-
+  startLoading(exercisesListEl, true);
   try {
     const data = await fetchExercises(fetchParams);
 
@@ -129,5 +130,7 @@ export async function renderExercises(options: RenderOptions) {
     exercisesListEl.innerHTML = createExerciseEmptyMessage();
     hidePagination();
     showErrorMessage('Something went wrong. Try later.');
+  } finally {
+    stopLoading(exercisesListEl, true);
   }
 }

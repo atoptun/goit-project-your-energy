@@ -5,6 +5,7 @@ import { showErrorMessage } from './utils';
 import { IExercise } from './types';
 import { SELECTORS } from './constants';
 import { openExerciseModal } from './exercises/exercise-modal';
+import { startLoading, stopLoading } from './loaders';
 
 export function initFavoritesSection() {
   const favoritesList = document.querySelector(
@@ -28,6 +29,7 @@ export function initFavoritesSection() {
     if (emptyState) emptyState.hidden = true;
 
     let exercises: IExercise[];
+    startLoading(favoritesList, true);
     try {
       exercises = await Promise.all(
         ids.map((id): Promise<IExercise> => fetchExerciseById(id))
@@ -37,6 +39,8 @@ export function initFavoritesSection() {
         'Failed to load favorite exercises. Please try again later.'
       );
       return;
+    } finally {
+      stopLoading(favoritesList, true);
     }
     favoritesList.innerHTML = exercises
       .map(ex => createExerciseItemMarkup(ex, true))

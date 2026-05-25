@@ -1,8 +1,9 @@
 import { fetchFilters } from '../services/api';
 import { ICategory, TFilterCategory } from '../types';
 import { SELECTORS } from '../constants';
-import { showPagination, hidePagination } from '../pagination';
+import { showPagination } from '../pagination';
 import { showErrorMessage } from '../utils'
+import { startLoading, stopLoading } from '../loaders';
 
 const ITEMS_PER_PAGE = window.innerWidth < 768 ? 9 : 12;
 
@@ -42,13 +43,12 @@ interface RenderOptions {
 export async function renderCategories({ filter, page }: RenderOptions) {
   const currentPage = page || 1;
 
-  hidePagination();
-
   const breadcrumbEl = document.querySelector(SELECTORS.categoryTitle);
   if (breadcrumbEl) {
     breadcrumbEl.textContent = '';
     document.querySelector(SELECTORS.categorySeparator)?.classList.remove('is-visible');
   }
+  startLoading(categoryListEl, true);
   try {
     const data = await fetchFilters({ filter, limit: ITEMS_PER_PAGE, page });
 
@@ -69,6 +69,8 @@ export async function renderCategories({ filter, page }: RenderOptions) {
   } catch (error) {
     console.error(error);
     showErrorMessage('Failed to load categories. Please try again later.');
+  } finally {
+    stopLoading(categoryListEl, true);
   }
 }
 

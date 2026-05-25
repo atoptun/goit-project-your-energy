@@ -15,6 +15,9 @@
   --color-accent: #ef8964;
   --color-border: #e0e0e0;
 
+  --loader-overlay-rgb: 0 0 0;
+  --loader-overlay-opacity: 0.3;
+
   /* Transitions */
   --transition: 250ms ease;
 }

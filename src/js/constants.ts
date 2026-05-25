@@ -23,6 +23,8 @@ export const SELECTORS = {
   subscriptionBtn: '.js-footer-form-btn',
   // favorites
   removeFavoriteBtn: '.js-remove-favorite',
+  // quote
+  quoteCard: '.js-quote-card',
 } as const;
 
 export const FILTER_CATEGORIES = {

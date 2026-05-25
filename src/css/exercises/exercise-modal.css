@@ -15,6 +15,7 @@
 }
 
 .modal-exercise-content {
+  --loader-overlay-opacity: 1;
   position: relative;
 }
 
@@ -38,7 +39,6 @@
   pointer-events: none;
   transition: opacity var(--transition);
 }
-
 .modal-exercise-content.is-loading .modal-loader-overlay {
   opacity: 1;
   pointer-events: auto;
@@ -47,21 +47,6 @@
 .modal-exercise-content.is-error .modal-error-overlay {
   opacity: 1;
   pointer-events: auto;
-}
-
-.loader-spinner {
-  width: 48px;
-  height: 48px;
-  border: 5px solid rgba(244, 244, 244, 0.1);
-  border-top-color: #f4f4f4;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 /* Exercise Card */

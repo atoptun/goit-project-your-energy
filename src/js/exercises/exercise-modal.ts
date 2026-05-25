@@ -4,6 +4,7 @@ import { IExercise, ModalCloseCallback } from '../types';
 import { isFavorite, addFavorite, removeFavorite } from '../services/storage';
 import { openRatingModal } from '../rating-modal';
 import iconsUrl from '../../images/icons.svg?url';
+import { startLoading, stopLoading } from '../loaders';
 
 const CONSTS = {
   container: '.js-modal-exercise-container',
@@ -44,21 +45,21 @@ export function openExerciseModal(
   exerciseId: string,
   onClose?: ModalCloseCallback
 ): void {
-  showLoader();
   coreOpenModal(refs.container!, closeExerciseModal);
 
   closeCallback = onClose || null;
   refs.closeBtn?.addEventListener('click', closeExerciseModal);
 
   async function loadData() {
+    startLoading(refs.content, true);
     try {
       const data = await fetchExerciseById(exerciseId);
       refs.content!.dataset.exerciseId = data._id;
       fillContent(data);
-
-      hideLoader();
     } catch {
       showErrorState();
+    } finally {
+      stopLoading(refs.content, true);
     }
   }
 
@@ -91,18 +92,8 @@ function initContainer() {
   });
 }
 
-function showLoader() {
-  refs.content?.classList.add('is-loading');
-  refs.content?.classList.remove('is-error');
-}
-
-function hideLoader() {
-  refs.content?.classList.remove('is-loading');
-}
-
 function showErrorState() {
   refs.content?.classList.add('is-error');
-  hideLoader();
 }
 
 function handleFavoriteBtnClick(btn: HTMLElement) {

@@ -1,0 +1,64 @@
+.overlay-loader-mix {
+  position: relative;
+  min-height: 100px;
+}
+
+/* Background overlay */
+.overlay-loader-mix::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgb(
+    var(--loader-overlay-rgb) / var(--loader-overlay-opacity)
+  );
+  backdrop-filter: blur(1px);
+  z-index: 100;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+
+  border-radius: inherit;
+}
+
+.overlay-light {
+  --loader-overlay-rgb: 255 255 255;
+}
+
+/* Spinner */
+.overlay-loader-mix::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  margin-left: -25px;
+
+  border: 10px solid rgba(244, 244, 244, 0.1);
+  border-top-color: #eea10c;
+  border-radius: 50%;
+  z-index: 101;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+  animation: global-spin 1s linear infinite;
+}
+
+.overlay-loader-mix.is-loading::before,
+.overlay-loader-mix.is-loading::after {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.overlay-loader-mix.is-loading * {
+  pointer-events: none !important;
+}
+
+@keyframes global-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
