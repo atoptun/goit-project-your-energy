@@ -64,6 +64,16 @@ main {
   flex-grow: 1;
 }
 
+section {
+  padding: 40px 0;
+}
+
+@media only screen and (min-width: 768px) {
+  section {
+    padding: 64px 0;
+  }
+}
+
 .hidden {
   display: none;
 }
