@@ -1,5 +1,23 @@
 .header {
-  padding-top: 20px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 900;
+
+  padding: 20px 0;
+
+  background-color: var(--color-primary-bg); 
+  /* border-bottom: 1px solid  rgb(36 36 36 / 0.5); */
+
+  transition: box-shadow var(--transition);
+
+}
+
+.header.is-scrolled {
+  box-shadow:
+    0 1px 6px rgb(36 36 36 / 0.1),
+    0 1px 1px rgb(36 36 36 / 0.1),
+    0 2px 2px rgb(36 36 36 / 0.1);
 }
 
 .header-container {
