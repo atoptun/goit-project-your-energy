@@ -6,13 +6,26 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --base=/goit-advancedjs-fp-03/",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "npx prettier --write .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*.{ts,js,json,css,html}": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=24",
+    "npm": ">=10"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^25.9.0",
     "eslint": "^10.4.0",
     "glob": "^13.0.6",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.5",
     "postcss": "^8.5.8",
     "postcss-sort-media-queries": "^5.2.0",
     "prettier": "^3.8.1",
